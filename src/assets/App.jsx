@@ -7,14 +7,16 @@ import React, { useState } from 'react';
 const products = {
     "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
     "kids-songbook": { name: "Kids Songbook", price: 7.99 },
-    "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 }
+    "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
+    "goat": { name: "Goat", price: 199.99 },
 };
 
 // Your hardcoded item list
 const itemList = [
     { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false },
     { product: products["kids-songbook"], quantity: 1, giftWrap: true },
-    { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false }
+    { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false },
+    { product: products["goat"], quantity: 1, giftWrap: false}
 ];
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap }) => {
