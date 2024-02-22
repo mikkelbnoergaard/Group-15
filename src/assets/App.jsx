@@ -97,7 +97,7 @@ const Basket = () => {
             <h2>Your Basket</h2>
             {items.map((item, index) => (
                 <BasketItem
-                    key={index} // Changed to index because name might not be unique
+                    key={index}
                     item={item}
                     onChangeQuantity={onChangeQuantity}
                     onRemoveItem={onRemoveItem}
