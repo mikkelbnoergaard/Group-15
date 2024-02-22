@@ -2,8 +2,6 @@
 import './App.css';
 import React, { useState } from 'react';
 
-
-// Simulate the products database
 const products = {
     "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
     "kids-songbook": { name: "Kids Songbook", price: 7.99 },
@@ -11,7 +9,6 @@ const products = {
     "goat": { name: "Goat", price: 199.99 },
 };
 
-// Your hardcoded item list
 const itemList = [
     { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false },
     { product: products["kids-songbook"], quantity: 1, giftWrap: true },
