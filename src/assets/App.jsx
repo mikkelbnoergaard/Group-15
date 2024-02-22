@@ -19,7 +19,7 @@ const itemList = [
     { product: products["goat"], quantity: 1, giftWrap: false}
 ];
 
-const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap }) => {
+const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
     return (
         <div className="basket-item">
             <div>Name: {item.product.name}</div>
