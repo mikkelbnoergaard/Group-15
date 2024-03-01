@@ -37,6 +37,47 @@
   }
 }
 .basket-item {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
   padding: 10px;
+  margin-bottom: 10px;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+}
+
+.details-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
+.quantity-section,
+.recurring-section,
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }

@@ -10,17 +10,28 @@ const products = {
 };
 
 const itemList = [
-    { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false },
+    { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false, Image: <img src="https://www.sensi2live.com/media/catalog/product/cache/5c82f07296e102476ab8c67f96f42fcf/b/i/big_essentials_vitamin-c-500-mg.png" alt="React Image" />},
     { product: products["kids-songbook"], quantity: 1, giftWrap: true },
     { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false },
     { product: products["goat"], quantity: 1, giftWrap: false}
 ];
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
+
     return (
         <div className="basket-item">
-            <div>Name: {item.product.name}</div>
-            <div>Price: ${item.product.price.toFixed(2)}</div>
+            <div className="product-details">
+                <img src={item.Image} alt={item.product.name} />
+                <div className="details-right">
+                    <div className="details-column">
+                        {/* Add more details like size, color, etc. */}
+                    </div>
+                    <div className="delete-button">
+                        <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
+                    </div>
+                </div>
+            </div>
+            <div>Price: {item.product.price}</div>
             <div>Quantity:
                 <input
                     type="number"
@@ -52,9 +63,9 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Totale:${item.product.price*item.quantity}
+                Total:${item.product.price*item.quantity}
             </div>
-            <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
+
         </div>
     );
 };
@@ -64,6 +75,7 @@ const Basket = () => {
         ...item,
         name: item.product.name,
         price: item.product.price,
+        Image: item.product.Image,
         recurring: ''
     })));
 
