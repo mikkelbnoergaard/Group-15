@@ -106,6 +106,7 @@ const Basket = () => {
                 />
 
             ))}
+             <div>Remember 10% discount on orders over 300$!</div>
             <div>Basket total: ${getTotalAmount()}</div>
         </div>
     );
