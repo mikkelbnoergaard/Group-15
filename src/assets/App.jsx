@@ -52,7 +52,7 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Totale:${item.product.price*item.quantity}
+                Total:${item.product.price*item.quantity}
             </div>
             <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
         </div>
