@@ -17,6 +17,15 @@ const itemList = [
 ];
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
+    const calculateItemDiscount = () => {
+        if (item.quantity > 3) {
+            // Assuming a 5% discount for the sake of example
+            return (0.05 * item.product.price * item.quantity).toFixed(2);
+        }
+        return '0.00';
+    };
+    const itemDiscount = calculateItemDiscount();
+
     return (
         <div className="basket-item">
             <div>Name: {item.product.name}</div>
