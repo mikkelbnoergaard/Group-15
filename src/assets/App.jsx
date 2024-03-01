@@ -87,10 +87,39 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
+    const calculateDiscounts = (items) => {
+        let discount = 0;
+        let subtotal = 0;
+
+        items.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            // Assuming a rebate is applied per item for larger quantities
+            if (item.quantity > 3) {
+                discount += item.price * 0.05 * item.quantity; // Example: 5% rebate per item
+            }
+        });
+
+        // 10% discount for orders over 300 DKK
+        if (subtotal > 300) {
+            discount += subtotal * 0.10;
+        }
+
+        return discount;
+    };
 
     const getTotalAmount = () => {
-        return items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+        const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        const discount = calculateDiscounts(items);
+        return {
+            subtotal: subtotal.toFixed(2),
+            discount: discount.toFixed(2),
+            total: (subtotal - discount).toFixed(2)
+        };
     };
+
+    const { subtotal, discount, total } = getTotalAmount();
 
     return (
         <div>
@@ -104,9 +133,7 @@ const Basket = () => {
                     onToggleGiftWrap={onToggleGiftWrap}
                     onChangeRecurring={onChangeRecurring}
                 />
-
             ))}
-             <div>Remember 10% discount on orders over 300$!</div>
             <div>Basket total: ${getTotalAmount()}</div>
         </div>
     );
