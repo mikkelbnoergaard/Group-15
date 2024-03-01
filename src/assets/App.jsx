@@ -134,7 +134,7 @@ const Basket = () => {
                     onChangeRecurring={onChangeRecurring}
                 />
             ))}
-            <div>remember there's a 10% discount on orders over 300$!</div>
+            <p>remember there's a 10% discount on orders over 300$!</p>
             <div>Basket total: ${getTotalAmount()}</div>
         </div>
     );
