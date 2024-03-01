@@ -61,7 +61,8 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Totale:${item.product.price*item.quantity}
+                Total: ${ (item.product.price * item.quantity).toFixed(2) }
+                { itemDiscount !== '0.00' && <div>Discount: -${ itemDiscount }</div> }
             </div>
             <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
         </div>
@@ -132,6 +133,9 @@ const Basket = () => {
 
     return (
         <div>
+            <div>Basket Subtotal: ${subtotal}</div>
+            <div>Discounts: -${discount}</div>
+            <div>Basket Total: ${total}</div>
             <h2>Your Basket</h2>
             {items.map((item, index) => (
                 <BasketItem
@@ -143,9 +147,6 @@ const Basket = () => {
                     onChangeRecurring={onChangeRecurring}
                 />
             ))}
-            <div>Basket Subtotal: ${subtotal}</div>
-            <div>Discounts: -${discount}</div>
-            <div>Basket Total: ${total}</div>
         </div>
     );
 };
