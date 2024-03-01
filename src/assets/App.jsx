@@ -119,7 +119,7 @@ const Basket = () => {
         };
     };
 
-    const { subtotal, discount, total } = getTotalAmount();
+    const {subtotal,discount,total} = getTotalAmount();
 
     return (
         <div>
