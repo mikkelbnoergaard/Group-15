@@ -120,12 +120,12 @@ const AdressForm = () => {
         //Implement your submission logic here, including further validation as necessary
         alert('Form submitted');
     };
-    const toggleBillingAddress = () => {
+    {/*const toggleBillingAddress = () => {
         setAddresses(prevAddresses => ({
             ...prevAddresses,
             billingIsDifferent: !prevAddresses.billingIsDifferent,
         }));
-    };
+    };*/}
 
     return (
         <form onSubmit={handleSubmit}>
@@ -242,7 +242,7 @@ const AdressForm = () => {
                     />
                 </label>
             </div>
-            <div>
+            {/*<div>
                 <label>
                     Shipping Address is the same as Billing Address?
                     <input
@@ -368,7 +368,7 @@ const AdressForm = () => {
                         />
                     </div>
                 </>
-            )}
+            )}*/}
             <button type="submit">Submit</button>
         </form>
     );

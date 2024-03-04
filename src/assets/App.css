@@ -36,7 +36,22 @@
     transform: rotate(360deg);
   }
 }
-.basket-item {
-  margin-bottom: 20px;
-  padding: 10px;
+.basket-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
+
+.basket-items {
+  flex: 1;
+  /* Tilføj yderligere styling om nødvendigt */
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Juster efter behov */
+  margin-left: 20px; /* Giver lidt plads mellem kolonnerne */
+  flex-shrink: 0;
+}
+

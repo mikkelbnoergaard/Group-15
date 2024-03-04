@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 import AddressForm from './AddressForm';
 import DeliveryAddress from './DeliveryAddress';
+import Total1 from './Total1.jsx';
 
 /*
 const products = {
@@ -99,7 +100,7 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-    const calculateDiscounts = (items) => {
+    {/*const calculateDiscounts = (items) => {
         let discount = 0;
         let subtotal = 0;
 
@@ -117,9 +118,9 @@ const Basket = () => {
         }
 
         return discount;
-    };
+    };*/}
 
-    const getTotalAmount = () => {
+    {/*const getTotalAmount = () => {
         const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
         const discount = calculateDiscounts(items);
         return {
@@ -127,39 +128,32 @@ const Basket = () => {
             discount: discount.toFixed(2),
             total: (subtotal - discount).toFixed(2)
         };
-    };
+    };*/}
 
-    const { subtotal, discount, total } = getTotalAmount();
+    {/*const { subtotal, discount, total } = getTotalAmount();*/}
 
     return (
-        <div>
-            <div>Basket Subtotal: ${subtotal}</div>
-            <div>Discounts: -${discount}</div>
-            <div>Basket Total: ${total}</div>
-            <h2>Your Basket</h2>
-            {items.map((item, index) => (
-                <BasketItem
-                    key={index}
-                    item={item}
-                    onChangeQuantity={onChangeQuantity}
-                    onRemoveItem={onRemoveItem}
-                    onToggleGiftWrap={onToggleGiftWrap}
-                    onChangeRecurring={onChangeRecurring}
-                />
-            ))}
-            {/* Insert the AddressForm here */}
-            <AddressForm />
-            <DeliveryAddress />
+        <div className="basket-layout">
+            <div className="basket-items">
+                <h2>Your Basket</h2>
+                {items.map((item, index) => (
+                    <BasketItem
+                        key={index}
+                        item={item}
+                        onChangeQuantity={onChangeQuantity}
+                        onRemoveItem={onRemoveItem}
+                        onToggleGiftWrap={onToggleGiftWrap}
+                        onChangeRecurring={onChangeRecurring}
+                    />
+                ))}
+            </div>
+            <div className="right-side">
+                <Total1 items={items} />
+                <AddressForm />
+                <DeliveryAddress />
+            </div>
         </div>
-
     );
 };
-
-
-
-
-
-
-
 export default Basket;
 
