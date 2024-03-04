@@ -10,33 +10,32 @@ const products = {
 };
 
 const itemList = [
-    { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false, Image: <img src="https://www.sensi2live.com/media/catalog/product/cache/5c82f07296e102476ab8c67f96f42fcf/b/i/big_essentials_vitamin-c-500-mg.png" alt="React Image" />},
-    { product: products["kids-songbook"], quantity: 1, giftWrap: true },
-    { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false },
-    { product: products["goat"], quantity: 1, giftWrap: false}
+    { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false, ImageURL: "https://www.sensi2live.com/media/catalog/product/cache/5c82f07296e102476ab8c67f96f42fcf/b/i/big_essentials_vitamin-c-500-mg.png"},
+    { product: products["kids-songbook"], quantity: 1, giftWrap: true, ImageURL: "https://gigglesandjoy.com/wp-content/uploads/2018/01/books.png"},
+    { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false, ImageURL: "https://www.bhg.com/thmb/dGVkgUEAOrdxCWcM9x79Tbp95kA=/4000x0/filters:no_upscale():strip_icc()/How-to-Plant-and-Grow-Sugar-Cane-965303384-2fdac181359d44c185dfa7988fc181a8.jpg"},
+    { product: products["goat"], quantity: 1, giftWrap: false, ImageURL: "https://png.pngtree.com/png-clipart/20230411/original/pngtree-goat-cartoon-white-transparent-png-image_9047560.png"}
 ];
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
 
     return (
-        <div className="basket-item">
+        <div className="basket-items">
+            <div className="basket-Elements">
+                <img src={item.ImageURL}                                                                                       
+                     alt={item.product.name}                                                                                   
+                     style={{ width: '200px', height: 'auto', borderRadius: '5px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)' }}/>
             <div className="product-details">
-                <img src={item.Image} alt={item.product.name} />
-                <div className="details-right">
-                    <div className="details-column">
-                        {/* Add more details like size, color, etc. */}
-                    </div>
-                    <div className="delete-button">
-                        <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
-                    </div>
+                <div><b>{item.product.name}</b>
+
                 </div>
+            <div>Price: {item.product.price}
             </div>
-            <div>Price: {item.product.price}</div>
             <div>Quantity:
                 <input
                     type="number"
                     value={item.quantity}
                     min="1"
+                    style={{width:"24px"}}
                     onChange={(e) => onChangeQuantity(item.product.name, parseInt(e.target.value))}
                 />
             </div>
@@ -63,9 +62,20 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Total:${item.product.price*item.quantity}
             </div>
-
+                <div>
+                </div>
+                <b>${item.product.price*item.quantity}</b>
+            </div>
+             <div className="details-right">
+                 <div className="delete-button">
+                     <button onClick={() => onRemoveItem(item.product.name)}>
+                         <img src={"src/Images/Trashcan.jpg.webp"}
+                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                     </button>
+                 </div>
+             </div>                                                                                 
+            </div>
         </div>
     );
 };
@@ -150,8 +160,8 @@ const Basket = () => {
             <div>Discounts: -${discount}</div>
             <div>Basket Total: ${total}</div>
         </div>
+
     );
 };
 
 export default Basket;
-

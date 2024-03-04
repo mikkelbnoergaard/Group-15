@@ -41,24 +41,38 @@
   flex-direction: column;
   border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
+}
+
+.basket-Elements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  gap: 20px;
 }
 
 .product-details {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .details-right {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-grow: 1;
+  flex-direction: row-reverse;
 }
 
 .details-column {
   display: flex;
   flex-direction: column;
+}
+.details-row {
+  display: flex;
+  flex-direction: row;
 }
 
 .delete-button {
@@ -75,9 +89,14 @@
 }
 
 button {
-  background-color: #e74c3c;
+  background-color: #fff;
   color: #fff;
-  border: none;
-  padding: 5px 10px;
+  border: 1px solid #000000;
+  border-radius: 1000px;
+  padding: 9px 10px;
   cursor: pointer;
+}
+
+quantityField {
+  width: 10px;
 }
