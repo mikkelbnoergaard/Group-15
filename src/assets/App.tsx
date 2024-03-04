@@ -10,9 +10,9 @@ import React, { useState } from 'react';
 };*/}
 
 import productData from './product.json';
-import AddressForm from "./AddressForm.jsx";
-import DeliveryAddress from "./DeliveryAddress.jsx";
-import Total1 from "./Total1.jsx";
+import AddressForm from "./AddressForm.tsx";
+import DeliveryAddress from "./DeliveryAddress.tsx";
+import Total1 from "./Total1.tsx";
 const itemList = productData;
 console.log(productData);
 
