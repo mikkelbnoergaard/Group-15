@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
+import AddressForm from './AddressForm';
 
 /*
 const products = {
@@ -145,7 +146,10 @@ const Basket = () => {
                     onChangeRecurring={onChangeRecurring}
                 />
             ))}
+            {/* Insert the AddressForm here */}
+            <AddressForm />
         </div>
+
     );
 };
 
