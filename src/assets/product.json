@@ -81,7 +81,7 @@
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg"
   },
   {
     "id": "flying-squrriel",
@@ -91,7 +91,7 @@
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": null,
-    "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg"
+    "ImageURL": "https://www.nps.gov/articles/images/flying-squirrel2.png"
   },
   {
     "id": "fentanyl-DIY",
@@ -131,7 +131,7 @@
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://media.licdn.com/dms/image/C4D12AQHWBxjpOugTkA/article-inline_image-shrink_1000_1488/0/1520066470827?e=1713398400&v=beta&t=HGH51u8MceiFPqQfKJ1fKvrFRgbVcUxA2UM8Awh_On4"
   },
   {
     "id": "iphone-charger",
@@ -141,7 +141,7 @@
     "rebateQuantity": 2,
     "rebatePercent": 20,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://m.media-amazon.com/images/I/51CJPmRD1uL._SL1425_.jpg"
   },
   {
     "id": "sodastream",
@@ -151,7 +151,7 @@
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://sodastream.dk/cdn/shop/files/terra_life.png?v=1696421065&width=1000"
   },
   {
     "id": "flight-suit",
@@ -161,7 +161,7 @@
     "rebateQuantity": 2,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://www.arvingen.dk/images/510360F-8923_front-p.webp"
   },
   {
     "id": "induction-pan",
@@ -171,6 +171,6 @@
     "rebateQuantity": 2,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "ImageURL": ""
+    "ImageURL": "https://www.illumsbolighus.dk/dw/image/v2/BGKQ_PRD/on/demandware.static/-/Sites-sfcc-master-catalogue/default/dwea9a5eca/images/hi-res/901306615.jpg?sw=600&sh=600"
   }
 ]
