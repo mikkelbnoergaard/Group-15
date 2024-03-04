@@ -74,6 +74,7 @@ const Basket = () => {
         ...item,
         name: item.name,
         price: item.price,
+        quantity: 0,
         recurring: ''
     })));
 
