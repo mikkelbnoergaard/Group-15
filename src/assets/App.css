@@ -47,9 +47,17 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 20px;
+  gap: 20px;
 }
 .basket-items{
-  flex: 1;
+  flex: 3;
+  padding: 20px; /* Inner spacing */
+  border: 1px solid #e0e0e0; /* Light grey border for box effect */
+  background-color: #fff; /* White background for the content */
+  border-radius: 4px; /* Slightly rounded corners for the boxes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 20px; /* Space from the bottom */
 }
 
 .basket-Elements {
@@ -75,11 +83,20 @@
   flex-direction: row-reverse;
 }
 .right-side {
+  position: sticky;
+  top: 20px;
   display: flex;
   flex-direction: column;
   width: 300px;
   margin-left: 20px;
   flex-shrink: 0;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+  margin-bottom: 20px;
+  flex: 1;
 }
 .details-column {
   display: flex;
