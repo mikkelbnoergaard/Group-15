@@ -1,23 +1,22 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-import AddressForm from './AddressForm';
-import DeliveryAddress from './DeliveryAddress';
 
-/*
 const products = {
     "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
     "kids-songbook": { name: "Kids Songbook", price: 7.99 },
     "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
     "goat": { name: "Goat", price: 199.99 },
 };
-*/
 
 import productData from './product.json';
+import AddressForm from "./AddressForm.jsx";
+import DeliveryAddress from "./DeliveryAddress.jsx";
 const itemList = productData;
 console.log(productData);
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
+
     const calculateItemDiscount = () => {
         if (item.quantity > 3) {
             // Assuming a 5% discount for the sake of example
@@ -27,16 +26,26 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
     };
     const itemDiscount = calculateItemDiscount();
 
+
     return (
-        <div className="basket-item">
-            <div>Name: {item.name}</div>
-            <div>Price: ${item.price.toFixed(2)}</div>
+        <div className="basket-items">
+            <div className="basket-Elements">
+                <img src={item.ImageURL}
+                     alt={item.name}
+                     style={{ width: '200px', height: 'auto', borderRadius: '5px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)' }}/>
+            <div className="product-details">
+                <div><b>{item.name}</b>
+
+                </div>
+            <div>Price: {item.price}
+            </div>
             <div>Quantity:
                 <input
                     type="number"
                     value={item.quantity}
                     min="1"
                     onChange={(e) => onChangeQuantity(item.name, parseInt(e.target.value))}
+                    style={{width:"24px"}}
                 />
             </div>
             <div>
@@ -62,19 +71,32 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Total: ${ (item.price * item.quantity).toFixed(2) }
-                { itemDiscount !== '0.00' && <div>Discount: -${ itemDiscount }</div> }
+                 <b>${ (item.price * item.quantity).toFixed(2) } </b>
+                     { itemDiscount !== '0.00' && <div>Discount: -${ itemDiscount }</div> }
             </div>
-            <button onClick={() => onRemoveItem(item.name)}>Remove Item</button>
+                <div>
+                </div>
+            </div>
+             <div className="details-right">
+                 <div className="delete-button">
+                     <button onClick={() => onRemoveItem(item.name)}>
+                         <img src={"src/Images/Trashcan.jpg.webp"}
+                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                     </button>
+                 </div>
+             </div>
+            </div>
         </div>
     );
 };
+
 const Basket = () => {
     const [items, setItems] = useState(itemList.map(item => ({
         ...item,
         name: item.name,
         price: item.price,
         quantity: 0,
+        ImageURL: item.ImageURL,
         recurring: ''
     })));
 
@@ -106,11 +128,13 @@ const Basket = () => {
         items.forEach(item => {
             const itemTotal = item.price * item.quantity;
             subtotal += itemTotal;
+
             // Assuming a rebate is applied per item for larger quantities
             if (item.quantity > 3) {
                 discount += item.price * 0.05 * item.quantity; // Example: 5% rebate per item
             }
         });
+
         // 10% discount for orders over 300 DKK
         if (subtotal > 300) {
             discount += subtotal * 0.10;
@@ -148,18 +172,10 @@ const Basket = () => {
                 />
             ))}
             {/* Insert the AddressForm here */}
-            <AddressForm />
             <DeliveryAddress />
         </div>
-
     );
 };
-
-
-
-
-
-
 
 export default Basket;
 
