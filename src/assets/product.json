@@ -19,7 +19,8 @@
     "rebateQuantity": 3,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "giftWrap": false
+    "giftWrap": false,
+    "ImageURL": "https://theawesomer.com/photos/2022/09/five_wheel_bicycle_t.jpg"
   },
   {
     "id": "kids-songbook",
@@ -29,7 +30,8 @@
     "rebateQuantity": 3,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "giftWrap": true
+    "giftWrap": true,
+    "ImageURL": "https://cdn.wildsca.net/store/wp-content/uploads/2019/06/22083326/MB009.png"
   },
   {
     "id": "cow-irish-moiled",
@@ -38,7 +40,8 @@
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": "https://www.slowfood.org.uk/wp-content/uploads/2014/09/Moiled-2-Small_Copyright_Irish_Moiled_Cattle_Society.jpg"
   },
   {
     "id": "kangaroo-antilopine",
@@ -47,7 +50,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 25,
-    "upsellProductId": "vitamin-c-depot-500-250"
+    "upsellProductId": "vitamin-c-depot-500-250",
+    "ImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT96FzrYs7yPC-hPzyxQRK5kzxcwY8r1lwYFc0YErbGlQV46tG6"
   },
   {
     "id": "kangaroo-western-grey",
@@ -56,7 +60,8 @@
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvZrwrSsi1q1u4OqemBQdXrudIFiMqlvSwMGQYvQzEFqEwB3uz"
   },
   {
     "id": "hippo",
@@ -65,7 +70,8 @@
     "currency": "DKK",
     "rebateQuantity": 5,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRXSIhjNfzHcqw7AC27l6uldeFN7-BLwf6-BBLifp4uWlIpfAGv"
   },
   {
     "id": "football",
@@ -74,7 +80,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "coffee-grinder-pro"
+    "upsellProductId": null,
+    "ImageURL": ""
   },
   {
     "id": "flying-squrriel",
@@ -83,7 +90,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg"
   },
   {
     "id": "fentanyl-DIY",
@@ -92,7 +100,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "toothbrush-bamboo"
+    "upsellProductId": null,
+    "ImageURL": "https://www.poison.org/-/media/images/shared/articles/fentanyl-syringe.jpg"
   },
   {
     "id": "toothbrush-bamboo",
@@ -101,7 +110,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": "https://d1y842vehjx955.cloudfront.net/productimages/490x490/W10944.jpg"
   },
   {
     "id": "blob",
@@ -110,7 +120,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": "trimmer-battery"
+    "upsellProductId": null,
+    "ImageURL": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQxLlMy9rgLWLo-NUa3KVQarBICPDIwIbUJRoDrskIcLV5TG3LX"
   },
   {
     "id": "tetherball",
@@ -119,7 +130,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": ""
   },
   {
     "id": "iphone-charger",
@@ -128,7 +140,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 20,
-    "upsellProductId": "hair-clip-large"
+    "upsellProductId": null,
+    "ImageURL": ""
   },
   {
     "id": "sodastream",
@@ -137,7 +150,8 @@
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "upsellProductId": null
+    "upsellProductId": null,
+    "ImageURL": ""
   },
   {
     "id": "flight-suit",
@@ -146,7 +160,8 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": "scarf-wool"
+    "upsellProductId": null,
+    "ImageURL": ""
   },
   {
     "id": "induction-pan",
@@ -155,6 +170,7 @@
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 10,
-    "upsellProductId": "scarf-silk"
+    "upsellProductId": null,
+    "ImageURL": ""
   }
 ]
