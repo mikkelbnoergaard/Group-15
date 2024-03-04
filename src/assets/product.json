@@ -1,0 +1,159 @@
+[
+  {
+    "id": "goat",
+    "name": "Goat",
+    "price": 4.99,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "giftWrap": false,
+    "quantity": 1
+  },
+  {
+    "id": "bicycle-5-wheels",
+    "name": "5-Wheeled Bicycle",
+    "price": 199.99,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "giftWrap": false
+  },
+  {
+    "id": "kids-songbook",
+    "name": "Kids Songbook",
+    "price": 7.99,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "giftWrap": true
+  },
+  {
+    "id": "cow-irish-moiled",
+    "name": "Irish Moiled Cow",
+    "price": 149.99,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "kangaroo-antilopine",
+    "name": "Antilopine Kangaroo",
+    "price": 199.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 25,
+    "upsellProductId": "vitamin-c-depot-500-250"
+  },
+  {
+    "id": "kangaroo-western-grey",
+    "name": "Western Grey Kangaroo",
+    "price": 175,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "hippo",
+    "name": "Hoppopotamus",
+    "price": 549.99,
+    "currency": "DKK",
+    "rebateQuantity": 5,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "football",
+    "name": "Football",
+    "price": 49.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "coffee-grinder-pro"
+  },
+  {
+    "id": "flying-squrriel",
+    "name": "Flying Squirrel",
+    "price": 199.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "fentanyl-DIY",
+    "name": "Fentanyl DIY kit",
+    "price": 49.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "toothbrush-bamboo"
+  },
+  {
+    "id": "toothbrush-bamboo",
+    "name": "Bamboo Toothbrush",
+    "price": 9.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": null
+  },
+  {
+    "id": "blob",
+    "name": "Blobfish",
+    "price": 99.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": "trimmer-battery"
+  },
+  {
+    "id": "tetherball",
+    "name": "Tetherball",
+    "price": 129.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "iphone-charger",
+    "name": "iPhone Charger",
+    "price": 79.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 20,
+    "upsellProductId": "hair-clip-large"
+  },
+  {
+    "id": "sodastream",
+    "name": "Soda Stram",
+    "price": 119.99,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "upsellProductId": null
+  },
+  {
+    "id": "flight-suit",
+    "name": "Flight Suit",
+    "price": 99.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": "scarf-wool"
+  },
+  {
+    "id": "induction-pan",
+    "name": "Induction Pan",
+    "price": 149.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": "scarf-silk"
+  }
+]

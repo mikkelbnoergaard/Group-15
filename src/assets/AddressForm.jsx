@@ -1,0 +1,376 @@
+import React, {useState} from "react";
+
+const AdressForm = () => {
+    const [addresses, setAddresses] = useState({
+        delivery: {
+            country: 'Denmark',
+            zip: '',
+            city: '',
+            addressLine1: '',
+            addressline2: '',
+            name: '',
+            phone: '',
+            email: '',
+            companyName: '',
+            companyVAT: '',
+        },
+        billing: {
+            country: 'Denmark',
+            zip: '',
+            city: '',
+            addressLine1: '',
+            addressLine2: '',
+            name: '',
+            phone: '',
+            email: '',
+            companyName: '',
+            companyVAT: '',
+        },
+        billingIsDifferent: false,
+    });
+
+    // Define the errors state with its setter function
+    const [errors, setErrors] = useState({});
+
+    const handleInputChange = (event, addressType) => {
+        const {name, value} = event.target;
+
+        // Perform validation on email and phone fields
+        if (name === "email" && !validateEmail(value)) {
+            setErrors({...errors, email: 'Ugyldig e-mailadresse'});
+        } else if (name === "phone" && !validatePhone(value)) {
+            setErrors({...errors, phone: 'Telefonnummeret skal være 8 cifre'});
+        } else {
+            // If no validation error, clear errors and update address
+            setErrors({...errors, [name]: ''});
+            setAddresses({
+                ...addresses,
+                [addressType]: {
+                    ...addresses[addressType],
+                    [name]: value,
+                },
+            });
+        }
+    };
+
+    const validateZipCode = async (zip) => {
+        if (zip.length === 4) {
+            try {
+                const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zip}`);
+                const data = await response.json();
+                if (data.nr) {
+                    setErrors({
+                        ...errors,
+                        zip: '' // Clear any previous error message
+                    });
+                    // Update city based on the zip code
+                    setAddresses({
+                        ...addresses,
+                        city: data.navn
+                    });
+                } else {
+                    // Set error message if zip is not found
+                    setErrors({
+                        ...errors,
+                        zip: 'Ugyldigt postnummer'
+                    });
+                }
+            } catch (error) {
+                console.error("Error validating zip code:", error);
+                setErrors({
+                    ...errors,
+                    zip: 'Fejl ved validering af postnummer'
+                });
+            }
+        } else {
+            setErrors({
+                ...errors,
+                zip: 'Postnummeret skal være 4 cifre'
+            });
+        }
+    };
+
+    const validateEmail = (email) => {
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return re.test(String(email).toLowerCase());
+    };
+    const validatePhone = (phone) => {
+        return phone.length === 8 && !isNaN(phone);
+    };
+
+    const handleZipBlur = async (e, addressType) => {
+        const zip = e.target.value;
+        const isValidZip = await validateZipCode(zip);
+        if (!isValidZip) {
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                [`${addressType}.zip`]: 'Ugyldigt postnummer'
+            }));
+        } else {
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                [`${addressType}.zip`]: ''
+            }));
+        }
+    };
+    //Placeholder for validateZip and other validation functions
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        //Implement your submission logic here, including further validation as necessary
+        alert('Form submitted');
+    };
+    const toggleBillingAddress = () => {
+        setAddresses(prevAddresses => ({
+            ...prevAddresses,
+            billingIsDifferent: !prevAddresses.billingIsDifferent,
+        }));
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <h2>Billing Address</h2>
+            <div>
+                <label>
+                    Country:
+                    <input
+                        type="text"
+                        name="country"
+                        value={addresses.billing.country}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Zip Code:
+                    <input
+                        type="text"
+                        name="zip"
+                        value={addresses.billing.zip}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                        onBlur={(e) => handleZipBlur(e, 'billing')} // Call validateZipCode on blur
+                    />
+                </label>
+            </div>
+            {errors['billing.zip'] && <div className="error">{errors['billing.zip']}</div>}
+            <div>
+                <label>
+                    City:
+                    <input
+                        type="text"
+                        name="city"
+                        value={addresses.billing.city}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Address Line 1:
+                    <input
+                        type="text"
+                        name="addressLine1"
+                        value={addresses.billing.addressLine1}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Address Line 2:
+                    <input
+                        type="text"
+                        name="addressLine2"
+                        value={addresses.billing.addressLine2}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Name:
+                    <input
+                        type="text"
+                        name="name"
+                        value={addresses.billing.name}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Phone:
+                    <input
+                        type="text"
+                        name="phone"
+                        value={addresses.billing.phone}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        name="email"
+                        value={addresses.billing.email}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Company Name:
+                    <input
+                        type="text"
+                        name="companyName"
+                        value={addresses.billing.companyName}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Company VAT:
+                    <input
+                        type="text"
+                        name="companyVAT"
+                        value={addresses.billing.companyVAT}
+                        onChange={(e) => handleInputChange(e, 'billing')}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Shipping Address is the same as Billing Address?
+                    <input
+                        type="checkbox"
+                        checked={!addresses.billingIsDifferent}
+                        onChange={toggleBillingAddress}
+                    />
+                </label>
+            </div>
+            {addresses.billingIsDifferent && (
+                <>
+                    <div>
+                        <h2>Delivery Address</h2>
+                    </div>
+                    <div>
+                        <label>
+                            Country:
+                            <input
+                                type="text"
+                                name="country"
+                                value={addresses.delivery.country}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Zip Code:
+                            <input
+                                type="text"
+                                name="zip"
+                                value={addresses.delivery.zip}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                                onBlur={(e) => handleZipBlur(e, 'delivery')} // Call validateZipCode on blur
+                            />
+                        </label>
+                    </div>
+                    {errors['delivery.zip'] && <div className="error">{errors['delivery.zip']}</div>}
+                    <div>
+                        <label>
+                            City:
+                            <input
+                                type="text"
+                                name="city"
+                                value={addresses.delivery.city}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Address Line 1:
+                            <input
+                                type="text"
+                                name="addressLine1"
+                                value={addresses.delivery.addressLine1}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Address Line 2:
+                            <input
+                                type="text"
+                                name="addressLine2"
+                                value={addresses.delivery.addressLine2}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Name:
+                            <input
+                                type="text"
+                                name="name"
+                                value={addresses.delivery.name}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Phone:
+                            <input
+                                type="text"
+                                name="phone"
+                                value={addresses.delivery.phone}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Email:
+                            <input
+                                type="email"
+                                name="email"
+                                value={addresses.delivery.email}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Company Name:
+                            <input
+                                type="text"
+                                name="companyName"
+                                value={addresses.delivery.companyName}
+                                onChange={(e) => handleInputChange(e, 'delivery')}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        Company VAT:
+                        <input
+                            type="text"
+                            name="companyVAT"
+                            value={addresses.delivery.companyVAT}
+                            onChange={(e) => handleInputChange(e, 'delivery')}
+                        />
+                    </div>
+                </>
+            )}
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
+export default AdressForm;

@@ -1,26 +1,26 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
+import AddressForm from './AddressForm';
 
+/*
 const products = {
     "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
     "kids-songbook": { name: "Kids Songbook", price: 7.99 },
     "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
     "goat": { name: "Goat", price: 199.99 },
 };
+*/
 
-const itemList = [
-    { product: products["vitamin-c-500-250"], quantity: 2, giftWrap: false },
-    { product: products["kids-songbook"], quantity: 1, giftWrap: true },
-    { product: products["sugar-cane-1kg"], quantity: 2, giftWrap: false },
-    { product: products["goat"], quantity: 1, giftWrap: false}
-];
+import productData from './product.json';
+const itemList = productData;
+console.log(productData);
 
 const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
     const calculateItemDiscount = () => {
         if (item.quantity > 3) {
             // Assuming a 5% discount for the sake of example
-            return (0.05 * item.product.price * item.quantity).toFixed(2);
+            return (0.05 * item.price * item.quantity).toFixed(2);
         }
         return '0.00';
     };
@@ -28,14 +28,14 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
 
     return (
         <div className="basket-item">
-            <div>Name: {item.product.name}</div>
-            <div>Price: ${item.product.price.toFixed(2)}</div>
+            <div>Name: {item.name}</div>
+            <div>Price: ${item.price.toFixed(2)}</div>
             <div>Quantity:
                 <input
                     type="number"
                     value={item.quantity}
                     min="1"
-                    onChange={(e) => onChangeQuantity(item.product.name, parseInt(e.target.value))}
+                    onChange={(e) => onChangeQuantity(item.name, parseInt(e.target.value))}
                 />
             </div>
             <div>
@@ -44,7 +44,7 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                     <input
                         type="checkbox"
                         checked={item.giftWrap}
-                        onChange={() => onToggleGiftWrap(item.product.name)}
+                        onChange={() => onToggleGiftWrap(item.name)}
                     />
                 </label>
             </div>
@@ -61,19 +61,18 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                 </select>
             </label>
             <div>
-                Total: ${ (item.product.price * item.quantity).toFixed(2) }
+                Total: ${ (item.price * item.quantity).toFixed(2) }
                 { itemDiscount !== '0.00' && <div>Discount: -${ itemDiscount }</div> }
             </div>
-            <button onClick={() => onRemoveItem(item.product.name)}>Remove Item</button>
+            <button onClick={() => onRemoveItem(item.name)}>Remove Item</button>
         </div>
     );
 };
-
 const Basket = () => {
     const [items, setItems] = useState(itemList.map(item => ({
         ...item,
-        name: item.product.name,
-        price: item.product.price,
+        name: item.name,
+        price: item.price,
         recurring: ''
     })));
 
@@ -146,7 +145,10 @@ const Basket = () => {
                     onChangeRecurring={onChangeRecurring}
                 />
             ))}
+            {/* Insert the AddressForm here */}
+            <AddressForm />
         </div>
+
     );
 };
 
