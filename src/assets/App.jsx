@@ -2,16 +2,17 @@
 import './App.css';
 import React, { useState } from 'react';
 
-const products = {
+{/*const products = {
     "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
     "kids-songbook": { name: "Kids Songbook", price: 7.99 },
     "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
     "goat": { name: "Goat", price: 199.99 },
-};
+};*/}
 
 import productData from './product.json';
 import AddressForm from "./AddressForm.jsx";
 import DeliveryAddress from "./DeliveryAddress.jsx";
+import Total1 from "./Total1.jsx";
 const itemList = productData;
 console.log(productData);
 
@@ -121,7 +122,7 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-    const calculateDiscounts = (items) => {
+    {/*const calculateDiscounts = (items) => {
         let discount = 0;
         let subtotal = 0;
 
@@ -153,26 +154,30 @@ const Basket = () => {
         };
     };
 
-    const { subtotal, discount, total } = getTotalAmount();
+    const { subtotal, discount, total } = getTotalAmount();*/}
 
     return (
-        <div>
-            <div>Basket Subtotal: ${subtotal}</div>
-            <div>Discounts: -${discount}</div>
-            <div>Basket Total: ${total}</div>
-            <h2>Your Basket</h2>
-            {items.map((item, index) => (
-                <BasketItem
-                    key={index}
-                    item={item}
-                    onChangeQuantity={onChangeQuantity}
-                    onRemoveItem={onRemoveItem}
-                    onToggleGiftWrap={onToggleGiftWrap}
-                    onChangeRecurring={onChangeRecurring}
-                />
-            ))}
-            {/* Insert the AddressForm here */}
-            <DeliveryAddress />
+        <div className="basket-layout">
+            <div className={"basket-items"}>
+                <h2>Your Basket</h2>
+                {items.map((item, index) => (
+                    <BasketItem
+                        key={index}
+                        item={item}
+                        onChangeQuantity={onChangeQuantity}
+                        onRemoveItem={onRemoveItem}
+                        onToggleGiftWrap={onToggleGiftWrap}
+                        onChangeRecurring={onChangeRecurring}
+                    />
+                ))}
+                {/* Insert the AddressForm here */}
+            </div>
+            <div className="right-side">
+                <Total1 items={items}/>
+                <AddressForm />
+                <DeliveryAddress/>
+            </div>
+
         </div>
     );
 };

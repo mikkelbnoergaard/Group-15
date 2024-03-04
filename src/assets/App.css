@@ -43,6 +43,15 @@
   padding: 10px;
 }
 
+.basket-layout{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.basket-items{
+  flex: 1;
+}
+
 .basket-Elements {
   display: flex;
   flex-direction: row;
@@ -65,7 +74,13 @@
   flex-grow: 1;
   flex-direction: row-reverse;
 }
-
+.right-side {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
 .details-column {
   display: flex;
   flex-direction: column;
