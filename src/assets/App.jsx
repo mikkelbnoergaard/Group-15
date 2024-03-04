@@ -2,6 +2,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import AddressForm from './AddressForm';
+import DeliveryAddress from './DeliveryAddress';
 
 /*
 const products = {
@@ -148,6 +149,7 @@ const Basket = () => {
             ))}
             {/* Insert the AddressForm here */}
             <AddressForm />
+            <DeliveryAddress />
         </div>
 
     );
