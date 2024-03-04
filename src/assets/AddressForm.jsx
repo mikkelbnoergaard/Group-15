@@ -53,42 +53,53 @@ const AdressForm = () => {
         }
     };
 
-    const validateZipCode = async (zip) => {
+    const validateZipCode = async (zip, addressType) => {
         if (zip.length === 4) {
             try {
                 const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zip}`);
                 const data = await response.json();
-                if (data.nr) {
-                    setErrors({
-                        ...errors,
-                        zip: '' // Clear any previous error message
-                    });
-                    // Update city based on the zip code
-                    setAddresses({
-                        ...addresses,
-                        city: data.navn
-                    });
+                console.log(data); // Log the response to see its structure
+
+                // The API response structure needs to be verified.
+                // For example, if the API returns {status: "OK", navn: "City Name"},
+                // you need to adjust the condition accordingly.
+
+                if (data.title !== "The resource was not found") { // Adjust this check to match the actual API response structure
+                    setAddresses(prevAddresses => ({
+                        ...prevAddresses,
+                        [addressType]: {
+                            ...prevAddresses[addressType],
+                            city: data.navn, // Update the city name based on the zip code
+                            zip: zip // Ensure the zip is also updated in case it's corrected
+                        },
+                    }));
+                    setErrors(prevErrors => ({
+                        ...prevErrors,
+                        [`${addressType}.zip`]: '' // Clear any previous error message
+                    }));
                 } else {
                     // Set error message if zip is not found
-                    setErrors({
-                        ...errors,
-                        zip: 'Ugyldigt postnummer'
-                    });
+                    setErrors(prevErrors => ({
+                        ...prevErrors,
+                        [`${addressType}.zip`]: 'Ugyldigt postnummer'
+                    }));
                 }
             } catch (error) {
                 console.error("Error validating zip code:", error);
-                setErrors({
-                    ...errors,
-                    zip: 'Fejl ved validering af postnummer'
-                });
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    [`${addressType}.zip`]: 'Fejl ved validering af postnummer'
+                }));
             }
         } else {
-            setErrors({
-                ...errors,
-                zip: 'Postnummeret skal være 4 cifre'
-            });
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                [`${addressType}.zip`]: 'Postnummeret skal være 4 cifre'
+            }));
         }
     };
+
+
 
     const validateEmail = (email) => {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -100,18 +111,7 @@ const AdressForm = () => {
 
     const handleZipBlur = async (e, addressType) => {
         const zip = e.target.value;
-        const isValidZip = await validateZipCode(zip);
-        if (!isValidZip) {
-            setErrors(prevErrors => ({
-                ...prevErrors,
-                [`${addressType}.zip`]: 'Ugyldigt postnummer'
-            }));
-        } else {
-            setErrors(prevErrors => ({
-                ...prevErrors,
-                [`${addressType}.zip`]: ''
-            }));
-        }
+        await validateZipCode(zip, addressType);
     };
     //Placeholder for validateZip and other validation functions
 
@@ -276,7 +276,7 @@ const AdressForm = () => {
                                 name="zip"
                                 value={addresses.delivery.zip}
                                 onChange={(e) => handleInputChange(e, 'delivery')}
-                                onBlur={(e) => handleZipBlur(e, 'delivery')} // Call validateZipCode on blur
+                                onBlur={(e) => handleZipBlur(e, 'billing')} // Call validateZipCode on blur
                             />
                         </label>
                     </div>
