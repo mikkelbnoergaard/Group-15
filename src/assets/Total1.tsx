@@ -43,8 +43,8 @@ const Total1 = ({ items }) => {
                 <div className="amount">-${discount}</div>
             </div>
             <div className="total-container">
-                <div className="label">Basket Total:</div>
-                <div className="amount">${total}</div>
+                <div className="label"> <b> Basket Total:</b></div>
+                <div className="amount"> <b> ${total}</b></div>
             </div>
         </form>
     );
