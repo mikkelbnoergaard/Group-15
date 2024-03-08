@@ -82,14 +82,36 @@
   flex-grow: 1;
   flex-direction: row-reverse;
 }
-.right-side {
+.right-side1 {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  border-radius: 4px;
+
+}
+
+.right-side1 button {
+  background-color: #000000; /* Set your desired background color */
+  color: antiquewhite;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.right-side2 {
   position: sticky;
   top: 20px;
   display: flex;
   flex-direction: column;
   width: 300px;
   margin-left: 20px;
-  flex-shrink: 0;
   padding: 20px;
   border: 1px solid #e0e0e0;
   background-color: #fff;
@@ -119,10 +141,29 @@
   align-items: center;
   margin-top: 10px;
 }
+.subtotal-container,
+.discount-container,
+.total-container {
+  display: flex;
+  justify-content: space-between; /* Adjust the value as needed */
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+.label {
+  margin-right: 20px; /* Adjust the value as needed */
+}
 
 button {
   background-color: #fff;
   color: #fff;
+  border: 1px solid #000000;
+  border-radius: 1000px;
+  padding: 9px 10px;
+  cursor: pointer;
+}
+button1 {
+  background-color: #fff;
+  color: #000000;
   border: 1px solid #000000;
   border-radius: 1000px;
   padding: 9px 10px;

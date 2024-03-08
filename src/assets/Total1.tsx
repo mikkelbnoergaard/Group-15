@@ -34,11 +34,18 @@ const Total1 = ({ items }) => {
     const { subtotal, discount, total } = getTotalAmount();
     return (
         <form>
-        <div>
-            <div>Basket Subtotal: ${subtotal}</div>
-            <div>Discounts: -${discount}</div>
-            <div>Basket Total: ${total}</div>
-        </div>
+            <div className="subtotal-container">
+                <div className="label">Basket Subtotal:</div>
+                <div className="amount">${subtotal}</div>
+            </div>
+            <div className="discount-container">
+                <div className="label">Discounts: </div>
+                <div className="amount">-${discount}</div>
+            </div>
+            <div className="total-container">
+                <div className="label">Basket Total:</div>
+                <div className="amount">${total}</div>
+            </div>
         </form>
     );
 
