@@ -45,6 +45,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
     };
     const itemDiscount = calculateItemDiscount();
 
+    const discountMessage = item.quantity === 3 ? "You only need one more to get a 5% discount!" : null;
 
     return (
         <div className="basket-items">
@@ -67,6 +68,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                     style={{width:"24px"}}
                 />
             </div>
+                {discountMessage && <div style={{ color: 'red', marginTop: '10px' }}>{discountMessage}</div>}
             <div>
                 <label>
                     Gift Wrap:
