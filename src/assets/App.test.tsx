@@ -12,7 +12,7 @@ describe(App.name, () => {
 });
 
 describe(App.name, () => {
-    test("should display a billing address section", () => {
+    test("should display a Billing address section", () => {
         render(<App/>);
         const element =
             screen.getByText("Billing Address");
