@@ -75,13 +75,11 @@ describe('every product will get added to basket', () => {
         // Render the App component
         render(<App />);
 
-        // Wait for the items to load if necessary
-        // For example, if your items are fetched and rendered asynchronously:
-        // await waitFor(() => screen.findByText('5-Wheeled Bicycle'));
 
-        // Increase the quantity of the 5-Wheeled Bicycle to 2
+
+        // Increase the quantity of all the items to 1
         const inputs = screen.getAllByRole('spinbutton');
-// Assuming that the bicycle comes second in the order of items, select the second input
+// we change all the items
         const goatInput = inputs[0]; // This selects the second input assuming the bicycle is second
         fireEvent.change(goatInput, { target: { value: '1' } });
         const bicycleInput = inputs[1]; // This selects the second input assuming the bicycle is second
@@ -118,14 +116,9 @@ describe('every product will get added to basket', () => {
         fireEvent.change(panInput, { target: { value: '1' } });
 
 
-// Continue with the rest of your test
 
 
-        // Assuming that there's a button to update the cart after changing the quantity
-        // const updateCartButton = screen.getByRole('button', { name: /update cart/i });
-        // userEvent.click(updateCartButton);
-
-        // Verify that the subtotal reflects the price of two 5-Wheeled Bicycles
+        // Verify that the subtotal reflects the price of all products added to the cart
         // Check that the subtotal has been updated
         const subtotalElement = await screen.findByText(/subtotal/i);
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
