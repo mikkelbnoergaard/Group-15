@@ -59,28 +59,49 @@ const AdressForm: React.FC = () => {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const { name, value } = event.target;
 
-        // Perform validation on email and phone fields
-        let updatedErrors = { ...errors };
-
-        if (name === "email" && !validateEmail(value)) {
-            updatedErrors = { ...updatedErrors, email: 'Ugyldig e-mailadresse' };
-        } else if (name === "phone" && !validatePhone(value)) {
-            updatedErrors = { ...updatedErrors, phone: 'Telefonnummeret skal være 8 cifre' };
-        } else {
-            // If no validation error, clear errors
-            updatedErrors = { ...updatedErrors, [name]: '' };
-        }
-        // Update address
-        setErrors(updatedErrors);
-        setAddresses({
-            ...addresses,
-            [addressType]: {
+        // Opdater din adresse state med den nye værdi først
+        setAddresses((prevAddresses: AddressesState) => {
+            
+            const updatedAddress = {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                ...addresses[addressType],
+                ...prevAddresses[addressType],
                 [name]: value,
-            },
+            };
+
+            return {
+                ...prevAddresses,
+                [addressType]: updatedAddress,
+            };
         });
+
+        // Derefter tjek for fejl og opdater dem om nødvendigt
+        let newErrors: ErrorsState = { ...errors };
+        if (name === "email" && !validateEmail(value)) {
+            newErrors.email = 'Ugyldig e-mailadresse'; // Ensure consistent key usage
+        } else if (name === "phone") {
+            const phoneError = validatePhone(value);
+            if (phoneError) {
+                newErrors = { ...newErrors, phone: phoneError };
+            } else {
+                delete newErrors.phone;
+            }
+        } else if (name === "companyVAT") {
+            const vatError = validateCompanyVAT(value);
+            if (vatError) {
+                newErrors.companyVAT = vatError;
+            } else {
+                delete newErrors.companyVAT;
+            }
+        } else {
+            delete newErrors[name]; // This will remove the error if the input becomes valid
+        }
+        setErrors(newErrors);
+
+        // Specifik logik for postnummer-validering
+        if (name === 'zip') {
+            validateZipCode(value, addressType);
+        }
     };
 
     const validateZipCode = async (zip: string, addressType: keyof AddressesState) => {
@@ -132,8 +153,13 @@ const AdressForm: React.FC = () => {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return re.test(String(email).toLowerCase());
     };
-    const validatePhone = (phone: string) => {
-        return phone.length === 8 && !isNaN(Number(phone));
+    const validatePhone = (phone: string): string => {
+        if (phone.length > 8) {
+            return "Telefonnummeret må ikke overstige 8 cifre";
+        } else if (phone.length < 8 || isNaN(Number(phone))) {
+            return "Telefonnummeret skal være 8 cifre";
+        }
+        return ""; // Ingen fejl
     };
 
     const handleZipBlur = async (e: FocusEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
