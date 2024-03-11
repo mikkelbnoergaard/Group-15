@@ -2,13 +2,6 @@
 import './App.css';
 import React, { useState } from 'react';
 
-{/*const products = {
-    "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
-    "kids-songbook": { name: "Kids Songbook", price: 7.99 },
-    "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
-    "goat": { name: "Goat", price: 199.99 },
-};*/}
-
 import productData from './product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
@@ -38,7 +31,6 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
 
     const calculateItemDiscount = () => {
         if (item.quantity > 3) {
-            // Assuming a 5% discount for the sake of example :)
             return (0.05 * item.price * item.quantity).toFixed(2);
         }
         return '0.00';
@@ -169,10 +161,11 @@ const Basket = () => {
                     <Total1 items={items}/>
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
+                <div className="right-side1">
                 <AddressForm />
+                </div>
                 <DeliveryAddress/>
             </div>
-
         </div>
     );
 };
