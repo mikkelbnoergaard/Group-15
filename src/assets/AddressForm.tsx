@@ -75,7 +75,7 @@ const AdressForm: React.FC = () => {
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = { ...errors };
         if (name === "email" && !validateEmail(value)) {
-            newErrors = { ...newErrors, email: 'Ugyldig e-mailadresse' };
+            newErrors.email = 'Ugyldig e-mailadresse'; // Ensure consistent key usage
         } else if (name === "phone") {
             const phoneError = validatePhone(value);
             if (phoneError) {
@@ -84,7 +84,7 @@ const AdressForm: React.FC = () => {
                 delete newErrors.phone;
             }
         } else {
-            delete newErrors[name];
+            delete newErrors[name]; // This will remove the error if the input becomes valid
         }
         setErrors(newErrors);
 
@@ -262,6 +262,7 @@ const AdressForm: React.FC = () => {
                         onChange={(e) => handleInputChange(e, 'billing')}
                     />
                 </label>
+                {errors.email && <div className="error">{errors.email}</div>} {/* Display the email error message here */}
             </div>
             <div>
                 <label>
