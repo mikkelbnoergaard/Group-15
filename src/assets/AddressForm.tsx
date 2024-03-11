@@ -146,7 +146,7 @@ const AdressForm: React.FC = () => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         //Implement your submission logic here, including further validation as necessary
-        alert('Form submitted');
+        alert('Form submitted!');
     };
     const toggleBillingAddress = () => {
         setAddresses(prevAddresses => ({
