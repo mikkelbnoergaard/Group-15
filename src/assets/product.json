@@ -94,16 +94,6 @@
     "ImageURL": "https://www.nps.gov/articles/images/flying-squirrel2.png"
   },
   {
-    "id": "fentanyl-DIY",
-    "name": "Fentanyl DIY kit",
-    "price": 49.99,
-    "currency": "DKK",
-    "rebateQuantity": 0,
-    "rebatePercent": 0,
-    "upsellProductId": null,
-    "ImageURL": "https://www.poison.org/-/media/images/shared/articles/fentanyl-syringe.jpg"
-  },
-  {
     "id": "toothbrush-bamboo",
     "name": "Bamboo Toothbrush",
     "price": 9.99,
