@@ -12,7 +12,7 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
 
     const calculateItemDiscount = () => {
         if (item.quantity > 3) {
-            // Assuming a 5% discount for the sake of example
+            // Assuming a 5% discount for the sake of example :)
             return (0.05 * item.price * item.quantity).toFixed(2);
         }
         return '0.00';
