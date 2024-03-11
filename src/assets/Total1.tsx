@@ -32,20 +32,19 @@ const Total1 = ({ items }) => {
         };
     };
     const { subtotal, discount, total } = getTotalAmount();
+
+    const amountNeededForDiscount = 300 - subtotal;
+    const discountMessage = amountNeededForDiscount > 0 ? `Add $${amountNeededForDiscount.toFixed(2)} more to your basket for a 10% discount!` : null;
+
+
     return (
         <form>
-            <div className="subtotal-container">
-                <div className="label">Basket Subtotal:</div>
-                <div className="amount">${subtotal}</div>
-            </div>
-            <div className="discount-container">
-                <div className="label">Discounts: </div>
-                <div className="amount">-${discount}</div>
-            </div>
-            <div className="total-container">
-                <div className="label"> <b> Basket Total:</b></div>
-                <div className="amount"> <b> ${total}</b></div>
-            </div>
+        <div>
+            <div>Basket Subtotal: ${subtotal}</div>
+            <div>Discounts: -${discount}</div>
+            <div>Basket Total: ${total}</div>
+            {discountMessage && <div style={{ color: 'green', marginTop: '10px' }}>{discountMessage}</div>}
+        </div>
         </form>
     );
 
