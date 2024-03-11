@@ -58,25 +58,39 @@ const AdressForm: React.FC = () => {
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const { name, value } = event.target;
-        let updatedErrors = { ...errors };
 
+        // Opdater din adresse state med den nye værdi først
+        setAddresses((prevAddresses: AddressesState) => {
+            const updatedAddress = {
+                ...prevAddresses[addressType],
+                [name]: value,
+            };
+
+            return {
+                ...prevAddresses,
+                [addressType]: updatedAddress,
+            };
+        });
+
+        // Derefter tjek for fejl og opdater dem om nødvendigt
+        let newErrors: ErrorsState = { ...errors };
         if (name === "email" && !validateEmail(value)) {
-            updatedErrors = { ...updatedErrors, email: 'Ugyldig e-mailadresse' };
-        } else if (name === "phone" && !validatePhone(value)) {
-            updatedErrors = { ...updatedErrors, phone: 'Telefonnummeret skal være 8 cifre' };
-        } else {
-            // If no validation error, clear errors and update address
-            setErrors({...errors, [name]: ''});
-            setAddresses({
-                ...addresses,
-                [addressType]: {
-                    ...addresses[addressType],
-                    [name]: value,
-                },
-            });
-            if (name === 'zip') {
-                validateZipCode(value, addressType);
+            newErrors = { ...newErrors, email: 'Ugyldig e-mailadresse' };
+        } else if (name === "phone") {
+            const phoneError = validatePhone(value);
+            if (phoneError) {
+                newErrors = { ...newErrors, phone: phoneError };
+            } else {
+                delete newErrors.phone;
             }
+        } else {
+            delete newErrors[name];
+        }
+        setErrors(newErrors);
+
+        // Specifik logik for postnummer-validering
+        if (name === 'zip') {
+            validateZipCode(value, addressType);
         }
     };
 
@@ -127,19 +141,26 @@ const AdressForm: React.FC = () => {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return re.test(String(email).toLowerCase());
     };
-    const validatePhone = (phone: string) => {
-        return phone.length <= 8 && !isNaN(Number(phone));
+
+    const validatePhone = (phone: string): string => {
+        if (phone.length > 8) {
+            return "Telefonnummeret må ikke overstige 8 cifre";
+        } else if (phone.length < 8 || isNaN(Number(phone))) {
+            return "Telefonnummeret skal være 8 cifre";
+        }
+        return ""; // Ingen fejl
     };
 
     const handleZipBlur = async (e: FocusEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const zip = e.target.value;
         await validateZipCode(zip, addressType);
     };
-
+    //Placeholder for validateZip and other validation functions
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        alert('Form submitted');
+        //Implement your submission logic here, including further validation as necessary
+        alert('Form submitted!');
     };
     const toggleBillingAddress = () => {
         setAddresses(prevAddresses => ({
@@ -229,6 +250,7 @@ const AdressForm: React.FC = () => {
                         onChange={(e) => handleInputChange(e, 'billing')}
                     />
                 </label>
+                {errors.phone && <div className="error">{errors.phone}</div>} {/* Fejlbesked her */}
             </div>
             <div>
                 <label>
