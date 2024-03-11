@@ -143,6 +143,9 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
+    const handleCheckout = () => {
+        console.log('Checkout button clicked');
+    };
 
 
     return (
@@ -161,8 +164,11 @@ const Basket = () => {
                 ))}
                 {/* Insert the AddressForm here */}
             </div>
-            <div className="right-side">
-                <Total1 items={items}/>
+            <div className="right-side2">
+                <div className="right-side1">
+                    <Total1 items={items}/>
+                    <button onClick={handleCheckout}>Checkout</button>
+                </div>
                 <AddressForm />
                 <DeliveryAddress/>
             </div>
