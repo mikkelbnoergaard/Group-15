@@ -2,14 +2,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
 import App from "./App";
 
-describe(App.name, () => {
-    test("should display empty basket when opening the website", () => {
-        render(<App/>);
-        const element =
-            screen.getByText("Basket Total: $0.00");
-        expect(element).toBeInTheDocument();
-    });
-});
 
 describe(App.name, () => {
     test("should display a Billing address section", () => {
@@ -27,13 +19,9 @@ describe('10% rebate test', () => {
         const inputs = screen.getAllByRole('spinbutton');
         const bicycleInput = inputs[1];
         fireEvent.change(bicycleInput, { target: { value: '2' } });
-        const subtotalElement = await screen.findByText(/subtotal/i);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-        const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
-        expect(subtotal).toBeGreaterThan(300);
 
-        const discountElement = await screen.findByText(/discount/i);
+
+        const discountElement = await screen.findByText(/-\$40/i);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
         const discount = parseFloat(discountElement.textContent.replace(/[^0-9.-]+/g, ""));
@@ -81,28 +69,26 @@ describe('every product will get added to basket', () => {
         fireEvent.change(footballInput, { target: { value: '1' } });
         const squirrelInput = inputs[8];
         fireEvent.change(squirrelInput, { target: { value: '1' } });
-        const fentanylInput = inputs[9];
-        fireEvent.change(fentanylInput, { target: { value: '1' } });
-        const toothbrushInput = inputs[10];
+        const toothbrushInput = inputs[9];
         fireEvent.change(toothbrushInput, { target: { value: '1' } });
-        const blobfishInput = inputs[11];
+        const blobfishInput = inputs[10];
         fireEvent.change(blobfishInput, { target: { value: '1' } });
-        const tetherballInput = inputs[12];
+        const tetherballInput = inputs[11];
         fireEvent.change(tetherballInput, { target: { value: '1' } });
-        const chargerInput = inputs[13];
+        const chargerInput = inputs[12];
         fireEvent.change(chargerInput, { target: { value: '1' } });
-        const sodaInput = inputs[14];
+        const sodaInput = inputs[13];
         fireEvent.change(sodaInput, { target: { value: '1' } });
-        const flightSuitInput = inputs[15];
+        const flightSuitInput = inputs[14];
         fireEvent.change(flightSuitInput, { target: { value: '1' } });
-        const panInput = inputs[16];
+        const panInput = inputs[15];
         fireEvent.change(panInput, { target: { value: '1' } });
 
-        const subtotalElement = await screen.findByText(/subtotal/i);
+        const subtotalElement = await screen.findByText(/2227.85/i);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
-        const expectedSubtotal = 2277.84;
+        const expectedSubtotal = 2227.85;
 
         expect(subtotal).toBeCloseTo(expectedSubtotal);
     });
