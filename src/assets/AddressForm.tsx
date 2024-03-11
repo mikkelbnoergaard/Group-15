@@ -1,13 +1,37 @@
-import React, {useState} from "react";
+import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
 
-const AdressForm = () => {
-    const [addresses, setAddresses] = useState({
+type AddressFields = {
+    country: string;
+    zip: string;
+    city: string;
+    addressLine1: string;
+    addressLine2: string;
+    name: string;
+    phone: string;
+    email: string;
+    companyName: string;
+    companyVAT: string;
+};
+
+type AddressesState = {
+    delivery: AddressFields;
+    billing: AddressFields;
+    billingIsDifferent: boolean;
+};
+
+type ErrorsState = {
+    [key: string]: string;
+};
+
+
+const AdressForm: React.FC = () => {
+    const [addresses, setAddresses] = useState<AddressesState>({
         delivery: {
             country: 'Denmark',
             zip: '',
             city: '',
             addressLine1: '',
-            addressline2: '',
+            addressLine2: '',
             name: '',
             phone: '',
             email: '',
@@ -30,30 +54,34 @@ const AdressForm = () => {
     });
 
     // Define the errors state with its setter function
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState<ErrorsState>({});
 
-    const handleInputChange = (event, addressType) => {
-        const {name, value} = event.target;
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
+        const { name, value } = event.target;
 
         // Perform validation on email and phone fields
+        let updatedErrors = { ...errors };
+
         if (name === "email" && !validateEmail(value)) {
-            setErrors({...errors, email: 'Ugyldig e-mailadresse'});
+            updatedErrors = { ...updatedErrors, email: 'Ugyldig e-mailadresse' };
         } else if (name === "phone" && !validatePhone(value)) {
-            setErrors({...errors, phone: 'Telefonnummeret skal være 8 cifre'});
+            updatedErrors = { ...updatedErrors, phone: 'Telefonnummeret skal være 8 cifre' };
         } else {
-            // If no validation error, clear errors and update address
-            setErrors({...errors, [name]: ''});
-            setAddresses({
-                ...addresses,
-                [addressType]: {
-                    ...addresses[addressType],
-                    [name]: value,
-                },
-            });
+            // If no validation error, clear errors
+            updatedErrors = { ...updatedErrors, [name]: '' };
         }
+        // Update address
+        setErrors(updatedErrors);
+        setAddresses({
+            ...addresses,
+            [addressType]: {
+                ...addresses[addressType],
+                [name]: value,
+            },
+        });
     };
 
-    const validateZipCode = async (zip, addressType) => {
+    const validateZipCode = async (zip: string, addressType: keyof AddressesState) => {
         if (zip.length === 4) {
             try {
                 const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zip}`);
@@ -63,6 +91,7 @@ const AdressForm = () => {
                 // The API response structure needs to be verified.
                 // For example, if the API returns {status: "OK", navn: "City Name"},
                 // you need to adjust the condition accordingly.
+
 
                 if (data.title !== "The resource was not found") { // Adjust this check to match the actual API response structure
                     setAddresses(prevAddresses => ({
@@ -100,22 +129,21 @@ const AdressForm = () => {
     };
 
 
-
-    const validateEmail = (email) => {
+    const validateEmail = (email: string) => {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return re.test(String(email).toLowerCase());
     };
-    const validatePhone = (phone) => {
-        return phone.length === 8 && !isNaN(phone);
+    const validatePhone = (phone: string) => {
+        return phone.length === 8 && !isNaN(Number(phone));
     };
 
-    const handleZipBlur = async (e, addressType) => {
+    const handleZipBlur = async (e: FocusEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const zip = e.target.value;
         await validateZipCode(zip, addressType);
     };
     //Placeholder for validateZip and other validation functions
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         //Implement your submission logic here, including further validation as necessary
         alert('Form submitted');
@@ -276,7 +304,7 @@ const AdressForm = () => {
                                 name="zip"
                                 value={addresses.delivery.zip}
                                 onChange={(e) => handleInputChange(e, 'delivery')}
-                                onBlur={(e) => handleZipBlur(e, 'billing')} // Call validateZipCode on blur
+                                onBlur={(e) => handleZipBlur(e, 'delivery')} // Call validateZipCode on blur
                             />
                         </label>
                     </div>
