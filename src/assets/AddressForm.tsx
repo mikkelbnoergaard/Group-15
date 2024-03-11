@@ -83,6 +83,13 @@ const AdressForm: React.FC = () => {
             } else {
                 delete newErrors.phone;
             }
+        } else if (name === "companyVAT") {
+            const vatError = validateCompanyVAT(value);
+            if (vatError) {
+                newErrors.companyVAT = vatError;
+            } else {
+                delete newErrors.companyVAT;
+            }
         } else {
             delete newErrors[name]; // This will remove the error if the input becomes valid
         }
@@ -156,6 +163,13 @@ const AdressForm: React.FC = () => {
         await validateZipCode(zip, addressType);
     };
     //Placeholder for validateZip and other validation functions
+
+    const validateCompanyVAT = (companyVAT: string): string => {
+        if (companyVAT.length !== 8 || isNaN(Number(companyVAT))) {
+            return "Momsnummeret skal være 8 cifre";
+        }
+        return ""; // Ingen fejl
+    };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -284,6 +298,7 @@ const AdressForm: React.FC = () => {
                         onChange={(e) => handleInputChange(e, 'billing')}
                     />
                 </label>
+                {errors.companyVAT && <div className="error">{errors.companyVAT}</div>}
             </div>
             <div>
                 <label>
