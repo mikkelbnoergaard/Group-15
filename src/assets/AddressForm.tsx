@@ -159,15 +159,14 @@ const AdressForm: React.FC = () => {
         <form onSubmit={handleSubmit}>
             <h2>Billing Address</h2>
             <div>
-                <label>
-                    Country:
-                    <input
-                        type="text"
-                        name="country"
-                        value={addresses.billing.country}
-                        onChange={(e) => handleInputChange(e, 'billing')}
-                    />
-                </label>
+                    <label>Country:
+                        <input
+                            type="text"
+                            name="country"
+                            value={addresses.billing.country}
+                            onChange={(e) => handleInputChange(e, 'billing')}
+                        />
+                    </label>
             </div>
             <div>
                 <label>

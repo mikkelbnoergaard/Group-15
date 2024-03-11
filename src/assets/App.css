@@ -152,6 +152,10 @@
 .label {
   margin-right: 20px; /* Adjust the value as needed */
 }
+.text-field-right {
+  margin-right: 10px; /* Adjust the value as needed */
+  flex-direction: row-reverse;
+}
 
 button {
   background-color: #fff;
@@ -172,4 +176,44 @@ button1 {
 
 quantityField {
   width: 10px;
+}
+
+.row-container-text-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label-container {
+  flex-basis: 20%; /* Adjust the width as needed */
+  text-align: left;
+}
+
+.text-field-container {
+  flex-basis: 75%; /* Adjust the width as needed */
+}
+
+.text-field {
+  width: 100%;
+}
+
+/* Apply similar styles to other labels and inputs */
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label input {
+  width: 55%; /* Adjust the width as needed */
+  margin-left: auto; /* This pushes the input to the right */
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
