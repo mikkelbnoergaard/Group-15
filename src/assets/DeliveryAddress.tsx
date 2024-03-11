@@ -43,9 +43,8 @@ const DeliveryAddress: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-      // Implement your form submission logic here, including using the selected address
       const selectedAddress = preDefinedAddresses[selectedAddressIndex];
-      console.log("Selected address:", selectedAddress); // Example usage
+      console.log("Selected address:", selectedAddress);
       alert('Form submitted');
     };
 
@@ -62,7 +61,6 @@ const DeliveryAddress: React.FC = () => {
             ))}
           </select>
         </div>
-        {/* Display selected address information */}
         <div>
           <label>
             Address:
@@ -81,8 +79,6 @@ const DeliveryAddress: React.FC = () => {
             <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
           </label>
         </div>
-
-        {/* ... other address fields based on your needs */}
         <button type="submit">Submit</button>
       </form>
     );
