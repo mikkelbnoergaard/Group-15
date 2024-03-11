@@ -53,13 +53,11 @@ const AdressForm: React.FC = () => {
         billingIsDifferent: false,
     });
 
-    // Define the errors state with its setter function
+
     const [errors, setErrors] = useState<ErrorsState>({});
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const { name, value } = event.target;
-
-        // Perform validation on email and phone fields
         let updatedErrors = { ...errors };
 
         if (name === "email" && !validateEmail(value)) {
@@ -87,25 +85,20 @@ const AdressForm: React.FC = () => {
             try {
                 const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zip}`);
                 const data = await response.json();
-                console.log(data); // Log the response to see its structure
+                console.log(data);
 
-                // The API response structure needs to be verified.
-                // For example, if the API returns {status: "OK", navn: "City Name"},
-                // you need to adjust the condition accordingly.
-
-
-                if (data.title !== "The resource was not found") { // Adjust this check to match the actual API response structure
+                if (data.title !== "The resource was not found") {
                     setAddresses(prevAddresses => ({
                         ...prevAddresses,
                         [addressType]: {
                             ...prevAddresses[addressType],
-                            city: data.navn, // Update the city name based on the zip code
-                            zip: zip // Ensure the zip is also updated in case it's corrected
+                            city: data.navn,
+                            zip: zip
                         },
                     }));
                     setErrors(prevErrors => ({
                         ...prevErrors,
-                        [`${addressType}.zip`]: '' // Clear any previous error message
+                        [`${addressType}.zip`]: ''
                     }));
                 } else {
                     // Set error message if zip is not found
@@ -142,11 +135,10 @@ const AdressForm: React.FC = () => {
         const zip = e.target.value;
         await validateZipCode(zip, addressType);
     };
-    //Placeholder for validateZip and other validation functions
+
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        //Implement your submission logic here, including further validation as necessary
         alert('Form submitted');
     };
     const toggleBillingAddress = () => {
@@ -178,7 +170,7 @@ const AdressForm: React.FC = () => {
                         name="zip"
                         value={addresses.billing.zip}
                         onChange={(e) => handleInputChange(e, 'billing')}
-                        onBlur={(e) => handleZipBlur(e, 'billing')} // Call validateZipCode on blur
+                        onBlur={(e) => handleZipBlur(e, 'billing')}
                     />
                 </label>
             </div>
@@ -305,7 +297,7 @@ const AdressForm: React.FC = () => {
                                 name="zip"
                                 value={addresses.delivery.zip}
                                 onChange={(e) => handleInputChange(e, 'delivery')}
-                                onBlur={(e) => handleZipBlur(e, 'delivery')} // Call validateZipCode on blur
+                                onBlur={(e) => handleZipBlur(e, 'delivery')}
                             />
                         </label>
                     </div>
