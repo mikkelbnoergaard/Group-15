@@ -67,18 +67,19 @@ const AdressForm: React.FC = () => {
         } else if (name === "phone" && !validatePhone(value)) {
             updatedErrors = { ...updatedErrors, phone: 'Telefonnummeret skal være 8 cifre' };
         } else {
-            // If no validation error, clear errors
-            updatedErrors = { ...updatedErrors, [name]: '' };
+            // If no validation error, clear errors and update address
+            setErrors({...errors, [name]: ''});
+            setAddresses({
+                ...addresses,
+                [addressType]: {
+                    ...addresses[addressType],
+                    [name]: value,
+                },
+            });
+            if (name === 'zip') {
+                validateZipCode(value, addressType);
+            }
         }
-        // Update address
-        setErrors(updatedErrors);
-        setAddresses({
-            ...addresses,
-            [addressType]: {
-                ...addresses[addressType],
-                [name]: value,
-            },
-        });
     };
 
     const validateZipCode = async (zip: string, addressType: keyof AddressesState) => {
@@ -134,7 +135,7 @@ const AdressForm: React.FC = () => {
         return re.test(String(email).toLowerCase());
     };
     const validatePhone = (phone: string) => {
-        return phone.length === 8 && !isNaN(Number(phone));
+        return phone.length <= 8 && !isNaN(Number(phone));
     };
 
     const handleZipBlur = async (e: FocusEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
