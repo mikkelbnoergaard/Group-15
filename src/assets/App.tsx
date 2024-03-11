@@ -1,14 +1,40 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
+
+{/*const products = {
+    "vitamin-c-500-250": { name: "Vitamin C 500mg", price: 12.99 },
+    "kids-songbook": { name: "Kids Songbook", price: 7.99 },
+    "sugar-cane-1kg": { name: "Sugar Cane 1kg", price: 4.99 },
+    "goat": { name: "Goat", price: 199.99 },
+};*/}
+
 import productData from './product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 const itemList = productData;
-console.log(productData);
+console.log(productData);''
 
-const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onChangeRecurring }) => {
+interface ProductItem {
+    name: string;
+    price: number;
+    quantity: number;
+    ImageURL: string;
+    giftWrap?: boolean;
+    recurring?: string;
+}
+interface BasketItemProps {
+    item: ProductItem;
+    onChangeQuantity: (name: string, quantity: number) => void;
+    onRemoveItem: (name: string) => void;
+    onToggleGiftWrap: (name: string) => void;
+    onChangeRecurring: (name: string, schedule: string) => void;
+}
+
+
+
+const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap, onChangeRecurring }) => {
 
     const calculateItemDiscount = () => {
         if (item.quantity > 3) {
@@ -19,6 +45,7 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
     };
     const itemDiscount = calculateItemDiscount();
 
+    const discountMessage = item.quantity === 3 ? "You only need one more to get a 5% discount!" : null;
 
     return (
         <div className="basket-items">
@@ -41,6 +68,7 @@ const BasketItem = ({ item, onChangeQuantity, onRemoveItem, onToggleGiftWrap,onC
                     style={{width:"24px"}}
                 />
             </div>
+                {discountMessage && <div style={{ color: 'red', marginTop: '10px' }}>{discountMessage}</div>}
             <div>
                 <label>
                     Gift Wrap:
@@ -90,34 +118,32 @@ const Basket = () => {
         price: item.price,
         quantity: 0,
         ImageURL: item.ImageURL,
-        recurring: ''
+        recurring: '',
+        giftWrap: item.giftWrap
     })));
 
-    const onChangeQuantity = (name, newQuantity) => {
+    const onChangeQuantity = (name: string, newQuantity: number) => {
         if (isNaN(newQuantity)) { newQuantity = 0;}
             setItems(prevItems => prevItems.map(item =>
                 item.name === name ? {...item, quantity: newQuantity} : item
             ));
     };
 
-    const onRemoveItem = (name) => {
+    const onRemoveItem = (name: string) => {
         setItems(prevItems => prevItems.filter(item => item.name !== name));
     };
 
-    const onToggleGiftWrap = (name) => {
+    const onToggleGiftWrap = (name: string) => {
         setItems(prevItems => prevItems.map(item =>
             item.name === name ? { ...item, giftWrap: !item.giftWrap } : item
         ));
     };
-    const onChangeRecurring = (name, schedule) => {
+    const onChangeRecurring = (name: string, schedule: string) => {
         setItems(prevItems => prevItems.map(item =>
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-        const handleCheckout = () => {
-            // Implementer checkout-logik her, f.eks. navigering til checkout-siden
-            console.log('Checkout button clicked!');
-        };
+
 
     return (
         <div className="basket-layout">
@@ -135,11 +161,8 @@ const Basket = () => {
                 ))}
                 {/* Insert the AddressForm here */}
             </div>
-            <div className="right-side2">
-                <div className="right-side1">
-                    <Total1 items={items}/>
-                    <button onClick={handleCheckout}>Checkout</button>
-                </div>
+            <div className="right-side">
+                <Total1 items={items}/>
                 <AddressForm />
                 <DeliveryAddress/>
             </div>

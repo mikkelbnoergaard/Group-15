@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-const preDefinedAddresses = [
+type Address = {
+  country: string;
+  zip: string;
+  city: string;
+  continent: string;
+  addressLine1: string;
+};
+
+const preDefinedAddresses:Address[] = [
   {
     country: "Mali",
     zip: "00000",
@@ -24,32 +32,17 @@ const preDefinedAddresses = [
   },
 ];
 
-const DeliveryAddress = () => {
+const DeliveryAddress: React.FC = () => {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
-    const [errors, setErrors] = useState({});
 
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
 
-      // Implement your validation logic here (optional)
-      setErrors({
-        ...errors,
-        [name]: "", // Clear errors on input change
-      });
-    };
-
-    const handleSelectDeliveryAddress = (event) => {
+    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedIndex = parseInt(event.target.value);
       setSelectedAddressIndex(selectedIndex);
     };
 
-    const handleZipBlur = async (e) => {
-      // Implement your zip code validation logic here (optional)
-      // Update the error state if necessary
-    };
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
       // Implement your form submission logic here, including using the selected address
       const selectedAddress = preDefinedAddresses[selectedAddressIndex];
       console.log("Selected address:", selectedAddress); // Example usage
@@ -69,8 +62,6 @@ const DeliveryAddress = () => {
             ))}
           </select>
         </div>
-        {errors["zip"] && <div className="error">{errors["zip"]}</div>}
-
         {/* Display selected address information */}
         <div>
           <label>
