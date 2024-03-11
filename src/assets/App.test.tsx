@@ -23,7 +23,7 @@ describe(App.name, () => {
 describe('10% rebate test', () => {
     test('applies a 10% rebate if the total exceeds $300', async () => {
         // Render the App component
-        render(<App />);
+        render(<App  />);
         // Wait for the items to load if necessary
         // For example, if your items are fetched and rendered asynchronously:
         // await waitFor(() => screen.findByText('5-Wheeled Bicycle'));
