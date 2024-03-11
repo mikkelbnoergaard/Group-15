@@ -14,7 +14,7 @@ import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 const itemList = productData;
-console.log(productData);''
+console.log(productData);
 
 interface ProductItem {
     name: string;

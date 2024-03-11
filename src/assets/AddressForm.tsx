@@ -75,6 +75,8 @@ const AdressForm: React.FC = () => {
         setAddresses({
             ...addresses,
             [addressType]: {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 ...addresses[addressType],
                 [name]: value,
             },
@@ -97,6 +99,8 @@ const AdressForm: React.FC = () => {
                     setAddresses(prevAddresses => ({
                         ...prevAddresses,
                         [addressType]: {
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
                             ...prevAddresses[addressType],
                             city: data.navn, // Update the city name based on the zip code
                             zip: zip // Ensure the zip is also updated in case it's corrected

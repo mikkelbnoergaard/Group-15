@@ -723,7 +723,7 @@
       <line num="46" count="1" type="stmt"/>
       <line num="47" count="1" type="stmt"/>
     </file>
-    <file name="index.ts" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\index.ts">
+    <file name="index.tsx" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\index.tsx">
       <metrics statements="17" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
       <line num="2" count="0" type="stmt"/>

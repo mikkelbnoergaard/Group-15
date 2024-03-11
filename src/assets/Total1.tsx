@@ -1,12 +1,16 @@
 
-import React from "react";
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 const Total1 = ({ items }) => {
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const calculateDiscounts = (items) => {
         let discount = 0;
         let subtotal = 0;
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         items.forEach(item => {
             const itemTotal = item.price * item.quantity;
             subtotal += itemTotal;
@@ -23,6 +27,8 @@ const Total1 = ({ items }) => {
         return discount;
     };
     const getTotalAmount = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
         const discount = calculateDiscounts(items);
         return {

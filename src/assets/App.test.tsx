@@ -39,10 +39,14 @@ describe('10% rebate test', () => {
         // Verify that the subtotal reflects the price of two 5-Wheeled Bicycles
         // Check that the subtotal has been updated
         const subtotalElement = await screen.findByText(/subtotal/i);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
         expect(subtotal).toBeGreaterThan(300);
         // Verify that the discount is applied
         const discountElement = await screen.findByText(/discount/i);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
         const discount = parseFloat(discountElement.textContent.replace(/[^0-9.-]+/g, ""));
         const expectedDiscount = -40;
         expect(discount).toBeCloseTo(expectedDiscount);
@@ -65,6 +69,8 @@ describe('Zip code to city test', () => {
 
         // Wait for the expected value to appear in the city input
         await waitFor(() => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             expect(cityInput.value).toBe('Ballerup');
         });
     });
@@ -121,6 +127,8 @@ describe('every product will get added to basket', () => {
         // Verify that the subtotal reflects the price of all products added to the cart
         // Check that the subtotal has been updated
         const subtotalElement = await screen.findByText(/subtotal/i);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
         const expectedSubtotal = 2277.84;
 
