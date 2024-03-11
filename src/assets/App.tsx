@@ -161,10 +161,11 @@ const Basket = () => {
                     <Total1 items={items}/>
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
+                <div className="right-side1">
                 <AddressForm />
+                </div>
                 <DeliveryAddress/>
             </div>
-
         </div>
     );
 };

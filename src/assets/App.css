@@ -91,7 +91,10 @@
   border: 1px solid #e0e0e0;
   background-color: #fff;
   border-radius: 4px;
+}
 
+.right-side1:not(:last-child) {
+  margin-bottom: 20px; /* or the amount of space you want between the boxes */
 }
 
 .right-side1 button {
@@ -103,6 +106,7 @@
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .right-side2 {
@@ -110,16 +114,14 @@
   top: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 300px;
   margin-left: 20px;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
-  background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
   margin-bottom: 20px;
   flex: 1;
 }
+
 .details-column {
   display: flex;
   flex-direction: column;
@@ -165,6 +167,7 @@ button {
   padding: 9px 10px;
   cursor: pointer;
 }
+
 button1 {
   background-color: #fff;
   color: #000000;
@@ -207,7 +210,7 @@ label {
 }
 
 label input {
-  width: 55%; /* Adjust the width as needed */
+  width: 50%; /* Adjust the width as needed */
   margin-left: auto; /* This pushes the input to the right */
 }
 
