@@ -117,7 +117,7 @@ describe('calculateDiscounts function', () => {
             { price: 50, quantity: 2 },
             { price: 100, quantity: 3 },
         ];
-        // Expected discount: (50 * 2 + 100 * 3) * 0.10 = 25
+        // Expected discount: (50 * 2 + 100 * 3) * 0.10 = 40
         expect(calculateDiscounts(items3)).toBe(40);
     });
 });
