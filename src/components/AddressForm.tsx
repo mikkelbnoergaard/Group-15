@@ -73,6 +73,9 @@ const AdressForm: React.FC = () => {
         if (name === 'companyVAT' && value !== '' && !/^\d+$/.test(value)) {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
         }
+        if (name === 'phone' && value !== '' && !/^\d+$/.test(value)) {
+            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+        }
         // Opdater din adresse state med den nye værdi først
         setAddresses((prevAddresses: AddressesState) => {
             
