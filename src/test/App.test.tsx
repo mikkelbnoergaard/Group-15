@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
-import App from "./App";
-import {calculateDiscounts, getTotalAmount,} from "./Total1";
+import App from "../components/App.tsx";
+import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
 describe(App.name, () => {
     test("should display a Billing address section", () => {
