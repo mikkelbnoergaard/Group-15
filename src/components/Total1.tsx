@@ -7,9 +7,11 @@ interface Item {
 
 interface Total1Props {
     items: Item[];
-}   
-  
-    export const calculateDiscounts = (items: Item[]): number => {
+    onUpdateTotal: (total: number) => void;
+}
+
+const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
+    const calculateDiscounts = (items: Item[]): number => {
         let discount = 0;
         let subtotal = 0;
 
@@ -28,39 +30,26 @@ interface Total1Props {
 
         return discount;
     };
-    export const getTotalAmount = (items: Item[]): number => {
+    const getTotalAmount = () => {
         const subtotal = items.reduce(
             (acc, item) => acc + item.price * item.quantity,
             0
         );
-      return subtotal;
-
-
-    };
-
-    const calculateActualAmount = (items: Item[]) => {
-    
-    const subtotal = getTotalAmount(items);
-  
-    const discount = calculateDiscounts(items);
+        const discount = calculateDiscounts(items);
         return {
             subtotal: subtotal.toFixed(2),
             discount: discount.toFixed(2),
             total: (subtotal - discount).toFixed(2),
         };
-
-  }; 
-const Total1: React.FC<Total1Props> = ({ items }) => {
-
-
-    const { subtotal, discount, total } = calculateActualAmount(items);
+    };
+    const { subtotal, discount, total } = getTotalAmount();
 
     const amountNeededForDiscount = 300 - parseFloat(subtotal);
     const discountMessage =
         amountNeededForDiscount > 0
             ? `Add $${amountNeededForDiscount.toFixed(2)} more to your basket for a 10% discount!`
             : null;
-
+    onUpdateTotal(parseFloat(total));
     return (
         <form>
             <div className="subtotal-container">
@@ -85,5 +74,3 @@ const Total1: React.FC<Total1Props> = ({ items }) => {
 };
 
 export default Total1;
-
-
