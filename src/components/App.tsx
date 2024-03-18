@@ -6,6 +6,8 @@ import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
+import PaymentForm from "./PaymentForm.tsx";
+
 const itemList = productData;
 console.log(productData);
 
@@ -105,6 +107,12 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
 };
 
 const Basket = () => {
+    const [totalAmount, setTotalAmount] = useState(0);
+    const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
+        setTotalAmount(newTotal);
+    };
+
+
     const [items, setItems] = useState(itemList.map(item => ({
         ...item,
         name: item.name,
@@ -164,10 +172,14 @@ const Basket = () => {
             <div className="right-side2">
                 <div className="right-side1 special-class">
                     <Total1 items={items}/>
+                <div className="right-side1">
+                    <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
-                <AddressForm/>
+
+                <AddressForm />
+                    <PaymentForm totalAmount={totalAmount} companyVAT={"ddd"}/>
                 </div>
                 <div className="right-side1">
                 <DeliveryAddress/>

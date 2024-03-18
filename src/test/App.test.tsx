@@ -89,7 +89,6 @@ describe('every product will get added to basket', () => {
 // @ts-expect-error
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
         const expectedSubtotal = 2227.85;
-
         expect(subtotal).toBeCloseTo(expectedSubtotal);
     });
 });
