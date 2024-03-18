@@ -144,6 +144,10 @@
   flex: 1;
   align-self: flex-start; /* This will override the parent alignment if necessary */
 }
+.terms-conditions-layout {
+  margin-top: 15px;
+  display: flex;
+}
 
 .details-column {
   display: flex;

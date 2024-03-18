@@ -78,10 +78,12 @@ const DeliveryAddress: React.FC = () => {
             </label>
           </div>
           <div>
+            <div className={"terms-conditions-layout"}>
             <label>
               <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
               I accept the terms & conditions
             </label>
+            </div>
           </div>
           <button type="submit">Submit</button>
         </form>
