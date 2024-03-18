@@ -15,13 +15,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
         setPaymentMethod(event.target.value);
     };
 
-    const validateNumber = (input: string): boolean => {
-        return !isNaN(parseFloat(input)) && input.trim() !== '';
-    };
-
-    const validatePhone = (input: string): boolean => {
-        return /^\d{8}$/.test(input);
-    };
 
     const isInvoiceAvailable = (): boolean => {
         return !!companyVAT && companyVAT.trim() !== '';
@@ -71,15 +64,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
                 </div>
             )}
 
-            <button
-                type="submit"
-                disabled={
-                    (paymentMethod === 'giftCard' && (!validateNumber(giftCardAmount) || !validateNumber(giftCardNumber))) ||
-                    (paymentMethod === 'mobilePay' && !validatePhone(mobilePayNumber))
-                }
-            >
-                Pay
-            </button>
         </form>
     );
 };
