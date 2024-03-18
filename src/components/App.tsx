@@ -68,6 +68,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                         type="checkbox"
                         checked={item.giftWrap}
                         onChange={() => onToggleGiftWrap(item.name)}
+                        style={{width:"24px"}}
                     />
                 </label>
             </div>
