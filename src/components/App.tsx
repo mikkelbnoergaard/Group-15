@@ -142,9 +142,13 @@ const Basket = () => {
 
 
     return (
+        <div className={"page-column"}>
+            <div className={"header-top"}>
+                <h1> GOATS FOR GOOD </h1>
+            </div>
         <div className="basket-layout">
-            <div className={"basket-items"}>
-                <h2>Your Basket</h2>
+            <div className={"basket-items2"}>
+                <h2> Your Basket </h2>
                 {items.map((item, index) => (
                     <BasketItem
                         key={index}
@@ -158,15 +162,18 @@ const Basket = () => {
                 {/* Insert the AddressForm here */}
             </div>
             <div className="right-side2">
-                <div className="right-side1">
+                <div className="right-side1 special-class">
                     <Total1 items={items}/>
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
                 <AddressForm/>
                 </div>
+                <div className="right-side1">
                 <DeliveryAddress/>
+                </div>
             </div>
+        </div>
         </div>
     );
 };
