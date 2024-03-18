@@ -137,3 +137,14 @@ describe('getTotalAmount function', () => {
         // You can add more test cases as needed
     });
 });
+
+describe('amountNeedForDiscount test', () => {
+    test('shows true price for discount', () => {
+        render(<App />);
+        const inputs = screen.getAllByRole('spinbutton');
+        const goatInput = inputs[0];
+        fireEvent.change(goatInput, { target: { value: '1' } });
+        const element = screen.getByText(/add \$295.01 more to your basket for a 10% discount!/i);
+        expect(element).toBeInTheDocument();
+    });
+});
