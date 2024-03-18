@@ -1,5 +1,6 @@
 import React from "react";
 
+
 interface Item {
     price: number;
     quantity: number;
@@ -7,9 +8,10 @@ interface Item {
 
 interface Total1Props {
     items: Item[];
+    onUpdateTotal: (total: number) => void;
 }
 
-const Total1: React.FC<Total1Props> = ({ items }) => {
+const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
     const calculateDiscounts = (items: Item[]): number => {
         let discount = 0;
         let subtotal = 0;
@@ -42,6 +44,7 @@ const Total1: React.FC<Total1Props> = ({ items }) => {
         };
     };
     const { subtotal, discount, total } = getTotalAmount();
+    onUpdateTotal(parseFloat(total));
 
     const amountNeededForDiscount = 300 - parseFloat(subtotal);
     const discountMessage =
@@ -63,6 +66,8 @@ const Total1: React.FC<Total1Props> = ({ items }) => {
                 <div className="label"> <b> Basket Total:</b></div>
                 <div className="amount"> <b> ${total}</b></div>
             </div>
+
+
             {discountMessage && (
                 <div style={{ color: "green", marginTop: "10px" }}>
                     {discountMessage}

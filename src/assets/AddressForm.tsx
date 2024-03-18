@@ -11,12 +11,14 @@ type AddressFields = {
     email: string;
     companyName: string;
     companyVAT: string;
+
 };
 
 type AddressesState = {
     delivery: AddressFields;
     billing: AddressFields;
     billingIsDifferent: boolean;
+
 };
 
 type ErrorsState = {
@@ -74,6 +76,8 @@ const AdressForm: React.FC = () => {
                 [addressType]: updatedAddress,
             };
         });
+
+
 
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = { ...errors };
@@ -186,6 +190,7 @@ const AdressForm: React.FC = () => {
             billingIsDifferent: !prevAddresses.billingIsDifferent,
         }));
     };
+
 
     return (
         <form onSubmit={handleSubmit}>
