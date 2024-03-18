@@ -59,6 +59,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   margin-bottom: 20px; /* Space from the bottom */
 }
+.basket-row{
+  flex-direction: row;
+  padding: 20px; /* Inner spacing */
+  border-radius: 4px; /* Slightly rounded corners for the boxes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 20px; /* Space from the bottom */
+}
 
 .basket-Elements {
   display: flex;
