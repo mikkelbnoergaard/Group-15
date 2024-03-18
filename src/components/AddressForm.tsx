@@ -13,17 +13,6 @@ type AddressFields = {
     companyVAT: string;
 };
 
-//type AddressesState = {
-//    delivery: AddressFields;
-//    billing: AddressFields;
-//    billingIsDifferent: boolean;
-//};
-
-//type CityLockState = {
-//    delivery: boolean;
-//    billing: boolean;
-//};
-
 type ErrorsState = {
     [key: string]: string;
 };
@@ -286,7 +275,6 @@ const AddressForm: React.FC = () => {
                 </label>
                 {errors.companyVAT && <div className="error">{errors.companyVAT}</div>}
             </div>
-            <button type="submit">Submit</button>
         </form>
     );
 };
