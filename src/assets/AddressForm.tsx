@@ -19,6 +19,11 @@ type AddressesState = {
     billingIsDifferent: boolean;
 };
 
+type CityLockState = {
+    delivery: boolean;
+    billing: boolean;
+};
+
 type ErrorsState = {
     [key: string]: string;
 };
@@ -53,12 +58,21 @@ const AdressForm: React.FC = () => {
         billingIsDifferent: false,
     });
 
+    const [cityLocked, setCityLocked] = useState<CityLockState>({
+        delivery: false,
+        billing: false,
+    });
 
     const [errors, setErrors] = useState<ErrorsState>({});
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
         const { name, value } = event.target;
-
+        if (name === 'zip' && value !== '' && !/^\d+$/.test(value)) {
+            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+        }
+        if (name === 'companyVAT' && value !== '' && !/^\d+$/.test(value)) {
+            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+        }
         // Opdater din adresse state med den nye værdi først
         setAddresses((prevAddresses: AddressesState) => {
             
@@ -125,6 +139,10 @@ const AdressForm: React.FC = () => {
                     setErrors(prevErrors => ({
                         ...prevErrors,
                         [`${addressType}.zip`]: ''
+                    }));
+                    setCityLocked(prevState => ({
+                        ...prevState,
+                        [addressType]: true,
                     }));
                 } else {
                     // Set error message if zip is not found
@@ -197,7 +215,7 @@ const AdressForm: React.FC = () => {
                         type="text"
                         name="country"
                         value={addresses.billing.country}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        //onChange={(e) => handleInputChange(e, 'billing')}
                     />
                 </label>
             </div>
@@ -222,6 +240,7 @@ const AdressForm: React.FC = () => {
                         name="city"
                         value={addresses.billing.city}
                         onChange={(e) => handleInputChange(e, 'billing')}
+                        readOnly={cityLocked.billing} // Gør feltet skrivebeskyttet, hvis cityLocked er true
                     />
                 </label>
             </div>
