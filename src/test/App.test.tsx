@@ -148,3 +148,15 @@ describe('amountNeedForDiscount test', () => {
         expect(element).toBeInTheDocument();
     });
 });
+
+describe('discountMessage test', () => {
+    test('Displays the right message', () => {
+        render(<App />);
+        const inputs = screen.getAllByRole('spinbutton');
+        const goatInput = inputs[0];
+        fireEvent.change(goatInput, { target: { value: '3' } });
+        const element = screen.getByText(/You only need one more to get a 5% discount!/i);
+        expect(element).toBeInTheDocument();
+    });
+});
+
