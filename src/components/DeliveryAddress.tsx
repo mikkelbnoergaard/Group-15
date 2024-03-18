@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 type Address = {
   country: string;
-  zip: string;
   city: string;
   continent: string;
   addressLine1: string;
@@ -11,21 +10,18 @@ type Address = {
 const preDefinedAddresses: Address[] = [
   {
     country: "Mali",
-    zip: "00000",
     city: "Timbuctoo",
     continent: "Africa",
     addressLine1: "Ahmed Baba Institute"
   },
   {
     country: "Togo",
-    zip: "00000",
     city: "Tchebebe",
     continent: "Africa",
     addressLine1: "Epp Tchebebe Sud"
   },
   {
     country: "Germany",
-    zip: "01067",
     city: "Würstenhof",
     continent: "Europe",
     addressLine1: "Würststrasse 19"
@@ -79,12 +75,6 @@ const DeliveryAddress: React.FC = () => {
             <label>
               Continent:
               <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              Zip Code:
-              <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
             </label>
           </div>
           <div>
