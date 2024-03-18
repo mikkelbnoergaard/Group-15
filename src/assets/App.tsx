@@ -2,7 +2,7 @@
 import './App.css';
 import React, { useState } from 'react';
 
-import productData from './product.json';
+import productData from '../resources/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";

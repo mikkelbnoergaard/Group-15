@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
-import App from "./App";
+import App from "../assets/App.tsx";
 
 describe(App.name, () => {
     test("should display empty basket when opening the website", () => {
