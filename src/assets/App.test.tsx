@@ -1,13 +1,13 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
 import App from "./App";
-
+import {calculateDiscounts, getTotalAmount,} from "./Total1";
 
 describe(App.name, () => {
     test("should display a Billing address section", () => {
         render(<App/>);
         const element =
-            screen.getByText("Billing Address");
+            screen.getByText("Billing Address");  
         expect(element).toBeInTheDocument();
     });
 });
@@ -91,5 +91,49 @@ describe('every product will get added to basket', () => {
         const expectedSubtotal = 2227.85;
 
         expect(subtotal).toBeCloseTo(expectedSubtotal);
+    });
+});
+
+
+describe('calculateDiscounts function', () => {
+    test('should return correct discount amount for items', () => {
+        // Test case 1: items with quantities less than or equal to 3
+        const items1 = [
+            { price: 10, quantity: 2 },
+            { price: 20, quantity: 1 },
+        ];
+        expect(calculateDiscounts(items1)).toBe(0); // No discount expected
+        
+        // Test case 2: items with quantities greater than 3 
+        const items2 = [
+            { price: 10, quantity: 4 }, // quantity > 3
+            { price: 20, quantity: 2 },
+        ];
+        // Expected discount: (10 * 0.05 * 4) = 2
+        expect(calculateDiscounts(items2)).toBe(2);
+
+        // Test case 3: items with subtotal greater than 300
+        const items3 = [
+            { price: 50, quantity: 2 },
+            { price: 100, quantity: 3 },
+        ];
+        // Expected discount: (50 * 2 + 100 * 3) * 0.10 = 40
+        expect(calculateDiscounts(items3)).toBe(40);
+    });
+});
+
+describe('getTotalAmount function', () => {
+    test('should return correct subtotal for items', () => {
+        // Mock items data for testing
+        const items = [
+            { price: 10, quantity: 3 },
+            { price: 20, quantity: 1 },
+        ];
+
+        // Test getTotalAmount function with the mock items
+        expect(getTotalAmount(items)).toBe(50); // Subtotal for the provided items
+        
+        
+        // You can add more test cases as needed
     });
 });
