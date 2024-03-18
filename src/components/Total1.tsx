@@ -30,21 +30,12 @@ const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
 
         return discount;
     };
-    export const getTotalAmount = (items: Item[]): number => {
+    const getTotalAmount = () => {
         const subtotal = items.reduce(
             (acc, item) => acc + item.price * item.quantity,
             0
         );
-      return subtotal;
-
-
-    };
-
-    const calculateActualAmount = (items: Item[]) => {
-
-    const subtotal = getTotalAmount(items);
-
-    const discount = calculateDiscounts(items);
+        const discount = calculateDiscounts(items);
         return {
             subtotal: subtotal.toFixed(2),
             discount: discount.toFixed(2),
@@ -52,14 +43,13 @@ const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
         };
     };
     const { subtotal, discount, total } = getTotalAmount();
-    onUpdateTotal(parseFloat(total));
 
     const amountNeededForDiscount = 300 - parseFloat(subtotal);
     const discountMessage =
         amountNeededForDiscount > 0
             ? `Add $${amountNeededForDiscount.toFixed(2)} more to your basket for a 10% discount!`
             : null;
-
+    onUpdateTotal(parseFloat(total));
     return (
         <form>
             <div className="subtotal-container">
@@ -74,8 +64,6 @@ const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
                 <div className="label"> <b> Basket Total:</b></div>
                 <div className="amount"> <b> ${total}</b></div>
             </div>
-
-
             {discountMessage && (
                 <div style={{ color: "green", marginTop: "10px" }}>
                     {discountMessage}
@@ -86,5 +74,3 @@ const Total1: React.FC<Total1Props> = ({ items,onUpdateTotal }) => {
 };
 
 export default Total1;
-
-

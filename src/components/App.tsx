@@ -6,7 +6,7 @@ import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
-import PaymentForm from "../PaymentForm.tsx";
+import PaymentForm from "./PaymentForm.tsx";
 
 const itemList = productData;
 console.log(productData);
