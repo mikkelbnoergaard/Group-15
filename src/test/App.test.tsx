@@ -1,13 +1,13 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
-import App from "./App";
-import {calculateDiscounts, getTotalAmount,} from "./Total1";
+import App from "../components/App.tsx";
+import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
 describe(App.name, () => {
     test("should display a Billing address section", () => {
         render(<App/>);
         const element =
-            screen.getByText("Billing Address");  
+            screen.getByText("Billing Address");
         expect(element).toBeInTheDocument();
     });
 });
@@ -103,8 +103,8 @@ describe('calculateDiscounts function', () => {
             { price: 20, quantity: 1 },
         ];
         expect(calculateDiscounts(items1)).toBe(0); // No discount expected
-        
-        // Test case 2: items with quantities greater than 3 
+
+        // Test case 2: items with quantities greater than 3
         const items2 = [
             { price: 10, quantity: 4 }, // quantity > 3
             { price: 20, quantity: 2 },
@@ -132,8 +132,8 @@ describe('getTotalAmount function', () => {
 
         // Test getTotalAmount function with the mock items
         expect(getTotalAmount(items)).toBe(50); // Subtotal for the provided items
-        
-        
+
+
         // You can add more test cases as needed
     });
 });

@@ -2,7 +2,7 @@
 import './App.css';
 import React, { useState } from 'react';
 
-import productData from './product.json';
+import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
@@ -93,7 +93,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
              <div className="details-right">
                  <div className="delete-button">
                      <button onClick={() => onRemoveItem(item.name)}>
-                         <img src={"src/Images/Trashcan.jpg.webp"}
+                         <img src={"src/images/Trashcan.jpg.webp"}
                          style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
                      </button>
                  </div>
