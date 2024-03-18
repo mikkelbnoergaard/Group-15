@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup";
 
 type Address = {
   country: string;
@@ -35,6 +36,7 @@ const preDefinedAddresses: Address[] = [
 const DeliveryAddress: React.FC = () => {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const [termsChecked, setTermsChecked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
     const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedIndex = parseInt(event.target.value);
@@ -48,13 +50,16 @@ const DeliveryAddress: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
       if (!termsChecked) {
-        alert('Please accept the terms & conditions.');
+        setShowPopup(true);
         return;
       }
       const selectedAddress = preDefinedAddresses[selectedAddressIndex];
       console.log("Selected address:", selectedAddress);
       alert('Form submitted');
     };
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -92,7 +97,11 @@ const DeliveryAddress: React.FC = () => {
               <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
               I accept the terms & conditions
             </label>
+            <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
           </div>
+          {/* Pop-up */}
+          {showPopup && <TermsAndConditionsPopup onClose={closePopup} />}
+          {/* Din eksisterende form indhold fortsætter her */}
           <button type="submit">Submit</button>
         </form>
     );
