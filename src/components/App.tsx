@@ -163,7 +163,7 @@ const Basket = () => {
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
-                <AddressForm/>
+                    <AddressForm/>
                 </div>
                 <DeliveryAddress/>
             </div>
