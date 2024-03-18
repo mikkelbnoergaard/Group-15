@@ -132,7 +132,8 @@ describe('getTotalAmount function', () => {
 
         // Test getTotalAmount function with the mock items
         expect(getTotalAmount(items)).toBe(50); // Subtotal for the provided items
-
+        
+        
         // You can add more test cases as needed
     });
 });
