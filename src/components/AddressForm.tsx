@@ -13,59 +13,40 @@ type AddressFields = {
     companyVAT: string;
 };
 
-type AddressesState = {
-    delivery: AddressFields;
-    billing: AddressFields;
-    billingIsDifferent: boolean;
-};
+//type AddressesState = {
+//    delivery: AddressFields;
+//    billing: AddressFields;
+//    billingIsDifferent: boolean;
+//};
 
-type CityLockState = {
-    delivery: boolean;
-    billing: boolean;
-};
+//type CityLockState = {
+//    delivery: boolean;
+//    billing: boolean;
+//};
 
 type ErrorsState = {
     [key: string]: string;
 };
 
 
-const AdressForm: React.FC = () => {
-    const [addresses, setAddresses] = useState<AddressesState>({
-        delivery: {
-            country: 'Denmark',
-            zip: '',
-            city: '',
-            addressLine1: '',
-            addressLine2: '',
-            name: '',
-            phone: '',
-            email: '',
-            companyName: '',
-            companyVAT: '',
-        },
-        billing: {
-            country: 'Denmark',
-            zip: '',
-            city: '',
-            addressLine1: '',
-            addressLine2: '',
-            name: '',
-            phone: '',
-            email: '',
-            companyName: '',
-            companyVAT: '',
-        },
-        billingIsDifferent: false,
+const AddressForm: React.FC = () => {
+    const [address, setAddress] = useState<AddressFields>({
+        country: 'Denmark',
+        zip: '',
+        city: '',
+        addressLine1: '',
+        addressLine2: '',
+        name: '',
+        phone: '',
+        email: '',
+        companyName: '',
+        companyVAT: '',
     });
 
-    const [cityLocked, setCityLocked] = useState<CityLockState>({
-        delivery: false,
-        billing: false,
-    });
-
+    const [cityLocked, setCityLocked] = useState<boolean>(false);
     const [errors, setErrors] = useState<ErrorsState>({});
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         if (name === 'zip' && value !== '' && !/^\d+$/.test(value)) {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
@@ -77,20 +58,10 @@ const AdressForm: React.FC = () => {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
         }
         // Opdater din adresse state med den nye værdi først
-        setAddresses((prevAddresses: AddressesState) => {
-            
-            const updatedAddress = {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                ...prevAddresses[addressType],
-                [name]: value,
-            };
-
-            return {
-                ...prevAddresses,
-                [addressType]: updatedAddress,
-            };
-        });
+        setAddress((prevAddress: AddressFields) => ({
+            ...prevAddress,
+            [event.target.name]: event.target.value,
+        }));
 
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = { ...errors };
@@ -117,11 +88,11 @@ const AdressForm: React.FC = () => {
 
         // Specifik logik for postnummer-validering
         if (name === 'zip') {
-            validateZipCode(value, addressType);
+            validateZipCode(value);
         }
     };
 
-    const validateZipCode = async (zip: string, addressType: keyof AddressesState) => {
+    const validateZipCode = async (zip: string) => {
         if (zip.length === 4) {
             try {
                 const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zip}`);
@@ -129,43 +100,38 @@ const AdressForm: React.FC = () => {
                 console.log(data);
 
                 if (data.title !== "The resource was not found") {
-                    setAddresses(prevAddresses => ({
-                        ...prevAddresses,
-                        [addressType]: {
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
-                            ...prevAddresses[addressType],
-                            city: data.navn,
-                            zip: zip
-                        },
+                    setAddress(prevAddress => ({
+                        ...prevAddress,
+                        city: data.navn,
+                        zip
                     }));
                     setErrors(prevErrors => ({
                         ...prevErrors,
-                        [`${addressType}.zip`]: ''
+                        zip: ''
                     }));
-                    setCityLocked(prevState => ({
-                        ...prevState,
-                        [addressType]: true,
-                    }));
+                    setCityLocked(true);
                 } else {
                     // Set error message if zip is not found
                     setErrors(prevErrors => ({
                         ...prevErrors,
-                        [`${addressType}.zip`]: 'Ugyldigt postnummer'
+                        zip: 'Ugyldigt postnummer'
                     }));
+                    setCityLocked(false);
                 }
             } catch (error) {
                 console.error("Error validating zip code:", error);
                 setErrors(prevErrors => ({
                     ...prevErrors,
-                    [`${addressType}.zip`]: 'Fejl ved validering af postnummer'
+                    zip: 'Fejl ved validering af postnummer'
                 }));
+                setCityLocked(false);
             }
         } else {
             setErrors(prevErrors => ({
                 ...prevErrors,
-                [`${addressType}.zip`]: 'Postnummeret skal være 4 cifre'
+                zip: 'Postnummeret skal være 4 cifre'
             }));
+            setCityLocked(false);
         }
     };
 
@@ -183,9 +149,9 @@ const AdressForm: React.FC = () => {
         return ""; // Ingen fejl
     };
 
-    const handleZipBlur = async (e: FocusEvent<HTMLInputElement>, addressType: keyof AddressesState) => {
+    const handleZipBlur = async (e: FocusEvent<HTMLInputElement>) => {
         const zip = e.target.value;
-        await validateZipCode(zip, addressType);
+        await validateZipCode(zip);
     };
     //Placeholder for validateZip and other validation functions
 
@@ -198,26 +164,19 @@ const AdressForm: React.FC = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        //Implement your submission logic here, including further validation as necessary
+        console.log('Form data submitted:', address);
         alert('Form submitted!');
-    };
-    const toggleBillingAddress = () => {
-        setAddresses(prevAddresses => ({
-            ...prevAddresses,
-            billingIsDifferent: !prevAddresses.billingIsDifferent,
-        }));
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Billing Address</h2>
             <div>
                 <label>
                     Country:
                     <input
                         type="text"
                         name="country"
-                        value={addresses.billing.country}
+                        value={address.country}
                         //onChange={(e) => handleInputChange(e, 'billing')}
                     />
                 </label>
@@ -228,22 +187,22 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="zip"
-                        value={addresses.billing.zip}
-                        onChange={(e) => handleInputChange(e, 'billing')}
-                        onBlur={(e) => handleZipBlur(e, 'billing')}
+                        value={address.zip}
+                        onChange={(e) => handleInputChange(e)}
+                        onBlur={(e) => handleZipBlur(e)}
                     />
                 </label>
             </div>
-            {errors['billing.zip'] && <div className="error">{errors['billing.zip']}</div>}
+            {errors['zip'] && <div className="error">{errors['zip']}</div>}
             <div>
                 <label>
                     City:
                     <input
                         type="text"
                         name="city"
-                        value={addresses.billing.city}
-                        onChange={(e) => handleInputChange(e, 'billing')}
-                        readOnly={cityLocked.billing} // Gør feltet skrivebeskyttet, hvis cityLocked er true
+                        value={address.city}
+                        onChange={handleInputChange}
+                        readOnly={cityLocked} // Gør feltet skrivebeskyttet, hvis cityLocked er true
                     />
                 </label>
             </div>
@@ -253,8 +212,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="addressLine1"
-                        value={addresses.billing.addressLine1}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.addressLine1}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
             </div>
@@ -264,8 +223,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="addressLine2"
-                        value={addresses.billing.addressLine2}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.addressLine2}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
             </div>
@@ -275,8 +234,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="name"
-                        value={addresses.billing.name}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.name}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
             </div>
@@ -286,8 +245,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="phone"
-                        value={addresses.billing.phone}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.phone}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
                 {errors.phone && <div className="error">{errors.phone}</div>} {/* Fejlbesked her */}
@@ -298,8 +257,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="email"
                         name="email"
-                        value={addresses.billing.email}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.email}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
                 {errors.email && <div className="error">{errors.email}</div>} {/* Display the email error message here */}
@@ -310,8 +269,8 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="companyName"
-                        value={addresses.billing.companyName}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.companyName}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
             </div>
@@ -321,141 +280,14 @@ const AdressForm: React.FC = () => {
                     <input
                         type="text"
                         name="companyVAT"
-                        value={addresses.billing.companyVAT}
-                        onChange={(e) => handleInputChange(e, 'billing')}
+                        value={address.companyVAT}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </label>
                 {errors.companyVAT && <div className="error">{errors.companyVAT}</div>}
             </div>
-            <div>
-                <label>
-                    Shipping Address is the same as Billing Address?
-                    <input
-                        type="checkbox"
-                        checked={!addresses.billingIsDifferent}
-                        onChange={toggleBillingAddress}
-                    />
-                </label>
-            </div>
-            {addresses.billingIsDifferent && (
-                <>
-                    <div>
-                        <h2>Delivery Address</h2>
-                    </div>
-                    <div>
-                        <label>
-                            Country:
-                            <input
-                                type="text"
-                                name="country"
-                                value={addresses.delivery.country}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Zip Code:
-                            <input
-                                type="text"
-                                name="zip"
-                                value={addresses.delivery.zip}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                                onBlur={(e) => handleZipBlur(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    {errors['delivery.zip'] && <div className="error">{errors['delivery.zip']}</div>}
-                    <div>
-                        <label>
-                            City:
-                            <input
-                                type="text"
-                                name="city"
-                                value={addresses.delivery.city}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Address Line 1:
-                            <input
-                                type="text"
-                                name="addressLine1"
-                                value={addresses.delivery.addressLine1}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Address Line 2:
-                            <input
-                                type="text"
-                                name="addressLine2"
-                                value={addresses.delivery.addressLine2}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Name:
-                            <input
-                                type="text"
-                                name="name"
-                                value={addresses.delivery.name}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Phone:
-                            <input
-                                type="text"
-                                name="phone"
-                                value={addresses.delivery.phone}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Email:
-                            <input
-                                type="email"
-                                name="email"
-                                value={addresses.delivery.email}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Company Name:
-                            <input
-                                type="text"
-                                name="companyName"
-                                value={addresses.delivery.companyName}
-                                onChange={(e) => handleInputChange(e, 'delivery')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        Company VAT:
-                        <input
-                            type="text"
-                            name="companyVAT"
-                            value={addresses.delivery.companyVAT}
-                            onChange={(e) => handleInputChange(e, 'delivery')}
-                        />
-                    </div>
-                </>
-            )}
             <button type="submit">Submit</button>
         </form>
     );
 };
-export default AdressForm;
+export default AddressForm;
