@@ -93,7 +93,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
              <div className="details-right">
                  <div className="delete-button">
                      <button onClick={() => onRemoveItem(item.name)}>
-                         <img src={"src/images/Trashcan.jpg.webp"}
+                         <img src={"src/assets/Trashcan.jpg.webp"}
                          style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
                      </button>
                  </div>
