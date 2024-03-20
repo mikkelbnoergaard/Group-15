@@ -2,12 +2,32 @@ import React, { useState, useEffect } from "react";
 import addressesData from "../assets/delivery.json"; // Import the JSON file
 
 type Address = {
-    country: string;
-    zip: string;
-    city: string;
-    continent: string;
-    addressLine1: string;
+  country: string;
+  city: string;
+  continent: string;
+  addressLine1: string;
 };
+
+const preDefinedAddresses: Address[] = [
+  {
+    country: "Mali",
+    city: "Timbuctoo",
+    continent: "Africa",
+    addressLine1: "Ahmed Baba Institute"
+  },
+  {
+    country: "Togo",
+    city: "Tchebebe",
+    continent: "Africa",
+    addressLine1: "Epp Tchebebe Sud"
+  },
+  {
+    country: "Germany",
+    city: "Würstenhof",
+    continent: "Europe",
+    addressLine1: "Würststrasse 19"
+  },
+];
 
 const DeliveryAddress: React.FC = () => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
@@ -78,5 +98,6 @@ const DeliveryAddress: React.FC = () => {
         </form>
     );
 };
+
 
 export default DeliveryAddress;

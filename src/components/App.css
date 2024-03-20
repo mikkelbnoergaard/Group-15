@@ -144,6 +144,10 @@
   flex: 1;
   align-self: flex-start; /* This will override the parent alignment if necessary */
 }
+.terms-conditions-layout {
+  margin-top: 15px;
+  display: flex;
+}
 
 .details-column {
   display: flex;
@@ -242,4 +246,8 @@ label input {
   font-size: 0.8em;
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.select-delivery-address {
+  margin-top: 15px;
 }
