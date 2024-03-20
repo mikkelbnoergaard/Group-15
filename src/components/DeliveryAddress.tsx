@@ -57,7 +57,7 @@ const DeliveryAddress: React.FC = () => {
           <h2>Delivery Address</h2>
           <div>
             <label>Select Delivery Address:</label>
-            <select onChange={handleSelectDeliveryAddress}>
+            <select onChange={handleSelectDeliveryAddress}> {}
               {preDefinedAddresses.map((address, index) => (
                   <option key={index} value={index}>
                     {address.city}, {address.country}
@@ -65,6 +65,7 @@ const DeliveryAddress: React.FC = () => {
               ))}
             </select>
           </div>
+          <div className={"select-delivery-address"}>
           <div>
             <label>
               Address:
@@ -76,6 +77,7 @@ const DeliveryAddress: React.FC = () => {
               Continent:
               <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
             </label>
+          </div>
           </div>
           <div>
             <div className={"terms-conditions-layout"}>
