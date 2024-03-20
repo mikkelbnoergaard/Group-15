@@ -16,9 +16,11 @@ type AddressFields = {
 type ErrorsState = {
     [key: string]: string;
 };
+interface AddressFormProps {
+    onCompanyVATChange: (vat: string) => void;
+}
 
-
-const AddressForm: React.FC = () => {
+const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
         zip: '',
@@ -37,6 +39,11 @@ const AddressForm: React.FC = () => {
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+
+        if (name === 'companyVAT') {
+            // Call the callback function when companyVAT changes
+            onCompanyVATChange(value);
+        }
         if (name === 'zip' && value !== '' && !/^\d+$/.test(value)) {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
         }

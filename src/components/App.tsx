@@ -147,6 +147,9 @@ const Basket = () => {
         console.log('Checkout button clicked');
     };
 
+    const [companyVAT, setCompanyVAT] = useState('');
+
+
 
     return (
         <div className={"page-column"}>
@@ -175,9 +178,9 @@ const Basket = () => {
                 </div>
                 <div className="right-side1">
                     <h2> Customer information </h2>
-                    <AddressForm/>
+                    <AddressForm onCompanyVATChange={setCompanyVAT}/>
                     <h2> Payment</h2>
-                    <PaymentForm totalAmount={totalAmount} companyVAT={"ddd"}/>
+                    <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
                 </div>
                 <div className="right-side1">
                 <DeliveryAddress/>
