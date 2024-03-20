@@ -7,7 +7,6 @@ import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import PaymentForm from "./PaymentForm.tsx";
-
 const itemList = productData;
 console.log(productData);
 
@@ -175,8 +174,9 @@ const Basket = () => {
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
-
-                <AddressForm />
+                    <h2> User info </h2>
+                    <AddressForm/>
+                    <h2> Payment</h2>
                     <PaymentForm totalAmount={totalAmount} companyVAT={"ddd"}/>
                 </div>
                 <div className="right-side1">
