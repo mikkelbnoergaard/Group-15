@@ -174,7 +174,7 @@ const Basket = () => {
                     <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
-                    <h2> User info </h2>
+                    <h2> Customer information </h2>
                     <AddressForm/>
                     <h2> Payment</h2>
                     <PaymentForm totalAmount={totalAmount} companyVAT={"ddd"}/>

@@ -63,6 +63,7 @@ const DeliveryAddress: React.FC = () => {
                     ))}
                 </select>
             </div>
+          <div className={"select-delivery-address"}>
             <div>
                 <label>
                     Address:
@@ -84,16 +85,7 @@ const DeliveryAddress: React.FC = () => {
                     )}
                 </label>
             </div>
-            <div>
-                <label>
-                    Zip Code:
-                    {preDefinedAddresses.length > 0 ? (
-                        <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
-                    ) : (
-                        <span>Loading...</span>
-                    )}
-                </label>
-            </div>
+          </div>
             <button type="submit">Submit</button>
         </form>
     );
