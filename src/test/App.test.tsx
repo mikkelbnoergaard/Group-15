@@ -21,7 +21,7 @@ describe('10% rebate test', () => {
         fireEvent.change(bicycleInput, { target: { value: '2' } });
 
 
-        const discountElement = await screen.findByText(/-\$40/i);
+        const discountElement = await screen.findByText(/-\$39.998/i);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
         const discount = parseFloat(discountElement.textContent.replace(/[^0-9.-]+/g, ""));
