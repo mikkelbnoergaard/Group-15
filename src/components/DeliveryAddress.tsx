@@ -30,6 +30,11 @@ const preDefinedAddresses: Address[] = [
 ];
 
 const DeliveryAddress: React.FC = () => {
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [orderComment, setOrderComment] = useState('');
+
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
 
     useEffect(() => {
@@ -38,55 +43,82 @@ const DeliveryAddress: React.FC = () => {
 
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
 
-    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedIndex = parseInt(event.target.value);
-        setSelectedAddressIndex(selectedIndex);
+  const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const selectedIndex = parseInt(event.target.value);
+      setSelectedAddressIndex(selectedIndex);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
-        const selectedAddress = preDefinedAddresses[selectedAddressIndex];
-        console.log("Selected address:", selectedAddress);
-        alert('Form submitted');
+  const handleCheckboxChange = () => {
+    setTermsChecked(!termsChecked);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+      if (!termsChecked) {
+        setShowPopup(true);
+        return;
+      }
+      const selectedAddress = preDefinedAddresses[selectedAddressIndex];
+      console.log("Selected address:", selectedAddress);
+      alert('Form submitted');
     };
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Delivery Address</h2>
-            <div>
-                <label>Select Delivery Address:</label>
-                <select onChange={handleSelectDeliveryAddress}>
-                    {preDefinedAddresses.map((address, index) => (
-                        <option key={index} value={index}>
-                            {address.city}, {address.country}
-                        </option>
-                    ))}
-                </select>
-            </div>
-          <div className={"select-delivery-address"}>
-            <div>
-                <label>
-                    Address:
-                    {preDefinedAddresses.length > 0 ? (
-                        <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
-                    ) : (
-                        <span>Loading...</span>
-                    )}
-                </label>
-            </div>
-            {/* Similar checks for continent and zip code */}
-            <div>
-                <label>
-                    Continent:
-                    {preDefinedAddresses.length > 0 ? (
-                        <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-                    ) : (
-                        <span>Loading...</span>
-                    )}
-                </label>
-            </div>
+          <h2>Delivery Address</h2>
+          <div>
+            <label>Select Delivery Address:</label>
+            <select onChange={handleSelectDeliveryAddress}>
+              {preDefinedAddresses.map((address, index) => (
+                  <option key={index} value={index}>
+                    {address.city}, {address.country}
+                  </option>
+              ))}
+            </select>
           </div>
-            <button type="submit">Submit</button>
+          <div>
+            <label>
+              Address:
+              <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              Continent:
+              <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              Zip Code:
+              <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
+            </label>
+          </div>
+          <div className="form-row">
+            <label htmlFor="order-comment">Order Comment:</label>
+            <textarea
+                id="order-comment"
+                value={orderComment}
+                onChange={(e) => setOrderComment(e.target.value)}
+                placeholder="Any special instructions?"
+            />
+          </div>
+          <div className= "form-checkbox">
+            <label>
+              <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
+              I accept the terms & conditions
+            </label>
+            </div>
+            <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+            <div>
+          </div>
+          {/* Pop-up */}
+          {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
+          {/* Din eksisterende form indhold fortsætter her */}
+          <button type="submit">Submit</button>
         </form>
     );
 };
