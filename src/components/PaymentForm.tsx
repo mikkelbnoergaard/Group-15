@@ -10,9 +10,10 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
     const [giftCardAmount, setGiftCardAmount] = useState<string>('');
     const [giftCardNumber, setGiftCardNumber] = useState<string>('');
     const [mobilePayNumber, setMobilePayNumber] = useState<string>('');
+    const [mobilePayNumberError, setMobilePayNumberError] = useState<string>('');
 
     const isInvoiceAvailable = (): boolean => {
-        return !!companyVAT && companyVAT.trim() !== '';
+        return !!companyVAT && companyVAT.trim() !== '' && companyVAT.length ==8;
     };
 
     const canUseGiftCardOnly = (): boolean => {
@@ -21,30 +22,54 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
 
     const handlePaymentMethodClick = (method: string) => {
         setPaymentMethod(method);
-        // Reset other payment inputs when changing the payment method
-        setGiftCardAmount('');
-        setGiftCardNumber('');
-        setMobilePayNumber('');
     };
+
+    const handleMobilePayNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (/^\d*$/.test(value) && value.length <= 8 ) {
+            setMobilePayNumber(value);
+            if (value.length !== 8) {
+                setMobilePayNumberError("The mobilepay number must be 8 digits");
+            } else {
+                setMobilePayNumberError(""); // Ryd fejlen, når betingelsen er opfyldt
+            }
+        }
+    };
+
+    const handleNumericChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (/^\d*$/.test(value)) { // Tjekker om værdien kun indeholder tal
+            setter(value);
+        }
+    };
+
+    const buttonStyle = (method: string) => ({
+        background: 'transparent',
+        border: paymentMethod === method ? '2px solid black' : 'none', // Conditional border
+        padding: 0
+    });
+
 
     return (
         <form>
             {/* Payment method buttons */}
             <div>
+                {!canUseGiftCardOnly() && (
                 <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}
-                        style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                        style={buttonStyle('mobilePay')}>
                     <img src={"src/assets/mobilpay.png"} alt="MobilePay"
                          style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
+                    )}
                 <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
-                        style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                        style={buttonStyle('giftCard')}>
                     <img src={"src/assets/giftcard.jpeg"} alt="Gift Card"
                          style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
-                {isInvoiceAvailable() && (
+                {isInvoiceAvailable() && !canUseGiftCardOnly() && (
                     <button type="button" onClick={() => handlePaymentMethodClick('invoice')}
-                            style={{ background: 'transparent', border: 'none', padding: 0 }}>
-                        <img src={"src/assets/invoice.png"} alt="Invoice"
+                            style={buttonStyle('invoice')}>
+                        <img src={"src/assets/img.png"} alt="Invoice"
                              style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                     </button>
                 )}
@@ -56,28 +81,31 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
                     <input
                         type="text"
                         value={giftCardAmount}
-                        onChange={(e) => setGiftCardAmount(e.target.value)}
+                        onChange={handleNumericChange(setGiftCardAmount)}
                         placeholder="Enter gift card amount"
                     />
                     <input
                         type="text"
                         value={giftCardNumber}
-                        onChange={(e) => setGiftCardNumber(e.target.value)}
+                        onChange={handleNumericChange(setGiftCardNumber)}
                         placeholder="Enter gift card number"
                     />
                 </div>
             )}
 
             {paymentMethod === 'mobilePay' && !canUseGiftCardOnly() && (
-                <input
-                    type="text"
-                    value={mobilePayNumber}
-                    onChange={(e) => setMobilePayNumber(e.target.value)}
-                    placeholder="Enter MobilePay number"
-                />
+                <div>
+                    <input
+                        type="text"
+                        value={mobilePayNumber}
+                        onChange={handleMobilePayNumberChange}
+                        placeholder="Enter MobilePay number"
+                    />
+                    {mobilePayNumberError && <div style={{ color: 'red' }}>{mobilePayNumberError}</div>}
+                </div>
             )}
 
-            {paymentMethod === 'invoice' && isInvoiceAvailable() && (
+            {paymentMethod === 'invoice' && isInvoiceAvailable() &&  (
                 <div>
                     {/* Invoice payment inputs go here, if necessary */}
                     {/* You can replicate the structure used for the other methods */}

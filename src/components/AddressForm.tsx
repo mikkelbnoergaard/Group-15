@@ -62,7 +62,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = { ...errors };
         if (name === "email" && !validateEmail(value)) {
-            newErrors.email = 'Ugyldig e-mailadresse'; // Ensure consistent key usage
+            newErrors.email = 'Invalid email'; // Ensure consistent key usage
         } else if (name === "phone") {
             const phoneError = validatePhone(value);
             if (phoneError) {
@@ -125,7 +125,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         } else {
             setErrors(prevErrors => ({
                 ...prevErrors,
-                zip: 'Postnummeret skal være 4 cifre'
+                zip: 'Postcode must be 4 digits'
             }));
             setCityLocked(false);
         }
@@ -138,9 +138,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
     };
     const validatePhone = (phone: string): string => {
         if (phone.length > 8) {
-            return "Telefonnummeret må ikke overstige 8 cifre";
+            return "The phone number must not exceed 8 digits";
         } else if (phone.length < 8 || isNaN(Number(phone))) {
-            return "Telefonnummeret skal være 8 cifre";
+            return "The phone number must be 8 digits";
         }
         return ""; // Ingen fejl
     };
@@ -153,7 +153,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
 
     const validateCompanyVAT = (companyVAT: string): string => {
         if (companyVAT.length !== 8 || isNaN(Number(companyVAT))) {
-            return "Momsnummeret skal være 8 cifre";
+            return "The VAT number must be 8 digits";
         }
         return ""; // Ingen fejl
     };
