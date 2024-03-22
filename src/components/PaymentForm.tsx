@@ -31,18 +31,21 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
         <form>
             {/* Payment method buttons */}
             <div>
-                <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}>
+                <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}
+                        style={{ background: 'transparent', border: 'none', padding: 0 }}>
                     <img src={"src/assets/mobilpay.png"} alt="MobilePay"
-                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                         style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
-                <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}>
+                <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
+                        style={{ background: 'transparent', border: 'none', padding: 0 }}>
                     <img src={"src/assets/giftcard.jpeg"} alt="Gift Card"
-                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                         style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
                 {isInvoiceAvailable() && (
-                    <button type="button" onClick={() => handlePaymentMethodClick('invoice')}>
+                    <button type="button" onClick={() => handlePaymentMethodClick('invoice')}
+                            style={{ background: 'transparent', border: 'none', padding: 0 }}>
                         <img src={"src/assets/invoice.png"} alt="Invoice"
-                             style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                             style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                     </button>
                 )}
             </div>
