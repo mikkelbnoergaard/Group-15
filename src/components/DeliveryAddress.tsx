@@ -8,7 +8,6 @@ type Address = {
   continent: string;
   addressLine1: string;
 };
-
 const DeliveryAddress: React.FC = () => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -56,16 +55,25 @@ const DeliveryAddress: React.FC = () => {
               ))}
             </select>
           </div>
+            <div className={"select-delivery-address"}>
           <div>
             <label>
               Address:
-              <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
+                {preDefinedAddresses.length > 0 ? (
+                    <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
+                ) : (
+                    <span>Loading...</span>
+                )}
             </label>
           </div>
           <div>
             <label>
               Continent:
-              <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
+                {preDefinedAddresses.length > 0 ? (
+                    <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
+                ) : (
+                    <span>Loading...</span>
+                )}
             </label>
           </div>
           <div className="form-row">
@@ -89,6 +97,7 @@ const DeliveryAddress: React.FC = () => {
           {/* Pop-up */}
           {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
           {/* Din eksisterende form indhold fortsætter her */}
+            </div>
           <button type="submit">Submit</button>
         </form>
     );
