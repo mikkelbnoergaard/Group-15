@@ -37,8 +37,10 @@ const DeliveryAddress: React.FC = () => {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const [termsChecked, setTermsChecked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [orderComment, setOrderComment] = useState('');
 
-    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+  const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedIndex = parseInt(event.target.value);
       setSelectedAddressIndex(selectedIndex);
     };
@@ -92,15 +94,26 @@ const DeliveryAddress: React.FC = () => {
               <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
             </label>
           </div>
-          <div>
+          <div className="form-row">
+            <label htmlFor="order-comment">Order Comment:</label>
+            <textarea
+                id="order-comment"
+                value={orderComment}
+                onChange={(e) => setOrderComment(e.target.value)}
+                placeholder="Any special instructions?"
+            />
+          </div>
+          <div className= "form-checkbox">
             <label>
               <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
               I accept the terms & conditions
             </label>
+            </div>
             <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+            <div>
           </div>
           {/* Pop-up */}
-          {showPopup && <TermsAndConditionsPopup onClose={closePopup} />}
+          {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
           {/* Din eksisterende form indhold fortsætter her */}
           <button type="submit">Submit</button>
         </form>

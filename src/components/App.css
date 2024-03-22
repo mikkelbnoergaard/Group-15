@@ -285,3 +285,41 @@ label input {
   to { opacity: 1; }
 }
 
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.form-row label {
+  flex: 0 0 20%; /* Giver label en fast bredde */
+  margin-right: 10px; /* Tilføjer lidt plads mellem label og input/textarea */
+  text-align: right;
+}
+
+.form-row .input-container, .form-row textarea {
+  flex: 1; /* Giver input/textarea mulighed for at fylde den resterende plads */
+}
+
+.form-row textarea {
+  height: 40px; /* eller hvad end den passende højde er for dine inputfelter */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none; /* Fjerner muligheden for brugeren til at ændre størrelsen */
+}
+
+textarea {
+  height: 100px; /* Eller enhver anden højde du ønsker */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; /* Tillader brugeren at ændre højden på textarea */
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
