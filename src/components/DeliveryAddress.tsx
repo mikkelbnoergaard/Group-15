@@ -15,9 +15,9 @@ const DeliveryAddress: React.FC = () => {
   const [orderComment, setOrderComment] = useState('');
   const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
 
-    useEffect(() => {
+  useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
-    }, []); // Empty dependency array to run only once on component mount
+  }, []); // Empty dependency array to run only once on component mount
 
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
