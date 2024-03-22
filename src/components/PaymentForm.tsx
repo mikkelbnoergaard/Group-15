@@ -1,8 +1,8 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
 type PaymentFormProps = {
-    totalAmount: number; // assuming totalAmount is a number
-    companyVAT?: string; // assuming companyVAT is an optional string
+    totalAmount: number;
+    companyVAT?: string;
 };
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) => {
@@ -10,11 +10,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
     const [giftCardAmount, setGiftCardAmount] = useState<string>('');
     const [giftCardNumber, setGiftCardNumber] = useState<string>('');
     const [mobilePayNumber, setMobilePayNumber] = useState<string>('');
-
-    const handlePaymentMethodChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        setPaymentMethod(event.target.value);
-    };
-
 
     const isInvoiceAvailable = (): boolean => {
         return !!companyVAT && companyVAT.trim() !== '';
@@ -24,14 +19,35 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
         return parseFloat(giftCardAmount) > totalAmount;
     };
 
+    const handlePaymentMethodClick = (method: string) => {
+        setPaymentMethod(method);
+        // Reset other payment inputs when changing the payment method
+        setGiftCardAmount('');
+        setGiftCardNumber('');
+        setMobilePayNumber('');
+    };
+
     return (
         <form>
-            <select value={paymentMethod} onChange={handlePaymentMethodChange}>
-                <option value="mobilePay">MobilePay</option>
-                <option value="giftCard">Gift Card</option>
-                {isInvoiceAvailable() && <option value="invoice">Invoice</option>}
-            </select>
+            {/* Payment method buttons */}
+            <div>
+                <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}>
+                    <img src={"src/assets/mobilpay.png"} alt="MobilePay"
+                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                </button>
+                <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}>
+                    <img src={"src/assets/giftcard.jpeg"} alt="Gift Card"
+                         style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                </button>
+                {isInvoiceAvailable() && (
+                    <button type="button" onClick={() => handlePaymentMethodClick('invoice')}>
+                        <img src={"src/assets/invoice.png"} alt="Invoice"
+                             style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
+                    </button>
+                )}
+            </div>
 
+            {/* Conditional input rendering */}
             {paymentMethod === 'giftCard' && (
                 <div>
                     <input
@@ -61,9 +77,12 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
             {paymentMethod === 'invoice' && isInvoiceAvailable() && (
                 <div>
                     {/* Invoice payment inputs go here, if necessary */}
+                    {/* You can replicate the structure used for the other methods */}
                 </div>
             )}
 
+            {/* Submit button or additional form elements */}
+            {/* ... */}
         </form>
     );
 };
