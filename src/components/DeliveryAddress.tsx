@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import addressesData from "../assets/delivery.json"; // Import the JSON file
+import addressesData from "../assets/delivery.json";
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx"; // Import the JSON file
 
 type Address = {
   country: string;
@@ -8,41 +9,17 @@ type Address = {
   addressLine1: string;
 };
 
-const preDefinedAddresses: Address[] = [
-  {
-    country: "Mali",
-    city: "Timbuctoo",
-    continent: "Africa",
-    addressLine1: "Ahmed Baba Institute"
-  },
-  {
-    country: "Togo",
-    city: "Tchebebe",
-    continent: "Africa",
-    addressLine1: "Epp Tchebebe Sud"
-  },
-  {
-    country: "Germany",
-    city: "Würstenhof",
-    continent: "Europe",
-    addressLine1: "Würststrasse 19"
-  },
-];
-
 const DeliveryAddress: React.FC = () => {
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const [termsChecked, setTermsChecked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [orderComment, setOrderComment] = useState('');
-
-    const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+  const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
     }, []); // Empty dependency array to run only once on component mount
 
-    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
-
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedIndex = parseInt(event.target.value);
       setSelectedAddressIndex(selectedIndex);
@@ -89,12 +66,6 @@ const DeliveryAddress: React.FC = () => {
             <label>
               Continent:
               <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              Zip Code:
-              <span>{preDefinedAddresses[selectedAddressIndex].zip}</span>
             </label>
           </div>
           <div className="form-row">
