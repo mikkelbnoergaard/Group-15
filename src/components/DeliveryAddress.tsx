@@ -92,13 +92,14 @@ const DeliveryAddress: React.FC = () => {
                 <div className="form-checkbox">
                     <label>
                         <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
-                        I accept the terms & conditions
+                        <span>I accept the terms & conditions</span>
                     </label>
                 </div>
+
                 <div className="form-checkbox">
                     <label>
                         <input type="checkbox" checked={marketingChecked} onChange={handleMarketingCheckboxChange}/>
-                        I agree to receive marketing emails
+                        <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
                 <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
