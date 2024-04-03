@@ -143,9 +143,9 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-    const handleCheckout = () => {
-        console.log('Checkout button clicked');
-    };
+
+
+
 
     const [companyVAT, setCompanyVAT] = useState('');
 
