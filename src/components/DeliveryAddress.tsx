@@ -109,7 +109,9 @@ const DeliveryAddress: React.FC = () => {
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button type="submit">Submit</button>
+            <button className="bn30">
+                <span className="text">Submit</span>
+            </button>
         </form>
     );
 };
