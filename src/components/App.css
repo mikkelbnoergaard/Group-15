@@ -328,6 +328,10 @@ textarea {
   margin: 10px 0;
 }
 
+.form-checkbox input {
+  margin-right: 0px; /* Juster denne værdi efter behov for at få teksten til at linje op */
+}
+
 .select-delivery-address {
   margin-top: 15px;
 }
