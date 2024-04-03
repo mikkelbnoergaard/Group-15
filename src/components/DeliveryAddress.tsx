@@ -10,6 +10,7 @@ type Address = {
 };
 const DeliveryAddress: React.FC = () => {
   const [termsChecked, setTermsChecked] = useState(false);
+  const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
   const [orderComment, setOrderComment] = useState('');
   const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
@@ -28,6 +29,9 @@ const DeliveryAddress: React.FC = () => {
     setTermsChecked(!termsChecked);
   };
 
+  const handleMarketingCheckboxChange = () => {
+        setMarketingChecked(!marketingChecked);
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
       if (!termsChecked) {
