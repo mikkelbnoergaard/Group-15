@@ -50,7 +50,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                 <div><b>{item.name}</b>
 
                 </div>
-            <div>Price: {item.price}
+            <div>Price: ${item.price}
             </div>
             <div>Quantity:
                 <input
