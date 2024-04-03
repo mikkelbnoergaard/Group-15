@@ -344,5 +344,5 @@ textarea {
   margin-left: -75px; /* Placerer checkbox til højre */
 }
 .select-delivery-address {
-  margin-top: 15px;
+  width: 100%
 }
