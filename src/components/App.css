@@ -293,7 +293,7 @@ label input {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start
+  justify-content: flex-start;
   margin: 10px 0;
 }
 
@@ -345,4 +345,56 @@ textarea {
 }
 .select-delivery-address {
   width: 100%
+}
+
+.bn30 {
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  color: white; /* Tekstfarve */
+  padding: 1em 2em; /* Juster padding for størrelse på knappen */
+  border-radius: 30px; /* Afrundede hjørner */
+  border: none; /* Ingen kant */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Indre skygge */
+  0 7px 20px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  position: relative; /* For pseudo-elementer */
+}
+
+/* Pseudo-element for ekstra effekt */
+.bn30:before {
+  content: '';
+  position: absolute;
+  top: -5px; /* Juster position */
+  right: -5px; /* Juster position */
+  bottom: -5px; /* Juster position */
+  left: -5px; /* Juster position */
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 35px; /* Skal være større end knappens border-radius */
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+/* Hover effekt */
+.bn30:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), /* Indre skygge */
+  0 15px 35px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
+  transform: translateY(-2px);
+}
+
+.bn30:hover:before {
+  opacity: 0; /* Gør pseudo-elementet usynligt ved hover */
+}
+
+/* Fokus og aktive tilstande for tilgængelighed */
+.bn30:focus,
+.bn30:active {
+  box-shadow: 0 0 0 3px rgba(70, 102, 255, 0.5); /* Tilgængelighed: outline effekt */
+}
+
+/* Stil til tekst inden i knappen, hvis nødvendigt */
+.bn30 .text {
+  /* Stil til tekst går her */
 }
