@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import addressesData from "../assets/delivery.json";
-import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx"; // Import the JSON file
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {sendOrderData} from "../remote/requestbin"; // Import the JSON file
 
 type Address = {
   country: string;
@@ -8,6 +9,12 @@ type Address = {
   continent: string;
   addressLine1: string;
 };
+
+const handleCheckout = () => {
+    console.log('Checkout button clicked');
+    sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', "indsæt items", "indsæt user info")
+};
+
 const DeliveryAddress: React.FC = () => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
@@ -109,7 +116,7 @@ const DeliveryAddress: React.FC = () => {
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button className="bn30">
+            <button className="bn30" onClick={handleCheckout}>
                 <span className="text">Submit</span>
             </button>
         </form>

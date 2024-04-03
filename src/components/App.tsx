@@ -2,6 +2,9 @@
 import './App.css';
 import React, { useState } from 'react';
 
+
+import { sendOrderData } from '../remote/requestbin.js';
+
 import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
@@ -145,9 +148,8 @@ const Basket = () => {
     };
 
 
-
-
     const [companyVAT, setCompanyVAT] = useState('');
+
 
 
     return (
