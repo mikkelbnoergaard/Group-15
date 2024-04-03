@@ -150,11 +150,11 @@ const Basket = () => {
     const [companyVAT, setCompanyVAT] = useState('');
 
 
-
     return (
         <div className={"page-column"}>
             <div className={"header-top"}>
-                <h1> GOATS FOR GOOD </h1>
+                <img src={"src/assets/Goats for Good.png"}
+                     style={{ width: '120px', height: 'auto', borderRadius: '20px', }}/>
             </div>
         <div className="basket-layout">
             <div className={"basket-items2"}>
