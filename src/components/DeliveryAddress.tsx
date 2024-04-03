@@ -56,49 +56,55 @@ const DeliveryAddress: React.FC = () => {
             </select>
           </div>
             <div className={"select-delivery-address"}>
-          <div>
-            <label>
-              Address:
-                {preDefinedAddresses.length > 0 ? (
-                    <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
-                ) : (
-                    <span>Loading...</span>
-                )}
-            </label>
-          </div>
-          <div>
-            <label>
-              Continent:
-                {preDefinedAddresses.length > 0 ? (
-                    <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-                ) : (
-                    <span>Loading...</span>
-                )}
-            </label>
-          </div>
-          <div className="form-row">
-            <label htmlFor="order-comment">Order Comment:</label>
-            <textarea
-                id="order-comment"
-                value={orderComment}
-                onChange={(e) => setOrderComment(e.target.value)}
-                placeholder="Any special instructions?"
-            />
-          </div>
-          <div className= "form-checkbox">
-            <label>
-              <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
-              I accept the terms & conditions
-            </label>
+                <div>
+                    <label>
+                        Address:
+                        {preDefinedAddresses.length > 0 ? (
+                            <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
+                        ) : (
+                            <span>Loading...</span>
+                        )}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Continent:
+                        {preDefinedAddresses.length > 0 ? (
+                            <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
+                        ) : (
+                            <span>Loading...</span>
+                        )}
+                    </label>
+                </div>
+                <div className="form-row">
+                    <label htmlFor="order-comment">Order Comment:</label>
+                    <textarea
+                        id="order-comment"
+                        value={orderComment}
+                        onChange={(e) => setOrderComment(e.target.value)}
+                        placeholder="Any special instructions?"
+                    />
+                </div>
+                <div className="form-checkbox">
+                    <label>
+                        <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
+                        I accept the terms & conditions
+                    </label>
+                </div>
+                <div className="form-checkbox">
+                    <label>
+                        <input type="checkbox" checked={marketingChecked} onChange={handleMarketingCheckboxChange}/>
+                        I agree to receive marketing emails
+                    </label>
+                </div>
+                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+                <div>
+                </div>
+                {/* Pop-up */}
+                {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
+                {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-            <div>
-          </div>
-          {/* Pop-up */}
-          {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
-          {/* Din eksisterende form indhold fortsætter her */}
-            </div>
-          <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     );
 };
