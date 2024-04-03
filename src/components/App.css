@@ -291,15 +291,17 @@ label input {
 
 .form-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start
   margin: 10px 0;
 }
 
 .form-row label {
-  flex: 0 0 20%; /* Giver label en fast bredde */
-  margin-right: 10px; /* Tilføjer lidt plads mellem label og input/textarea */
-  text-align: right;
+  //flex: 0 0 20%; /* Giver label en fast bredde */
+  flex: 1;
+  //margin-right: 10px; /* Tilføjer lidt plads mellem label og input/textarea */
+  text-align: left;
 }
 
 .form-row .input-container, .form-row textarea {
@@ -312,6 +314,7 @@ label input {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none; /* Fjerner muligheden for brugeren til at ændre størrelsen */
+  width: 95%;
 }
 
 textarea {
@@ -324,14 +327,22 @@ textarea {
 
 .form-checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 10px 0;
 }
-
-.form-checkbox input {
-  margin-right: 0px; /* Juster denne værdi efter behov for at få teksten til at linje op */
+.form-checkbox label {
+  flex: 1; /* Ensures label has a fixed width similar to .form-row label */
+  text-align: left;
 }
-
+.form-checkbox label span {
+  flex-grow: 1; /* Sørger for at teksten kan vokse og fylde tilgængelig plads */
+  margin-left: -70px; /* Justerer teksten til venstre */
+}
+.form-checkbox input[type="checkbox"] {
+  flex-shrink: 0; /* Forhindrer checkbox i at vokse */
+  margin-left: -75px; /* Placerer checkbox til højre */
+}
 .select-delivery-address {
   margin-top: 15px;
 }
