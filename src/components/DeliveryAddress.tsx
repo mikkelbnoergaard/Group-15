@@ -102,7 +102,7 @@ const DeliveryAddress: React.FC = () => {
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
-                <button type="btn41-43 btn-42" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
                 <div>
                 </div>
                 {/* Pop-up */}
