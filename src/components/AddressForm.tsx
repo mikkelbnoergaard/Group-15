@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
 
-type AddressFields = {
+export type AddressFields = {
     country: string;
     zip: string;
     city: string;
@@ -18,10 +18,11 @@ type ErrorsState = {
 };
 interface AddressFormProps {
     onCompanyVATChange: (vat: string) => void;
+    onSubmitAddress: (address: AddressFields) => void;
 }
 
 
-const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
+const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitAddress }) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
         zip: '',
@@ -41,6 +42,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+        onSubmitAddress(address);
 
         if (name === 'companyVAT') {
             // Call the callback function when companyVAT changes

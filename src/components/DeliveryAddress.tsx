@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import addressesData from "../assets/delivery.json";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
-import {sendOrderData} from "../remote/requestbin"; // Import the JSON file
+import {sendOrderData} from "../remote/requestbin";
+import {AddressFields} from "./AddressForm.tsx";
+
 
 type Address = {
   country: string;
@@ -9,18 +11,29 @@ type Address = {
   continent: string;
   addressLine1: string;
 };
+interface Item {
+    name: string;
+    quantity: number;
+}
+interface DeliveryAddressProps {
+    items: Item[];
+    addressInfo: AddressFields | null; // New prop to receive address info
+}
 
-const handleCheckout = () => {
-    console.log('Checkout button clicked');
-    sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', "indsæt items", "indsæt user info")
-};
 
-const DeliveryAddress: React.FC = () => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo }) => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
   const [orderComment, setOrderComment] = useState('');
   const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+
+    const handleCheckout = () => {
+        console.log('Checkout button clicked');
+        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo)
+    };
+
+
 
   useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
