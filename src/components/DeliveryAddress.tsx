@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import addressesData from "../assets/delivery.json";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
-import {sendOrderData} from "../remote/requestbin"; // Import the JSON file
+import {sendOrderData} from "../remote/requestbin";
+import {AddressFields} from "./AddressForm.tsx";
+
 
 type Address = {
   country: string;

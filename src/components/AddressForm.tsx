@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
 
-type AddressFields = {
+export type AddressFields = {
     country: string;
     zip: string;
     city: string;

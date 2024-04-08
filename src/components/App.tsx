@@ -1,12 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-
-
-
-
+import AddressForm, { AddressFields } from "./AddressForm";
 import productData from '../assets/product.json';
-import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import PaymentForm from "./PaymentForm.tsx";
