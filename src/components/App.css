@@ -203,7 +203,7 @@ body {
 button {
   background-color: #fff;
   color: #fff;
-  border: 1px solid #000000;
+  border: 1px solid #e0e0e0;
   border-radius: 1000px;
   padding: 9px 10px;
   cursor: pointer;
@@ -220,6 +220,10 @@ button1 {
 
 quantityField {
   width: 10px;
+}
+
+.quantity-input {
+  margin-left: 10px; /* Juster værdien efter behov */
 }
 
 .row-container-text-field {

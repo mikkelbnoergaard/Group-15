@@ -53,6 +53,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
             </div>
             <div>Quantity:
                 <input
+                    className="quantity-input"
                     type="number"
                     value={item.quantity}
                     min="1"
@@ -75,6 +76,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
             <label>
                 Recurring Order:
                 <select
+                    className="quantity-input"
                     value={item.recurring || ''}
                     onChange={(e) => onChangeRecurring(item.name, e.target.value)}
                 >
