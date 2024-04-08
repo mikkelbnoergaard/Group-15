@@ -134,15 +134,10 @@ const Basket = () => {
             setItems(prevItems => prevItems.map(item =>
                 item.name === name ? {...item, quantity: newQuantity} : item
             ));
-
-
-
     };
 
     const onRemoveItem = (name: string) => {
         setItems(prevItems => prevItems.filter(item => item.name !== name));
-
-
     };
 
     const onToggleGiftWrap = (name: string) => {
