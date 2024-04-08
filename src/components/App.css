@@ -47,6 +47,7 @@
   padding: 10px;
   align-items: center;
   justify-content: center;
+  background-color: #FFFFFF; /* Ændret til hvid */
 }
 
 .basket-item {
@@ -66,10 +67,8 @@
 }
 .basket-items{
   flex: 3;
-  border: 1px solid #e0e0e0; /* Light grey border for box effect */
   background-color: #fff; /* White background for the content */
   border-radius: 0px; /* Slightly rounded corners for the boxes */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   margin-bottom: 20px; /* Space from the bottom */
 }
 .basket-items2{
@@ -86,6 +85,9 @@
   padding: 20px;
   margin: 10px;
   gap: 20px;
+}
+body {
+  background-color: #F5F5F5; /* Ændret til en mørkere hvid */
 }
 
 .product-details {
@@ -107,7 +109,6 @@
   flex-grow: 1;
   flex-direction: column;
   padding: 12px;
-  border: 1px solid #e0e0e0;
   background-color: #fff;
   border-radius: 0px;
   font-size: 14px;
@@ -410,4 +411,13 @@ textarea {
 /* Stil til tekst inden i knappen, hvis nødvendigt */
 .bn30 .text {
   /* Stil til tekst går her */
+}
+
+.AddressForm input, .form-row textarea {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
+  border: 0.5px solid #ccc; /* Ændret til 0.5px for tyndere kanter */
+}
+
+select {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
 }
