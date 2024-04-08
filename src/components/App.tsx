@@ -1,12 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-
-
-import { sendOrderData } from '../remote/requestbin.js';
-
+import AddressForm, { AddressFields } from "./AddressForm";
 import productData from '../assets/product.json';
-import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import PaymentForm from "./PaymentForm.tsx";
@@ -109,6 +105,14 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
 };
 
 const Basket = () => {
+
+    const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
+
+
+    const handleSubmitAddress = (address: AddressFields) => {
+        setAddressInfo(address); // Update the address info state
+    };
+
     const [totalAmount, setTotalAmount] = useState(0);
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
@@ -179,12 +183,15 @@ const Basket = () => {
                 </div>
                 <div className="right-side1">
                     <h2> Customer information </h2>
-                    <AddressForm onCompanyVATChange={setCompanyVAT}/>
+                    <AddressForm
+                        onCompanyVATChange={setCompanyVAT}
+                        onSubmitAddress={handleSubmitAddress}
+                    />
                     <h2> Payment</h2>
                     <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
                 </div>
                 <div className="right-side1">
-                <DeliveryAddress/>
+                <DeliveryAddress items={items}  addressInfo={addressInfo}  />
                 </div>
             </div>
         </div>
