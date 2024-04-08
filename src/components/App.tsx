@@ -109,6 +109,14 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
 };
 
 const Basket = () => {
+
+    const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
+
+
+    const handleSubmitAddress = (address: AddressFields) => {
+        setAddressInfo(address); // Update the address info state
+    };
+
     const [totalAmount, setTotalAmount] = useState(0);
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
@@ -184,12 +192,15 @@ const Basket = () => {
                 </div>
                 <div className="right-side1">
                     <h2> Customer information </h2>
-                    <AddressForm onCompanyVATChange={setCompanyVAT}/>
+                    <AddressForm
+                        onCompanyVATChange={setCompanyVAT}
+                        onSubmitAddress={handleSubmitAddress}
+                    />
                     <h2> Payment</h2>
                     <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
                 </div>
                 <div className="right-side1">
-                <DeliveryAddress items={items} />
+                <DeliveryAddress items={items}  addressInfo={addressInfo}  />
                 </div>
             </div>
         </div>

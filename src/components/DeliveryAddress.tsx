@@ -13,10 +13,13 @@ interface Item {
     name: string;
     quantity: number;
 }
+interface DeliveryAddressProps {
+    items: Item[];
+    addressInfo: AddressFields | null; // New prop to receive address info
+}
 
 
-
-const DeliveryAddress: React.FC<{ items: Item[] }> = ({ items }) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo }) => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
@@ -25,7 +28,7 @@ const DeliveryAddress: React.FC<{ items: Item[] }> = ({ items }) => {
 
     const handleCheckout = () => {
         console.log('Checkout button clicked');
-        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, "indsæt user info")
+        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo)
     };
 
 
