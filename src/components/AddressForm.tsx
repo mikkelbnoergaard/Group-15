@@ -164,8 +164,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         alert('Form submitted!');
     };
 
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="AddressForm">
             <div>
                 <label>
                     Country:

@@ -35,8 +35,8 @@ const DeliveryAddress: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
       if (!termsChecked) {
-        setShowPopup(true);
-        return;
+          alert('Please accept the terms & conditions to proceed.');
+          return;
       }
       const selectedAddress = preDefinedAddresses[selectedAddressIndex];
       console.log("Selected address:", selectedAddress);
@@ -48,17 +48,17 @@ const DeliveryAddress: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-          <h2>Delivery Address</h2>
-          <div>
-            <label>Select Delivery Address:</label>
-            <select onChange={handleSelectDeliveryAddress}>
-              {preDefinedAddresses.map((address, index) => (
-                  <option key={index} value={index}>
-                    {address.city}, {address.country}
-                  </option>
-              ))}
-            </select>
-          </div>
+            <h2>Delivery Address</h2>
+            <div>
+                <label>Select Delivery Address:</label>
+                <select onChange={handleSelectDeliveryAddress}>
+                    {preDefinedAddresses.map((address, index) => (
+                        <option key={index} value={index}>
+                            {address.city}, {address.country}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div className={"select-delivery-address"}>
                 <div>
                     <label>
@@ -109,7 +109,7 @@ const DeliveryAddress: React.FC = () => {
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button className="bn30">
+            <button type="submit" className="bn30">
                 <span className="text">Submit</span>
             </button>
         </form>

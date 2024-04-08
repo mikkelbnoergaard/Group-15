@@ -68,14 +68,14 @@
   flex: 3;
   border: 1px solid #e0e0e0; /* Light grey border for box effect */
   background-color: #fff; /* White background for the content */
-  border-radius: 4px; /* Slightly rounded corners for the boxes */
+  border-radius: 0px; /* Slightly rounded corners for the boxes */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   margin-bottom: 20px; /* Space from the bottom */
 }
 .basket-items2{
   flex: 3;
   padding: 0px; /* Inner spacing */
-  border-radius: 4px; /* Slightly rounded corners for the boxes */
+  border-radius: 0px; /* Slightly rounded corners for the boxes */
   margin-bottom: 20px; /* Space from the bottom */
 }
 
@@ -109,7 +109,20 @@
   padding: 12px;
   border: 1px solid #e0e0e0;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 0px;
+  font-size: 14px;
+}
+
+.right-side1 h2 {
+  font-size: 18px; /* Juster værdien for ønsket skriftstørrelse */
+}
+
+.AddressForm {
+  font-size: 14px;
+}
+
+.AddressForm input{
+  font-size: 14px;
 }
 
 .right-side1:not(:last-child) {
@@ -124,9 +137,9 @@
   color: antiquewhite;
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -139,7 +152,7 @@
   justify-content: space-between;
   width: 300px;
   margin-left: 10px;
-  border-radius: 4px;
+  border-radius: 0px;
   margin-bottom: 20px;
   flex: 1;
   align-self: flex-start; /* This will override the parent alignment if necessary */
@@ -312,7 +325,7 @@ label input {
   height: 40px; /* eller hvad end den passende højde er for dine inputfelter */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0px;
   resize: none; /* Fjerner muligheden for brugeren til at ændre størrelsen */
   width: 95%;
 }
@@ -321,7 +334,7 @@ textarea {
   height: 100px; /* Eller enhver anden højde du ønsker */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0px;
   resize: vertical; /* Tillader brugeren at ændre højden på textarea */
 }
 
@@ -354,7 +367,7 @@ textarea {
   background-image: linear-gradient(45deg, #4568dc, #b06ab3);
   color: white; /* Tekstfarve */
   padding: 1em 2em; /* Juster padding for størrelse på knappen */
-  border-radius: 30px; /* Afrundede hjørner */
+  border-radius: 0px; /* Afrundede hjørner */
   border: none; /* Ingen kant */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Indre skygge */
   0 7px 20px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
@@ -372,7 +385,7 @@ textarea {
   left: -5px; /* Juster position */
   z-index: -1;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 35px; /* Skal være større end knappens border-radius */
+  border-radius: 0px; /* Skal være større end knappens border-radius */
   transition: opacity 0.3s ease-in-out;
 }
 
