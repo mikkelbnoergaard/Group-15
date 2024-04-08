@@ -47,6 +47,7 @@
   padding: 10px;
   align-items: center;
   justify-content: center;
+  background-color: #FFFFFF; /* Ændret til hvid */
 }
 
 .basket-item {
@@ -86,6 +87,9 @@
   padding: 20px;
   margin: 10px;
   gap: 20px;
+}
+body {
+  background-color: #F5F5F5; /* Ændret til en mørkere hvid */
 }
 
 .product-details {
@@ -410,4 +414,13 @@ textarea {
 /* Stil til tekst inden i knappen, hvis nødvendigt */
 .bn30 .text {
   /* Stil til tekst går her */
+}
+
+.AddressForm input, .form-row textarea {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
+  border: 0.5px solid #ccc; /* Ændret til 0.5px for tyndere kanter */
+}
+
+select {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
 }
