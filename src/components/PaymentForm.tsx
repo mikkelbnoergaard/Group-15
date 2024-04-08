@@ -57,19 +57,19 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ totalAmount, companyVAT }) =>
                 {!canUseGiftCardOnly() && (
                 <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}
                         style={buttonStyle('mobilePay')}>
-                    <img src={"src/assets/mobilpay.png"} alt="MobilePay"
+                    <img src={"https://i.imgur.com/xnpVdCD.png"} alt="MobilePay"
                          style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
                     )}
                 <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
                         style={buttonStyle('giftCard')}>
-                    <img src={"src/assets/giftcard.jpeg"} alt="Gift Card"
+                    <img src={"https://i.imgur.com/9Zfikfo.png"} alt="Gift Card"
                          style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                 </button>
                 {isInvoiceAvailable() && !canUseGiftCardOnly() && (
                     <button type="button" onClick={() => handlePaymentMethodClick('invoice')}
                             style={buttonStyle('invoice')}>
-                        <img src={"src/assets/img.png"} alt="Invoice"
+                        <img src={"https://i.imgur.com/vKuWIyM.png"} alt="Invoice"
                              style={{ width: '75px', height: '75px', objectFit: 'contain' }}/>
                     </button>
                 )}

@@ -94,7 +94,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
              <div className="details-right">
                  <div className="delete-button">
                      <button onClick={() => onRemoveItem(item.name)}>
-                         <img src={"src/assets/Trashcan.jpg.webp"}
+                         <img src={"https://i.imgur.com/3ZyQkuC.png"}
                          style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
                      </button>
                  </div>
@@ -159,7 +159,7 @@ const Basket = () => {
     return (
         <div className={"page-column"}>
             <div className={"header-top"}>
-                <img src={"src/assets/Goats for Good.png"}
+                <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{ width: '120px', height: 'auto', borderRadius: '20px', }}/>
             </div>
         <div className="basket-layout">
