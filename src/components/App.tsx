@@ -2,6 +2,9 @@
 import './App.css';
 import React, { useState } from 'react';
 
+
+import { sendOrderData } from '../remote/requestbin.js';
+
 import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
@@ -50,7 +53,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                 <div><b>{item.name}</b>
 
                 </div>
-            <div>Price: {item.price}
+            <div>Price: ${item.price}
             </div>
             <div>Quantity:
                 <input
@@ -143,11 +146,10 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-    const handleCheckout = () => {
-        console.log('Checkout button clicked');
-    };
+
 
     const [companyVAT, setCompanyVAT] = useState('');
+
 
 
     return (
@@ -174,7 +176,6 @@ const Basket = () => {
             <div className="right-side2">
                 <div className="right-side1 special-class">
                     <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-                    <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
                     <h2> Customer information </h2>

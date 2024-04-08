@@ -20,6 +20,7 @@ interface AddressFormProps {
     onCompanyVATChange: (vat: string) => void;
 }
 
+
 const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
@@ -33,6 +34,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         companyName: '',
         companyVAT: '',
     });
+
 
     const [cityLocked, setCityLocked] = useState<boolean>(false);
     const [errors, setErrors] = useState<ErrorsState>({});
@@ -285,5 +287,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
             </div>
         </form>
     );
+
 };
+
 export default AddressForm;
