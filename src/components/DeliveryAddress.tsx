@@ -22,6 +22,8 @@ interface DeliveryAddressProps {
 
 
 const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
@@ -30,6 +32,14 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
 
     const handleCheckout = () => {
         console.log('Checkout button clicked');
+        setIsLoading(true);
+        setIsSubmitted(false);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            setIsSubmitted(true);
+        }, 5000);
+
         sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo)
     };
 
@@ -123,15 +133,19 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
                     </label>
                 </div>
                 <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-                <div>
-                </div>
                 {/* Pop-up */}
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button className="bn30" onClick={handleCheckout}>
-                <span className="text">Submit</span>
-            </button>
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : isSubmitted ? (
+                <p>Formularen er blevet indsendt!</p>
+            ) : (
+                <button className="bn30" onClick={handleCheckout}>
+                    <span className="text">Submit</span>
+                </button>
+            )}
         </form>
     );
 };
