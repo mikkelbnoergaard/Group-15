@@ -47,6 +47,7 @@
   padding: 10px;
   align-items: center;
   justify-content: center;
+  background-color: #FFFFFF; /* Ændret til hvid */
 }
 
 .basket-item {
@@ -66,16 +67,14 @@
 }
 .basket-items{
   flex: 3;
-  border: 1px solid #e0e0e0; /* Light grey border for box effect */
   background-color: #fff; /* White background for the content */
-  border-radius: 4px; /* Slightly rounded corners for the boxes */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 0px; /* Slightly rounded corners for the boxes */
   margin-bottom: 20px; /* Space from the bottom */
 }
 .basket-items2{
   flex: 3;
   padding: 0px; /* Inner spacing */
-  border-radius: 4px; /* Slightly rounded corners for the boxes */
+  border-radius: 0px; /* Slightly rounded corners for the boxes */
   margin-bottom: 20px; /* Space from the bottom */
 }
 
@@ -86,6 +85,9 @@
   padding: 20px;
   margin: 10px;
   gap: 20px;
+}
+body {
+  background-color: #F5F5F5; /* Ændret til en mørkere hvid */
 }
 
 .product-details {
@@ -107,9 +109,21 @@
   flex-grow: 1;
   flex-direction: column;
   padding: 12px;
-  border: 1px solid #e0e0e0;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 0px;
+  font-size: 14px;
+}
+
+.right-side1 h2 {
+  font-size: 18px; /* Juster værdien for ønsket skriftstørrelse */
+}
+
+.AddressForm {
+  font-size: 14px;
+}
+
+.AddressForm input{
+  font-size: 14px;
 }
 
 .right-side1:not(:last-child) {
@@ -124,9 +138,9 @@
   color: antiquewhite;
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -139,7 +153,7 @@
   justify-content: space-between;
   width: 300px;
   margin-left: 10px;
-  border-radius: 4px;
+  border-radius: 0px;
   margin-bottom: 20px;
   flex: 1;
   align-self: flex-start; /* This will override the parent alignment if necessary */
@@ -291,15 +305,17 @@ label input {
 
 .form-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 10px 0;
 }
 
 .form-row label {
-  flex: 0 0 20%; /* Giver label en fast bredde */
-  margin-right: 10px; /* Tilføjer lidt plads mellem label og input/textarea */
-  text-align: right;
+  //flex: 0 0 20%; /* Giver label en fast bredde */
+  flex: 1;
+  //margin-right: 10px; /* Tilføjer lidt plads mellem label og input/textarea */
+  text-align: left;
 }
 
 .form-row .input-container, .form-row textarea {
@@ -310,24 +326,125 @@ label input {
   height: 40px; /* eller hvad end den passende højde er for dine inputfelter */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0px;
   resize: none; /* Fjerner muligheden for brugeren til at ændre størrelsen */
+  width: 95%;
 }
 
 textarea {
   height: 100px; /* Eller enhver anden højde du ønsker */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0px;
   resize: vertical; /* Tillader brugeren at ændre højden på textarea */
 }
 
 .form-checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 10px 0;
 }
-
+.form-checkbox label {
+  flex: 1; /* Ensures label has a fixed width similar to .form-row label */
+  text-align: left;
+}
+.form-checkbox label span {
+  flex-grow: 1; /* Sørger for at teksten kan vokse og fylde tilgængelig plads */
+  margin-left: -70px; /* Justerer teksten til venstre */
+}
+.form-checkbox input[type="checkbox"] {
+  flex-shrink: 0; /* Forhindrer checkbox i at vokse */
+  margin-left: -75px; /* Placerer checkbox til højre */
+}
 .select-delivery-address {
-  margin-top: 15px;
+  width: 100%
+}
+
+.bn30 {
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  color: white; /* Tekstfarve */
+  padding: 1em 2em; /* Juster padding for størrelse på knappen */
+  border-radius: 0px; /* Afrundede hjørner */
+  border: none; /* Ingen kant */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Indre skygge */
+  0 7px 20px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  position: relative; /* For pseudo-elementer */
+}
+
+/* Pseudo-element for ekstra effekt */
+.bn30:before {
+  content: '';
+  position: absolute;
+  top: -5px; /* Juster position */
+  right: -5px; /* Juster position */
+  bottom: -5px; /* Juster position */
+  left: -5px; /* Juster position */
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0px; /* Skal være større end knappens border-radius */
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+/* Hover effekt */
+.bn30:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), /* Indre skygge */
+  0 15px 35px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
+  transform: translateY(-2px);
+}
+
+.bn30:hover:before {
+  opacity: 0; /* Gør pseudo-elementet usynligt ved hover */
+}
+
+/* Fokus og aktive tilstande for tilgængelighed */
+.bn30:focus,
+.bn30:active {
+  box-shadow: 0 0 0 3px rgba(70, 102, 255, 0.5); /* Tilgængelighed: outline effekt */
+}
+
+/* Stil til tekst inden i knappen, hvis nødvendigt */
+.bn30 .text {
+  /* Stil til tekst går her */
+}
+
+.AddressForm input, .form-row textarea {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
+  border: 0.5px solid #ccc; /* Ændret til 0.5px for tyndere kanter */
+}
+
+select {
+  border-radius: 0px; /* Ændret til 0px for firkantede kanter */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }

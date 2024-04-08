@@ -1,9 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-
+import AddressForm, { AddressFields } from "./AddressForm";
 import productData from '../assets/product.json';
-import AddressForm from "./AddressForm.tsx";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import PaymentForm from "./PaymentForm.tsx";
@@ -45,12 +44,12 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
             <div className="basket-Elements">
                 <img src={item.ImageURL}
                      alt={item.name}
-                     style={{ width: '200px', height: 'auto', borderRadius: '5px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)' }}/>
+                     style={{ width: '200px', height: 'auto' }}/>
             <div className="product-details">
                 <div><b>{item.name}</b>
 
                 </div>
-            <div>Price: {item.price}
+            <div>Price: ${item.price}
             </div>
             <div>Quantity:
                 <input
@@ -95,7 +94,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
              <div className="details-right">
                  <div className="delete-button">
                      <button onClick={() => onRemoveItem(item.name)}>
-                         <img src={"src/assets/Trashcan.jpg.webp"}
+                         <img src={"https://i.imgur.com/3ZyQkuC.png"}
                          style={{ width: '30px', height: 'auto', borderRadius: '20px', }}/>
                      </button>
                  </div>
@@ -106,6 +105,14 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
 };
 
 const Basket = () => {
+
+    const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
+
+
+    const handleSubmitAddress = (address: AddressFields) => {
+        setAddressInfo(address); // Update the address info state
+    };
+
     const [totalAmount, setTotalAmount] = useState(0);
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
@@ -143,9 +150,7 @@ const Basket = () => {
             item.name === name ? { ...item, recurring: schedule } : item
         ));
     };
-    const handleCheckout = () => {
-        console.log('Checkout button clicked');
-    };
+
 
     const [companyVAT, setCompanyVAT] = useState('');
 
@@ -154,7 +159,8 @@ const Basket = () => {
     return (
         <div className={"page-column"}>
             <div className={"header-top"}>
-                <h1> GOATS FOR GOOD </h1>
+                <img src={"https://i.imgur.com/J5OAFS3.png"}
+                     style={{ width: '120px', height: 'auto', borderRadius: '20px', }}/>
             </div>
         <div className="basket-layout">
             <div className={"basket-items2"}>
@@ -174,16 +180,18 @@ const Basket = () => {
             <div className="right-side2">
                 <div className="right-side1 special-class">
                     <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-                    <button onClick={handleCheckout}>Checkout</button>
                 </div>
                 <div className="right-side1">
                     <h2> Customer information </h2>
-                    <AddressForm onCompanyVATChange={setCompanyVAT}/>
+                    <AddressForm
+                        onCompanyVATChange={setCompanyVAT}
+                        onSubmitAddress={handleSubmitAddress}
+                    />
                     <h2> Payment</h2>
                     <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
                 </div>
                 <div className="right-side1">
-                <DeliveryAddress/>
+                <DeliveryAddress items={items}  addressInfo={addressInfo}  />
                 </div>
             </div>
         </div>

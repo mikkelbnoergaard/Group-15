@@ -44,9 +44,9 @@ interface Total1Props {
   
     const discount = calculateDiscounts(items);
         return {
-            subtotal: subtotal.toFixed(3),
-            discount: discount.toFixed(3),
-            total: (subtotal - discount).toFixed(3),
+            subtotal: subtotal.toFixed(2),
+            discount: discount.toFixed(2),
+            total: (subtotal - discount).toFixed(2),
         };
 
   }; 
