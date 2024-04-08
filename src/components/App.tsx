@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 
 
-import { sendOrderData } from '../remote/requestbin.js';
+
 
 import productData from '../assets/product.json';
 import AddressForm from "./AddressForm.tsx";
@@ -130,10 +130,15 @@ const Basket = () => {
             setItems(prevItems => prevItems.map(item =>
                 item.name === name ? {...item, quantity: newQuantity} : item
             ));
+
+
+
     };
 
     const onRemoveItem = (name: string) => {
         setItems(prevItems => prevItems.filter(item => item.name !== name));
+
+
     };
 
     const onToggleGiftWrap = (name: string) => {
@@ -184,7 +189,7 @@ const Basket = () => {
                     <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
                 </div>
                 <div className="right-side1">
-                <DeliveryAddress/>
+                <DeliveryAddress items={items} />
                 </div>
             </div>
         </div>

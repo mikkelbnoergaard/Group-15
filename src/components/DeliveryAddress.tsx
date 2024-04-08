@@ -9,18 +9,26 @@ type Address = {
   continent: string;
   addressLine1: string;
 };
+interface Item {
+    name: string;
+    quantity: number;
+}
 
-const handleCheckout = () => {
-    console.log('Checkout button clicked');
-    sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', "indsæt items", "indsæt user info")
-};
 
-const DeliveryAddress: React.FC = () => {
+
+const DeliveryAddress: React.FC<{ items: Item[] }> = ({ items }) => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
   const [orderComment, setOrderComment] = useState('');
   const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+
+    const handleCheckout = () => {
+        console.log('Checkout button clicked');
+        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, "indsæt user info")
+    };
+
+
 
   useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
