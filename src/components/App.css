@@ -67,10 +67,8 @@
 }
 .basket-items{
   flex: 3;
-  border: 1px solid #e0e0e0; /* Light grey border for box effect */
   background-color: #fff; /* White background for the content */
   border-radius: 0px; /* Slightly rounded corners for the boxes */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   margin-bottom: 20px; /* Space from the bottom */
 }
 .basket-items2{
@@ -111,7 +109,6 @@ body {
   flex-grow: 1;
   flex-direction: column;
   padding: 12px;
-  border: 1px solid #e0e0e0;
   background-color: #fff;
   border-radius: 0px;
   font-size: 14px;
