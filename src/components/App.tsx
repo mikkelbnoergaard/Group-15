@@ -44,7 +44,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
             <div className="basket-Elements">
                 <img src={item.ImageURL}
                      alt={item.name}
-                     style={{ width: '200px', height: 'auto', boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)' }}/>
+                     style={{ width: '200px', height: 'auto' }}/>
             <div className="product-details">
                 <div><b>{item.name}</b>
 
