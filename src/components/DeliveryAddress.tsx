@@ -138,7 +138,9 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
             {isLoading ? (
-                <p>Loading...</p>
+                <div className="overlay">
+                    <div className="loading-spinner"></div>
+                </div>
             ) : isSubmitted ? (
                 <p>Formularen er blevet indsendt!</p>
             ) : (
