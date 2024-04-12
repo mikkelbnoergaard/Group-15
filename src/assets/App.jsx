@@ -67,6 +67,7 @@ const Basket = () => {
         recurring: ''
     })));
 
+
     const onChangeQuantity = (name, newQuantity) => {
         setItems(prevItems => prevItems.map(item =>
             item.name === name ? { ...item, quantity: newQuantity } : item
