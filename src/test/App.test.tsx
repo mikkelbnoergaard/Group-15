@@ -12,6 +12,7 @@ describe(App.name, () => {
     });
 });
 
+//
 describe('10% rebate test', () => {
     test('applies a 10% rebate if the total exceeds $300', async () => {
 
