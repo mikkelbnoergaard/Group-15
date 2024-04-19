@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import addressesData from "../assets/delivery.json";
-import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx"; // Import the JSON file
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {sendOrderData} from "../remote/requestbin";
+import {AddressFields} from "./AddressForm.tsx";
+
 
 type Address = {
   country: string;
@@ -8,12 +11,39 @@ type Address = {
   continent: string;
   addressLine1: string;
 };
-const DeliveryAddress: React.FC = () => {
+interface Item {
+    name: string;
+    quantity: number;
+}
+interface DeliveryAddressProps {
+    items: Item[];
+    addressInfo: AddressFields | null; // New prop to receive address info
+}
+
+
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
   const [showPopup, setShowPopup] = useState(false);
   const [orderComment, setOrderComment] = useState('');
   const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+
+    const handleCheckout = () => {
+        console.log('Checkout button clicked');
+        setIsLoading(true);
+        setIsSubmitted(false);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            setIsSubmitted(true);
+        }, 5000);
+
+        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo)
+    };
+
+
 
   useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
@@ -35,8 +65,8 @@ const DeliveryAddress: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
       if (!termsChecked) {
-        setShowPopup(true);
-        return;
+          alert('Please accept the terms & conditions to proceed.');
+          return;
       }
       const selectedAddress = preDefinedAddresses[selectedAddressIndex];
       console.log("Selected address:", selectedAddress);
@@ -92,24 +122,32 @@ const DeliveryAddress: React.FC = () => {
                 <div className="form-checkbox">
                     <label>
                         <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
-                        I accept the terms & conditions
+                        <span>I accept the terms & conditions</span>
                     </label>
                 </div>
+
                 <div className="form-checkbox">
                     <label>
                         <input type="checkbox" checked={marketingChecked} onChange={handleMarketingCheckboxChange}/>
-                        I agree to receive marketing emails
+                        <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
                 <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-
-                <div>
-                </div>
                 {/* Pop-up */}
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
                 {/* Din eksisterende form indhold fortsætter her */}
             </div>
-            <button type="submit">Submit</button>
+            {isLoading ? (
+                <div className="overlay">
+                    <div className="loading-spinner"></div>
+                </div>
+            ) : isSubmitted ? (
+                <p>Formularen er blevet indsendt!</p>
+            ) : (
+                <button className="bn30" onClick={handleCheckout}>
+                    <span className="text">Submit</span>
+                </button>
+            )}
         </form>
     );
 };

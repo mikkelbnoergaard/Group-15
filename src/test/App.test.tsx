@@ -4,10 +4,10 @@ import App from "../components/App.tsx";
 import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
 describe(App.name, () => {
-    test("should display a Billing address section", () => {
+    test("should display a Delivery Address section", () => {
         render(<App/>);
         const element =
-            screen.getByText("Billing Address");  
+            screen.getByText("Delivery Address");
         expect(element).toBeInTheDocument();
     });
 });

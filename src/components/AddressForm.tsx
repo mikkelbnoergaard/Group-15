@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
 
-type AddressFields = {
+export type AddressFields = {
     country: string;
     zip: string;
     city: string;
@@ -18,9 +18,11 @@ type ErrorsState = {
 };
 interface AddressFormProps {
     onCompanyVATChange: (vat: string) => void;
+    onSubmitAddress: (address: AddressFields) => void;
 }
 
-const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
+
+const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitAddress }) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
         zip: '',
@@ -34,11 +36,13 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         companyVAT: '',
     });
 
+
     const [cityLocked, setCityLocked] = useState<boolean>(false);
     const [errors, setErrors] = useState<ErrorsState>({});
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+        onSubmitAddress(address);
 
         if (name === 'companyVAT') {
             // Call the callback function when companyVAT changes
@@ -62,7 +66,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = { ...errors };
         if (name === "email" && !validateEmail(value)) {
-            newErrors.email = 'Ugyldig e-mailadresse'; // Ensure consistent key usage
+            newErrors.email = 'Invalid email'; // Ensure consistent key usage
         } else if (name === "phone") {
             const phoneError = validatePhone(value);
             if (phoneError) {
@@ -125,7 +129,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         } else {
             setErrors(prevErrors => ({
                 ...prevErrors,
-                zip: 'Postnummeret skal være 4 cifre'
+                zip: 'Postcode must be 4 digits'
             }));
             setCityLocked(false);
         }
@@ -138,9 +142,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
     };
     const validatePhone = (phone: string): string => {
         if (phone.length > 8) {
-            return "Telefonnummeret må ikke overstige 8 cifre";
+            return "The phone number must not exceed 8 digits";
         } else if (phone.length < 8 || isNaN(Number(phone))) {
-            return "Telefonnummeret skal være 8 cifre";
+            return "The phone number must be 8 digits";
         }
         return ""; // Ingen fejl
     };
@@ -153,7 +157,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
 
     const validateCompanyVAT = (companyVAT: string): string => {
         if (companyVAT.length !== 8 || isNaN(Number(companyVAT))) {
-            return "Momsnummeret skal være 8 cifre";
+            return "The VAT number must be 8 digits";
         }
         return ""; // Ingen fejl
     };
@@ -164,8 +168,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
         alert('Form submitted!');
     };
 
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="AddressForm">
             <div>
                 <label>
                     Country:
@@ -284,5 +289,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange }) => {
             </div>
         </form>
     );
+
 };
+
 export default AddressForm;
