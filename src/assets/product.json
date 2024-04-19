@@ -162,5 +162,25 @@
     "rebatePercent": 10,
     "upsellProductId": null,
     "ImageURL": "https://www.illumsbolighus.dk/dw/image/v2/BGKQ_PRD/on/demandware.static/-/Sites-sfcc-master-catalogue/default/dwea9a5eca/images/hi-res/901306615.jpg?sw=600&sh=600"
+  },
+  {
+    "id": "Five-wheeled-Bicycle",
+    "name": "Five wheeled Bicycle",
+    "price": 69.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "ImageURL": "https://theawesomer.com/photos/2022/09/five_wheel_bicycle_t.jpg"
+  },
+  {
+    "id": "Sand",
+    "name": "Sand",
+    "price": 0.99,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "ImageURL": "https://gruslevering.dk/wp-content/uploads/2021/04/vasket-sand-gruslevering.jpg"
   }
 ]
