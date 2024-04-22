@@ -37,6 +37,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
     const [showPopup, setShowPopup] = useState(false);
 
     const handleCheckout = () => {
+        if (!termsChecked) {
+            alert('Please accept the terms & conditions to proceed.');
+            return;
+        }
         console.log('Checkout button clicked');
         setIsLoading(true);
         setIsSubmitted(false);
@@ -65,10 +69,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        if (!termsChecked) {
-            alert('Please accept the terms & conditions to proceed.');
-            return;
-        }
         const selectedAddress = preDefinedAddresses[selectedAddressIndex];
         console.log("Selected address:", selectedAddress);
         alert('Form submitted');
