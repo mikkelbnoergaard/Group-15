@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
+import React, {useState, ChangeEvent, FocusEvent, FormEvent} from "react";
 
 export type AddressFields = {
     country: string;
@@ -16,13 +16,14 @@ export type AddressFields = {
 type ErrorsState = {
     [key: string]: string;
 };
+
 interface AddressFormProps {
     onCompanyVATChange: (vat: string) => void;
     onSubmitAddress: (address: AddressFields) => void;
 }
 
 
-const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitAddress }) => {
+const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAddress}) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
         zip: '',
@@ -41,7 +42,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
     const [errors, setErrors] = useState<ErrorsState>({});
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         onSubmitAddress(address);
 
         if (name === 'companyVAT') {
@@ -64,13 +65,13 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
         }));
 
         // Derefter tjek for fejl og opdater dem om nødvendigt
-        let newErrors: ErrorsState = { ...errors };
+        let newErrors: ErrorsState = {...errors};
         if (name === "email" && !validateEmail(value)) {
             newErrors.email = 'Invalid email'; // Ensure consistent key usage
         } else if (name === "phone") {
             const phoneError = validatePhone(value);
             if (phoneError) {
-                newErrors = { ...newErrors, phone: phoneError };
+                newErrors = {...newErrors, phone: phoneError};
             } else {
                 delete newErrors.phone;
             }
@@ -262,7 +263,8 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                         onChange={(e) => handleInputChange(e)}
                     />
                 </label>
-                {errors.email && <div className="error">{errors.email}</div>} {/* Display the email error message here */}
+                {errors.email &&
+                    <div className="error">{errors.email}</div>} {/* Display the email error message here */}
             </div>
             <div>
                 <label>
