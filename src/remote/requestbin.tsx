@@ -1,14 +1,7 @@
 interface Items {
-    id: string;
     name: string;
-    price: number;
-    currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
-    upsellProductId: string | null;
     giftWrap?: boolean;
     quantity?: number;
-    ImageURL: string;
 }
 
 interface User {
