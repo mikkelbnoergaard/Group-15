@@ -148,7 +148,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
             ) : isSubmitted ? (
                 <p>Formularen er blevet indsendt!</p>
             ) : (
-                <button className="bn30" onClick={handleCheckout}>
+                <button className="submitButton" onClick={handleCheckout}>
                     <span className="text">Submit</span>
                 </button>
             )}
