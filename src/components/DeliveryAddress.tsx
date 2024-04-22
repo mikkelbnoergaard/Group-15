@@ -40,7 +40,11 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
             setIsSubmitted(true);
         }, 5000);
 
-        sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo,orderComment,marketingChecked)
+        if (addressInfo !== null) {
+            sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo, orderComment, marketingChecked);
+        } else {
+            console.error('Address information is missing');
+        }
     };
 
 

@@ -5,15 +5,7 @@ interface Items {
 }
 
 interface User {
-    deliveryCountry: string;
     name: string;
-    address: {
-        zipCode: string;
-        city: string;
-        addressLine1: string;
-    };
-    phoneNumber: string;
-    emailAddress: string;
     companyName?: string;
     companyVAT?: string;
 }
