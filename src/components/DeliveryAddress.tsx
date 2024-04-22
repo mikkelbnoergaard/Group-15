@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import addressesData from "../assets/delivery.json";
 import {sendOrderData} from "../remote/handleOrder.tsx";
 import {AddressFields} from "./AddressForm.tsx";
-import {useOrderForm} from "./useOrderForm";
+import {useOrderForm} from "./UseOrderForm.tsx";
 
 type Address = {
     country: string;
