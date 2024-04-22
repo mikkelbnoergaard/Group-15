@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, test,} from "vitest";
-import App from "../components/BasketSide.tsx";
+import App from "../components/App.tsx";
 import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
 describe(App.name, () => {

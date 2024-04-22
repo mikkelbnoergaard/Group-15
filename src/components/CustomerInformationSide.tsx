@@ -1,14 +1,12 @@
 import './BasketSide.css';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import AddressForm, {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import PaymentForm from "./PaymentForm.tsx";
 
 
-const [companyVAT, setCompanyVAT] = useState('');
-
 const CheckoutPage = ({items, totalAmount}) => {
-
+    const [companyVAT, setCompanyVAT] = useState('');
     const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
 
     const handleSubmitAddress = (address: AddressFields) => {

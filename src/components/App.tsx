@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Basket from './BasketSide';
 import CheckoutPage from "./CustomerInformationSide";

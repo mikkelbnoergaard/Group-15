@@ -1,12 +1,10 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
-import React, {useState} from 'react';
-import AddressForm, {AddressFields} from "./AddressForm";
+import React from 'react';
 import productData from '../assets/product.json';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
 
-const itemList = productData;
 console.log(productData);
 
 interface ProductItem {
@@ -26,9 +24,6 @@ interface BasketItemProps {
     onChangeRecurring: (name: string, schedule: string) => void;
 }
 
-interface Total1Props{
-    onUpdateTotal: (total: number) => void;
-}
 
 
 const BasketItem: React.FC<BasketItemProps> = ({
@@ -121,7 +116,6 @@ const Basket = ({items, setItems, setTotalAmount}) => {
     const navigate = useNavigate();
 
     const goToCheckout = () => {
-        const items={items};
         navigate('/checkout');
     }
     const onChangeQuantity = (name: string, newQuantity: number) => {
@@ -133,11 +127,7 @@ const Basket = ({items, setItems, setTotalAmount}) => {
         ));
     };
 
-    const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
 
-    const handleSubmitAddress = (address: AddressFields) => {
-        setAddressInfo(address); // Update the address info state
-    };
 
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
