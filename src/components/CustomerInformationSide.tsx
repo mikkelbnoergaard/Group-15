@@ -1,11 +1,19 @@
 import './BasketSide.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import AddressForm, {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import PaymentForm from "./PaymentForm.tsx";
 
+interface Item {
+    name: string;
+    quantity: number;
+}
+interface CustomerProps {
+    items: Item[];
+    totalAmount: number;
+}
 
-const CheckoutPage = ({items, totalAmount}) => {
+const CheckoutPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
     const [companyVAT, setCompanyVAT] = useState('');
     const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
 

@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import productData from '../assets/product.json';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
@@ -111,7 +111,25 @@ const BasketItem: React.FC<BasketItemProps> = ({
     );
 };
 
-const Basket = ({items, setItems, setTotalAmount}) => {
+
+
+type Item = {
+    name: string;
+    price: number;
+    quantity: number;
+    ImageURL: string;
+    giftWrap?: boolean;
+    recurring?: string;
+};
+
+type BasketProps = {
+    items: Item[];
+    setItems: Dispatch<SetStateAction<Item[]>>;
+    setTotalAmount: Dispatch<SetStateAction<number>>;
+};
+
+
+const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
 
     const navigate = useNavigate();
 

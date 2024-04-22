@@ -7,7 +7,7 @@ import productData from '../assets/product.json';
 const itemList = productData;
 
 const App = () => {
-    const [totalAmount, setTotalAmount] = useState(0);
+    const [totalAmount, setTotalAmount] = useState<number>(0);
 
     const [items, setItems] = useState(itemList.map(item => ({
         ...item,
