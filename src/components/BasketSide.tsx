@@ -13,7 +13,12 @@ interface ProductItem {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string;
+    recurring?: string; // Notice the optional `recurring`
+    id: string;
+    currency: string;
+    rebateQuantity: number;
+    rebatePercent: number;
+    upsellProductId: string | null;
 }
 
 interface BasketItemProps {
@@ -112,14 +117,19 @@ const BasketItem: React.FC<BasketItemProps> = ({
 };
 
 
-
 type Item = {
     name: string;
     price: number;
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string;
+    recurring?: string; // Should also be optional here if it's optional in ProductItem
+    id: string;
+    currency: string;
+    rebateQuantity: number;
+    rebatePercent: number;
+    upsellProductId: string | null;
+
 };
 
 type BasketProps = {
@@ -185,7 +195,6 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                             onChangeRecurring={onChangeRecurring}
                         />
                     ))}
-                    {/* Insert the AddressForm here */}
                 </div>
                 <div className="right-side2">
                     <div className="right-side1 special-class">
