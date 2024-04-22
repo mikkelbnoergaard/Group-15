@@ -36,7 +36,18 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
     } = useOrderForm();
     const [showPopup, setShowPopup] = useState(false);
 
-    const handleCheckout = () => {
+    useEffect(() => {
+        setPreDefinedAddresses(addressesData); // Set addresses using JSON data
+    }, []); // Empty dependency array to run only once on component mount
+
+    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedIndex = parseInt(event.target.value);
+        setSelectedAddressIndex(selectedIndex);
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
         if (!termsChecked) {
             alert('Please accept the terms & conditions to proceed.');
             return;
@@ -55,20 +66,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         } else {
             console.error('Address information is missing');
         }
-    };
 
-    useEffect(() => {
-        setPreDefinedAddresses(addressesData); // Set addresses using JSON data
-    }, []); // Empty dependency array to run only once on component mount
-
-    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
-    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedIndex = parseInt(event.target.value);
-        setSelectedAddressIndex(selectedIndex);
-    };
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
         const selectedAddress = preDefinedAddresses[selectedAddressIndex];
         console.log("Selected address:", selectedAddress);
         alert('Form submitted');
@@ -80,7 +78,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <h2>Delivery Address</h2>
             <div>
                 <label>Select Delivery Address:</label>
@@ -145,7 +143,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
             ) : isSubmitted ? (
                 <p>Formularen er blevet indsendt!</p>
             ) : (
-                <button className="submitButton" onClick={handleCheckout}>
+                <button className="submitButton" type="submit">
                     <span className="text">Submit</span>
                 </button>
             )}

@@ -3,6 +3,7 @@ import { describe, expect, test,} from "vitest";
 import App from "../components/App.tsx";
 import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
+
 describe(App.name, () => {
     test("should display a Delivery Address section", () => {
         render(<App/>);
@@ -159,3 +160,45 @@ describe('discountMessage test', () => {
     });
 });
 
+describe('validatePhone shows error message for too short input', () => {
+    test('shows error message for short phone number', async () => {
+        render(<App/>);
+        // Simulate user input of an invalid phone number
+        const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
+        fireEvent.change(phoneInput, {target: {value: '1234'}}); // Fire change event to simulate user input
+
+        // Use findByText to wait for the error message to appear in the document asynchronously
+        const errorMessage = await screen.findByText("The phone number must be 8 digits");
+
+        // Assert that the error message is in the document
+        expect(errorMessage).toBeInTheDocument();
+    });
+});
+
+describe('validatePhone shows error message for too long a number', () => {
+    test('shows error message for too long phone number', async () => {
+        render(<App/>);
+        // Simulate user input of an invalid phone number
+        const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
+        fireEvent.change(phoneInput, {target: {value: '123456780'}}); // Fire change event to simulate user input
+        // Use findByText to wait for the error message to appear in the document asynchronously
+        const errorMessage = await screen.findByText("The phone number must not exceed 8 digits");
+        // Assert that the error message is in the document
+        expect(errorMessage).toBeInTheDocument();
+    });
+});
+
+describe('validateCompanyVAT shows error message if number isnt 8 inputs', () => {
+    test('shows error message for uncomplete Company vat number', async () => {
+        render(<App/>);
+        // Simulate user input of an invalid phone number
+        const phoneInput = screen.getByLabelText(/Company VAT:/i); // Get the phone input by its label
+        fireEvent.change(phoneInput, {target: {value: '12345'}}); // Fire change event to simulate user input
+
+        // Use findByText to wait for the error message to appear in the document asynchronously
+        const errorMessage = await screen.findByText("The VAT number must be 8 digits");
+
+        // Assert that the error message is in the document
+        expect(errorMessage).toBeInTheDocument();
+    });
+});
