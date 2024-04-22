@@ -51,7 +51,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                 </div>
             <div>Price: ${item.price}
             </div>
-            <div>Quantity:
+            <div>Quantity: &nbsp;
                 <input
                     type="number"
                     value={item.quantity}
@@ -63,7 +63,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                 {discountMessage && <div style={{ color: 'red', marginTop: '10px' }}>{discountMessage}</div>}
             <div>
                 <label>
-                    Gift Wrap:
+                    Gift Wrap: &nbsp;
                     <input
                         type="checkbox"
                         checked={item.giftWrap}
@@ -73,7 +73,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ item, onChangeQuantity, onRemov
                 </label>
             </div>
             <label>
-                Recurring Order:
+                Recurring Order: &nbsp;
                 <select
                     value={item.recurring || ''}
                     onChange={(e) => onChangeRecurring(item.name, e.target.value)}
