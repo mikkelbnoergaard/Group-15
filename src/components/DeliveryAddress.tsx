@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 import addressesData from "../assets/delivery.json";
-import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {sendOrderData} from "../remote/requestbin.tsx";
 import {AddressFields} from "./AddressForm.tsx";
-
+import {useOrderForm} from "./useOrderForm";
 
 type Address = {
     country: string;
@@ -22,15 +21,18 @@ interface DeliveryAddressProps {
     addressInfo: AddressFields | null; // New prop to receive address info
 }
 
-
 const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [termsChecked, setTermsChecked] = useState(false);
-    const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
-    const [showPopup, setShowPopup] = useState(false);
-    const [orderComment, setOrderComment] = useState('');
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+    const {
+        termsChecked,
+        marketingChecked,
+        orderComment,
+        handleCheckboxChange,
+        handleMarketingCheckboxChange,
+        handleOrderCommentChange
+    } = useOrderForm();
 
     const handleCheckout = () => {
         console.log('Checkout button clicked');
@@ -49,7 +51,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         }
     };
 
-
     useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
     }, []); // Empty dependency array to run only once on component mount
@@ -60,13 +61,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         setSelectedAddressIndex(selectedIndex);
     };
 
-    const handleCheckboxChange = () => {
-        setTermsChecked(!termsChecked);
-    };
-
-    const handleMarketingCheckboxChange = () => {
-        setMarketingChecked(!marketingChecked);
-    };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         if (!termsChecked) {
@@ -76,9 +70,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         const selectedAddress = preDefinedAddresses[selectedAddressIndex];
         console.log("Selected address:", selectedAddress);
         alert('Form submitted');
-    };
-    const closePopup = () => {
-        setShowPopup(false);
     };
 
     return (
@@ -120,7 +111,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
                     <textarea
                         id="order-comment"
                         value={orderComment}
-                        onChange={(e) => setOrderComment(e.target.value)}
+                        onChange={handleOrderCommentChange}
                         placeholder="Any special instructions?"
                     />
                 </div>
@@ -137,10 +128,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
-                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-
-                {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
-
             </div>
             {isLoading ? (
                 <div className="overlay">
@@ -156,6 +143,5 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         </form>
     );
 };
-
 
 export default DeliveryAddress;
