@@ -24,7 +24,7 @@ const App = () => {
             <div>
                 <Routes>
                     <Route path={"/"} element={<Basket totalAmount={totalAmount} setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
-                    <Route path={"/Checkout"} element={<CheckoutPage totalAmount={totalAmount} setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
+                    <Route path={"/Checkout"} element={<CheckoutPage totalAmount={totalAmount} items={items} />} />
                 </Routes>
             </div>
         </Router>
