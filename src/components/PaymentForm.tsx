@@ -52,7 +52,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT}) => {
 
     return (
         <form>
-            {/* Payment method buttons */}
             <div>
                 {!canUseGiftCardOnly() && (
                     <button type="button" onClick={() => handlePaymentMethodClick('mobilePay')}
@@ -107,13 +106,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT}) => {
 
             {paymentMethod === 'invoice' && isInvoiceAvailable() && (
                 <div>
-                    {/* Invoice payment inputs go here, if necessary */}
-                    {/* You can replicate the structure used for the other methods */}
                 </div>
             )}
 
-            {/* Submit button or additional form elements */}
-            {/* ... */}
         </form>
     );
 };

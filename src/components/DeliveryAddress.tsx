@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import addressesData from "../assets/delivery.json";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {sendOrderData} from "../remote/requestbin.tsx";
@@ -6,29 +6,31 @@ import {AddressFields} from "./AddressForm.tsx";
 
 
 type Address = {
-  country: string;
-  city: string;
-  continent: string;
-  addressLine1: string;
+    country: string;
+    city: string;
+    continent: string;
+    addressLine1: string;
 };
+
 interface Item {
     name: string;
     quantity: number;
 }
+
 interface DeliveryAddressProps {
     items: Item[];
     addressInfo: AddressFields | null; // New prop to receive address info
 }
 
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [termsChecked, setTermsChecked] = useState(false);
-  const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
-  const [showPopup, setShowPopup] = useState(false);
-  const [orderComment, setOrderComment] = useState('');
-  const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [termsChecked, setTermsChecked] = useState(false);
+    const [marketingChecked, setMarketingChecked] = useState(false); // New state for marketing checkbox
+    const [showPopup, setShowPopup] = useState(false);
+    const [orderComment, setOrderComment] = useState('');
+    const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
 
     const handleCheckout = () => {
         console.log('Checkout button clicked');
@@ -48,51 +50,50 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
     };
 
 
-
-  useEffect(() => {
+    useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
-  }, []); // Empty dependency array to run only once on component mount
+    }, []); // Empty dependency array to run only once on component mount
 
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
-  const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      const selectedIndex = parseInt(event.target.value);
-      setSelectedAddressIndex(selectedIndex);
+    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedIndex = parseInt(event.target.value);
+        setSelectedAddressIndex(selectedIndex);
     };
 
-  const handleCheckboxChange = () => {
-    setTermsChecked(!termsChecked);
-  };
+    const handleCheckboxChange = () => {
+        setTermsChecked(!termsChecked);
+    };
 
-  const handleMarketingCheckboxChange = () => {
+    const handleMarketingCheckboxChange = () => {
         setMarketingChecked(!marketingChecked);
-  };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-      if (!termsChecked) {
-          alert('Please accept the terms & conditions to proceed.');
-          return;
-      }
-      const selectedAddress = preDefinedAddresses[selectedAddressIndex];
-      console.log("Selected address:", selectedAddress);
-      alert('Form submitted');
     };
-  const closePopup = () => {
-    setShowPopup(false);
-  };
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        if (!termsChecked) {
+            alert('Please accept the terms & conditions to proceed.');
+            return;
+        }
+        const selectedAddress = preDefinedAddresses[selectedAddressIndex];
+        console.log("Selected address:", selectedAddress);
+        alert('Form submitted');
+    };
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
     return (
         <form onSubmit={handleSubmit}>
-          <h2>Delivery Address</h2>
-          <div>
-            <label>Select Delivery Address:</label>
-            <select onChange={handleSelectDeliveryAddress}>
-              {preDefinedAddresses.map((address, index) => (
-                  <option key={index} value={index}>
-                    {address.city}, {address.country}
-                  </option>
-              ))}
-            </select>
-          </div>
+            <h2>Delivery Address</h2>
+            <div>
+                <label>Select Delivery Address:</label>
+                <select onChange={handleSelectDeliveryAddress}>
+                    {preDefinedAddresses.map((address, index) => (
+                        <option key={index} value={index}>
+                            {address.city}, {address.country}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div className={"select-delivery-address"}>
                 <div>
                     <label>
@@ -137,9 +138,9 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ items, addressInfo })
                     </label>
                 </div>
                 <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-                {/* Pop-up */}
+
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
-                {/* Din eksisterende form indhold fortsætter her */}
+
             </div>
             {isLoading ? (
                 <div className="overlay">
