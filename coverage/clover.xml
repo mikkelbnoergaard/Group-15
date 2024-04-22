@@ -381,7 +381,7 @@
       <line num="375" count="1" type="stmt"/>
       <line num="376" count="1" type="stmt"/>
     </file>
-    <file name="App.tsx" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\App.tsx">
+    <file name="BasketSide.tsx" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\BasketSide.tsx">
       <metrics statements="185" coveredstatements="167" conditionals="7" coveredconditionals="5" methods="11" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>

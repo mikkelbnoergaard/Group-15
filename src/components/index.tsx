@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.tsx';
+import App from './BasketSide.tsx';
 import reportWebVitals from './reportWebVitals.ts';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
