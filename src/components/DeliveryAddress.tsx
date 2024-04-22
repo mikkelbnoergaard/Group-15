@@ -3,6 +3,7 @@ import addressesData from "../assets/delivery.json";
 import {sendOrderData} from "../remote/handleOrder.tsx";
 import {AddressFields} from "./AddressForm.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 
 type Address = {
     country: string;
@@ -33,12 +34,9 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         handleMarketingCheckboxChange,
         handleOrderCommentChange
     } = useOrderForm();
+    const [showPopup, setShowPopup] = useState(false);
 
     const handleCheckout = () => {
-        if (!termsChecked) {
-            alert('Please check the terms and conditions before submitting.');
-            return;
-        }
         console.log('Checkout button clicked');
         setIsLoading(true);
         setIsSubmitted(false);
@@ -67,10 +65,19 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
+        if (!termsChecked) {
+            alert('Please accept the terms & conditions to proceed.');
+            return;
+        }
         const selectedAddress = preDefinedAddresses[selectedAddressIndex];
         console.log("Selected address:", selectedAddress);
         alert('Form submitted');
     };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -128,6 +135,8 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
+                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+                {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
             </div>
             {isLoading ? (
                 <div className="overlay">
