@@ -17,11 +17,11 @@ interface Item {
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
+    setCompanyVAT: (vat: string) => void;
 }
 
 
-const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
-    const [, setCompanyVAT] = useState('');
+const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT}) => {
     const [, setAddressInfo] = useState<AddressFields | null>(null);
 
     const handleSubmitAddress = (address: AddressFields) => {

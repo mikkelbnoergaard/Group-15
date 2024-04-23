@@ -24,6 +24,7 @@ type Item = {
 };
 const App = () => {
     const [totalAmount, setTotalAmount] = useState<number>(0);
+    const [CompanyVAT, setCompanyVAT] = useState<string>('');
 
     const [items, setItems] = useState<Item[]>(itemList.map(item => ({
         ...item,
@@ -41,9 +42,9 @@ const App = () => {
             <div>
                 <Routes>
                     <Route path={"/"} element={<Basket  setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
-                    <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} />} />
                     <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage totalAmount={totalAmount} items={items} />} />
-                    <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT}/>} />
                     <Route path={"/RecietPage"} element={<RecietPage totalAmount={totalAmount} items={items} />} />
                 </Routes>
             </div>
