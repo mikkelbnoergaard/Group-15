@@ -61,8 +61,8 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className={"button-container"}>
-                <button className={"button-left"} onClick={goToBasketSide}>Gå Tilbage</button>
-                <button className={"button-right"} onClick={goToDeliveryAddressSide}>Gå til leveringssted</button>
+                <button className={"button-left"} onClick={goToBasketSide}>Back</button>
+                <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>
             </div>
         </div>
     );

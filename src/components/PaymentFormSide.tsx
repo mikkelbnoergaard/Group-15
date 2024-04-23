@@ -52,8 +52,8 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
                 <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
             </div>
             <div className="button-container">
-                <button className={"button-left"} onClick={goToDeliveryAddressSide}>Gå tilbage</button>
-                <button className={"button-right"} onClick={goToRecietSide}>Se din kvittering</button>
+                <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>
+                <button className={"button-right"} onClick={goToRecietSide}>Submit</button>
             </div>
         </div>
     );

@@ -130,6 +130,7 @@ body {
 
 .AddressForm input {
     font-size: 14px;
+    position: relative;
 }
 
 .right-side1:not(:last-child) {

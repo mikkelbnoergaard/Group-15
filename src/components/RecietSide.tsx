@@ -40,7 +40,7 @@ const RecietPage:React.FC<CustomerProps> = () => {
                 <h2> Orale du klarede den :) </h2>
             </div>
             <div className="button-container">
-                <button className={"button-left"} onClick={goBack}>Se din kvittering</button>
+                <button className={"button-left"} onClick={goBack}>Back (test)</button>
             </div>
         </div>
     );
