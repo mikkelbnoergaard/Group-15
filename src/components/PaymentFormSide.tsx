@@ -39,11 +39,11 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
             </div>
             <ol id="progress-bar">
-                <li className="step-done">Step 1</li>
-                <li className="step-done">Step 2</li>
-                <li className="step-done">Step 3</li>
-                <li className="step-active">Step 4</li>
-                <li className="step-todo">Step 5</li>
+                <li className="step-done">Basket</li>
+                <li className="step-done">Customer information</li>
+                <li className="step-done">Delivery address</li>
+                <li className="step-active">Payment</li>
+                <li className="step-todo">Reciet</li>
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
