@@ -4,6 +4,7 @@ import AddressForm, {AddressFields} from "./AddressForm";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
+import './AddressFormSide.css';
 
 interface Item {
     name: string;
@@ -50,19 +51,18 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
                 <li className="step-todo">Payment</li>
                 <li className="step-todo">Reciet</li>
             </ol>
+            <div className={"Addres-Form-Row"}>
             <div className="right-side1">
-                <h2> Basket </h2>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-
-                <h2> Customer information </h2>
                 <AddressForm
                     onCompanyVATChange={setCompanyVAT}
                     onSubmitAddress={handleSubmitAddress}
                 />
-                <div className="button-container">
-                    <button className={"button-left"} onClick={goToBasketSide}>Gå Tilbage</button>
-                    <button className={"button-right"} onClick={goToDeliveryAddressSide}>Gå til leveringssted</button>
-                </div>
+            </div>
+                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+            </div>
+            <div className={"button-container"}>
+                <button className={"button-left"} onClick={goToBasketSide}>Gå Tilbage</button>
+                <button className={"button-right"} onClick={goToDeliveryAddressSide}>Gå til leveringssted</button>
             </div>
         </div>
     );

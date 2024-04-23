@@ -192,7 +192,6 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
-                    <h2> Your Basket </h2>
                     {items.map((item, index) => (
                         <BasketItem
                             key={index}

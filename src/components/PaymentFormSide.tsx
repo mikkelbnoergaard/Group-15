@@ -29,7 +29,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
         navigate('/RecietPage');
     }
     const goToDeliveryAddressSide = () => {
-        navigate('/PaymentFormPage');
+        navigate('/DeliveryAddressPage');
     }
 
     return (
@@ -50,10 +50,10 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
                 <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
-                <div className="button-container">
-                    <button className={"button-left"} onClick={goToDeliveryAddressSide}>Gå tilbage</button>
-                    <button className={"button-right"} onClick={goToRecietSide}>Se din kvittering</button>
-                </div>
+            </div>
+            <div className="button-container">
+                <button className={"button-left"} onClick={goToDeliveryAddressSide}>Gå tilbage</button>
+                <button className={"button-right"} onClick={goToRecietSide}>Se din kvittering</button>
             </div>
         </div>
     );

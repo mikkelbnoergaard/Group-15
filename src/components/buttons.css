@@ -13,11 +13,11 @@
 }
 
 .button-left {
-    background-color: #4CAF50; /* Grøn baggrund for venstre knap */
+    background-color: #212121; /* Grøn baggrund for venstre knap */
     color: white; /* Hvid tekstfarve */
 }
 
 .button-right {
-    background-color: #008CBA; /* Blå baggrund for højre knap */
+    background-color: #212121; /* Blå baggrund for højre knap */
     color: white; /* Hvid tekstfarve */
 }

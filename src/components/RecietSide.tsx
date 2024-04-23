@@ -20,7 +20,7 @@ const RecietPage:React.FC<CustomerProps> = () => {
     const navigate = useNavigate();
 
     const goBack = () => {
-        navigate('/DeliveryAddressPage');
+        navigate('/PaymentFormPage');
     }
 
     return (
@@ -38,9 +38,9 @@ const RecietPage:React.FC<CustomerProps> = () => {
             </ol>
             <div className="right-side1">
                 <h2> Orale du klarede den :) </h2>
-                <div className="button-container">
-                    <button className={"button-left"} onClick={goBack}>Se din kvittering</button>
-                </div>
+            </div>
+            <div className="button-container">
+                <button className={"button-left"} onClick={goBack}>Se din kvittering</button>
             </div>
         </div>
     );

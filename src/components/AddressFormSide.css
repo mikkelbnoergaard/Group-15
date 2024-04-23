@@ -1,0 +1,9 @@
+.Addres-Form-Row {
+    flex-direction: row;
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF; /* Ændret til hvid */
+}

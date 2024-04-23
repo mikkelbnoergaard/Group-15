@@ -52,10 +52,10 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
             </div>
             <div className="right-side1">
                 <DeliveryAddress items={items} addressInfo={addressInfo}/>
-                <div className="button-container">
-                    <button className={"button-left"} onClick={goToAddressFormSide}>Gå tilbage</button>
-                    <button className={"button-right"} onClick={goToPaymentFormSide}>Gå til payment</button>
-                </div>
+            </div>
+            <div className="button-container">
+                <button className={"button-left"} onClick={goToAddressFormSide}>Gå tilbage</button>
+                <button className={"button-right"} onClick={goToPaymentFormSide}>Gå til payment</button>
             </div>
         </div>
     );
