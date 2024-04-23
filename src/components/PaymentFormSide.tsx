@@ -1,5 +1,4 @@
 import './BasketSide.css';
-import React, {useState} from 'react';
 import PaymentForm from "./PaymentForm.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
@@ -15,11 +14,12 @@ interface Item {
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
+    CompanyVAT: string;
 }
 
 
-const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
-    const [companyVAT] = useState('');
+const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}) => {
+
 
     const handleUpdateTotal = () => {};
 
@@ -49,7 +49,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
+                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>

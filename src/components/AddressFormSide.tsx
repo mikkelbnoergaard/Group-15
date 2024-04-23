@@ -1,10 +1,11 @@
 import './BasketSide.css';
-import React, {useState} from 'react';
+
 import AddressForm, {AddressFields} from "./AddressForm";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
 import './AddressFormSide.css';
+import React from "react";
 
 interface Item {
     name: string;
@@ -17,12 +18,13 @@ interface Item {
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
+    setCompanyVAT: (vat: string) => void;
+    setAddressInfo: React.Dispatch<React.SetStateAction<AddressFields | null>>;
 }
 
 
-const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
-    const [, setCompanyVAT] = useState('');
-    const [, setAddressInfo] = useState<AddressFields | null>(null);
+const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT, setAddressInfo} ) => {
+
 
     const handleSubmitAddress = (address: AddressFields) => {
         setAddressInfo(address); // Update the address info state
@@ -52,12 +54,12 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
                 <li className="step-todo">Reciet</li>
             </ol>
             <div className={"Addres-Form-Row"}>
-            <div className="right-side1">
-                <AddressForm
-                    onCompanyVATChange={setCompanyVAT}
-                    onSubmitAddress={handleSubmitAddress}
-                />
-            </div>
+                <div className="right-side1">
+                    <AddressForm
+                        onCompanyVATChange={setCompanyVAT}
+                        onSubmitAddress={handleSubmitAddress}
+                    />
+                </div>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className={"button-container"}>

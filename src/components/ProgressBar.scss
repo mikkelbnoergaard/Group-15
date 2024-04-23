@@ -61,12 +61,15 @@ body {
     }
     &.step-done {
       color: $main-color;
+
+
       &:before {
-        border-color: $main-color;
-        background-color: $main-color;
-        color: #fff;
         content: "\f00c";
-        font-family: "FontAwesome";
+        font-family: "Font Awesome 5 Free"; /* Make sure this is correct */
+        font-weight: 900; /* Solid style icons need this font-weight */
+        color: #fff;
+        background-color: $main-color;
+        border-color: $main-color;
       }
       & + li:after {
         background-color: $main-color;

@@ -323,66 +323,51 @@ label input {
     }
 }
 
+/* Form layout and alignment */
 .form-row {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 10px 0;
+    margin-bottom: 20px;
 }
 
 .form-row label {
-/ / flex: 0 0 20 %; /* Giver label en fast bredde */
-    flex: 1;
-/ / margin-right: 10 px; /* Tilføjer lidt plads mellem label og input/textarea */
-    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold; /* Make labels bold for better readability */
 }
 
-.form-row .input-container, .form-row textarea {
-    flex: 1; /* Giver input/textarea mulighed for at fylde den resterende plads */
-}
-
+/* Textarea specific styles */
 .form-row textarea {
-    height: 40px; /* eller hvad end den passende højde er for dine inputfelter */
+    width: 100%; /* Full width of the container */
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 0px;
-    resize: none; /* Fjerner muligheden for brugeren til at ændre størrelsen */
-    width: 95%;
+    border-radius: 4px; /* Slightly rounded corners for aesthetics */
+    resize: vertical; /* Allow only vertical resize */
 }
 
-textarea {
-    height: 100px; /* Eller enhver anden højde du ønsker */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    resize: vertical; /* Tillader brugeren at ændre højden på textarea */
-}
-
+/* Checkbox specific styles */
 .form-checkbox {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 10px 0;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .form-checkbox label {
-    flex: 1; /* Ensures label has a fixed width similar to .form-row label */
-    text-align: left;
-}
-
-.form-checkbox label span {
-    flex-grow: 1; /* Sørger for at teksten kan vokse og fylde tilgængelig plads */
-    margin-left: -70px; /* Justerer teksten til venstre */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .form-checkbox input[type="checkbox"] {
-    flex-shrink: 0; /* Forhindrer checkbox i at vokse */
-    margin-left: -75px; /* Placerer checkbox til højre */
+    margin-right: 10px; /* Spacing between checkbox and label text */
 }
 
-.select-delivery-address {
-    width: 100%
+/* Select dropdown specific styles */
+.select-delivery-address select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px; /* Spacing after the select dropdown */
 }
 
 .submitButton {
