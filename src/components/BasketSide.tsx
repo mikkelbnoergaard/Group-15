@@ -143,8 +143,8 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
 
     const navigate = useNavigate();
 
-    const goToCheckout = () => {
-        navigate('/checkout');
+    const goToAddressFormSide = () => {
+        navigate('/AddressFormPage');
     }
     const onChangeQuantity = (name: string, newQuantity: number) => {
         if (isNaN(newQuantity)) {
@@ -199,7 +199,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 <div className="right-side2">
                     <div className="right-side1 special-class">
                         <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-                        <button onClick={goToCheckout}>Gå til checkout</button>
+                        <button onClick={goToAddressFormSide}>Gå til checkout</button>
                     </div>
                 </div>
             </div>

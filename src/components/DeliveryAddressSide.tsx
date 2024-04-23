@@ -4,6 +4,7 @@ import AddressForm, {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import PaymentForm from "./PaymentForm.tsx";
 import Total1 from "./Total1.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface Item {
     name: string;
@@ -19,7 +20,7 @@ interface CustomerProps {
 }
 
 
-const CheckoutPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
+const DeliveryAddressPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
     const [companyVAT, setCompanyVAT] = useState('');
     const [addressInfo, setAddressInfo] = useState<AddressFields | null>(null);
 
@@ -27,6 +28,12 @@ const CheckoutPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
         setAddressInfo(address); // Update the address info state
     };
     const handleUpdateTotal = () => {};
+
+    const navigate = useNavigate();
+
+    const goToDeliveryAddressSide = () => {
+        navigate('/DeliveryAddressPage');
+    }
 
     return (
         <div className={"page-column"}>
@@ -44,9 +51,10 @@ const CheckoutPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
             </div>
             <div className="right-side1">
                 <DeliveryAddress items={items} addressInfo={addressInfo}/>
+                <button onClick={goToDeliveryAddressSide}>Gå til payment</button>
             </div>
         </div>
     );
 }
 
-export default CheckoutPage;
+export default DeliveryAddressPage;
