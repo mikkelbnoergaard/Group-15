@@ -1,0 +1,23 @@
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Placerer indhold med maksimal afstand mellem elementerne */
+    padding: 10px; /* Giver lidt plads rundt om knapperne */
+}
+
+.button-left, .button-right {
+    padding: 10px 15px; /* Tilføjer lidt padding til knapperne */
+    border: none;
+    border-radius: 5px; /* Giver knapperne let afrundede hjørner */
+    cursor: pointer;
+    font-size: 16px; /* Justerer skriftstørrelsen */
+}
+
+.button-left {
+    background-color: #4CAF50; /* Grøn baggrund for venstre knap */
+    color: white; /* Hvid tekstfarve */
+}
+
+.button-right {
+    background-color: #008CBA; /* Blå baggrund for højre knap */
+    color: white; /* Hvid tekstfarve */
+}

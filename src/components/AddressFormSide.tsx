@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import AddressForm, {AddressFields} from "./AddressForm";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
+import './buttons.css';
 
 interface Item {
     name: string;
@@ -32,9 +33,16 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
     const goToDeliveryAddressSide = () => {
         navigate('/DeliveryAddressPage');
     }
+    const goToBasketSide = () => {
+        navigate('/');
+    }
 
     return (
         <div className={"page-column"}>
+            <div className={"header-top"}>
+                <img src={"https://i.imgur.com/J5OAFS3.png"}
+                     style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
+            </div>
             <div className="right-side1">
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
@@ -44,7 +52,10 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
                     onCompanyVATChange={setCompanyVAT}
                     onSubmitAddress={handleSubmitAddress}
                 />
-                <button onClick={goToDeliveryAddressSide}>Gå til leveringssted</button>
+                <div className="button-container">
+                    <button className={"button-left"} onClick={goToBasketSide}>Gå Tilbage</button>
+                    <button className={"button-right"} onClick={goToDeliveryAddressSide}>Gå til leveringssted</button>
+                </div>
             </div>
         </div>
     );

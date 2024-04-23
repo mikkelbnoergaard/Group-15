@@ -29,16 +29,26 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
     const goToPaymentFormSide = () => {
         navigate('/PaymentFormPage');
     }
+    const goToAddressFormSide = () => {
+        navigate('/AdressFormPage');
+    }
 
     return (
         <div className={"page-column"}>
+            <div className={"header-top"}>
+                <img src={"https://i.imgur.com/J5OAFS3.png"}
+                     style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
+            </div>
             <div className="right-side1">
                 <h2> Basket </h2>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}   />
+                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className="right-side1">
                 <DeliveryAddress items={items} addressInfo={addressInfo}/>
-                <button onClick={goToPaymentFormSide}>Gå til payment</button>
+                <div className="button-container">
+                    <button className={"button-left"} onClick={goToAddressFormSide}>Gå tilbage</button>
+                    <button className={"button-right"} onClick={goToPaymentFormSide}>Gå til payment</button>
+                </div>
             </div>
         </div>
     );

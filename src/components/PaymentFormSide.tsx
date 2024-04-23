@@ -26,17 +26,27 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
     const navigate = useNavigate();
 
     const goToRecietSide = () => {
+        navigate('/RecietPage');
+    }
+    const goToDeliveryAddressSide = () => {
         navigate('/DeliveryAddressPage');
     }
 
     return (
         <div className={"page-column"}>
+            <div className={"header-top"}>
+                <img src={"https://i.imgur.com/J5OAFS3.png"}
+                     style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
+            </div>
             <div className="right-side1">
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
                 <PaymentForm totalAmount={totalAmount} companyVAT={companyVAT}/>
-                <button onClick={goToRecietSide}>Se din kvittering</button>
+                <div className="button-container">
+                    <button className={"button-left"} onClick={goToDeliveryAddressSide}>Gå tilbage</button>
+                    <button className={"button-right"} onClick={goToRecietSide}>Se din kvittering</button>
+                </div>
             </div>
         </div>
     );
