@@ -142,13 +142,13 @@ body {
 }
 
 .right-side1 button {
-    background-color: #000000; /* Set your desired background color */
+    background-color: #f4a261; /* Set your desired background color */
     color: antiquewhite;
     padding: 10px 15px;
     border: none;
     border-radius: 0px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 16px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
