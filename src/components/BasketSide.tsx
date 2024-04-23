@@ -206,7 +206,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 <div className="right-side2">
                     <div className="right-side1 special-class">
                         <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-                        <button onClick={goToAddressFormSide}>Go to Customer information</button>
+                        <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>
             </div>

@@ -21,3 +21,8 @@
     background-color: #f4a261; /* Blå baggrund for højre knap */
     color: white; /* Hvid tekstfarve */
 }
+
+.button-view-terms-conditions{
+    background-color: #212121; /* Grøn baggrund for venstre knap */
+    color: white; /* Hvid tekstfarve */
+}

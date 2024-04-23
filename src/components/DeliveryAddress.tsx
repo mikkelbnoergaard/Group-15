@@ -3,6 +3,7 @@ import addressesData from "../assets/delivery.json";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {sendOrderData} from "../remote/requestbin.tsx";
 import {AddressFields} from "./AddressForm.tsx";
+import './buttons.css';
 
 
 type Address = {
@@ -137,7 +138,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>
-                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+                <button className="button-view-terms-conditions" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
 
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
 

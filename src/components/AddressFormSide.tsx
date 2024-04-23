@@ -53,7 +53,7 @@ const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT, setAddressIn
                 <li className="step-todo">Payment</li>
                 <li className="step-todo">Reciet</li>
             </ol>
-            <div className={"Addres-Form-Row"}>
+            <div className={"Address-Form-Row"}>
                 <div className="right-side1">
                     <AddressForm
                         onCompanyVATChange={setCompanyVAT}
