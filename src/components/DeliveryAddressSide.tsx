@@ -30,7 +30,7 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
         navigate('/PaymentFormPage');
     }
     const goToAddressFormSide = () => {
-        navigate('/AdressFormPage');
+        navigate('/AddressFormPage');
     }
 
     return (

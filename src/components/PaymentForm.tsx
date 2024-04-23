@@ -49,7 +49,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT}) => {
         padding: 0
     });
 
-
     return (
         <form>
             <div>
@@ -108,7 +107,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT}) => {
                 <div>
                 </div>
             )}
-
         </form>
     );
 };
