@@ -29,7 +29,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
         navigate('/RecietPage');
     }
     const goToDeliveryAddressSide = () => {
-        navigate('/DeliveryAddressPage');
+        navigate('/PaymentFormPage');
     }
 
     return (
@@ -38,6 +38,13 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount}) => {
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
             </div>
+            <ol id="progress-bar">
+                <li className="step-done">Step 1</li>
+                <li className="step-done">Step 2</li>
+                <li className="step-done">Step 3</li>
+                <li className="step-active">Step 4</li>
+                <li className="step-todo">Step 5</li>
+            </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>

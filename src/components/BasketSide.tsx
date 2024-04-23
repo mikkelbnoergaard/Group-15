@@ -4,6 +4,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import productData from '../assets/product.json';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
+import './ProgressBar.scss'
 
 console.log(productData);
 
@@ -182,6 +183,13 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
             </div>
+            <ol id="progress-bar">
+                <li className="step-active">Step 1</li>
+                <li className="step-todo">Step 2</li>
+                <li className="step-todo">Step 3</li>
+                <li className="step-todo">Step 4</li>
+                <li className="step-todo">Step 5</li>
+            </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
                     <h2> Your Basket </h2>

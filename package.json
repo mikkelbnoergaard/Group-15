@@ -17,7 +17,8 @@
     "netlify-cli": "^17.19.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "sass": "^1.75.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
