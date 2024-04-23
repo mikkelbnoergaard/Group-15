@@ -52,12 +52,12 @@ const CheckoutPage:React.FC<CustomerProps> = ({items}) => {
                 <li className="step-todo">Reciet</li>
             </ol>
             <div className={"Addres-Form-Row"}>
-            <div className="right-side1">
-                <AddressForm
-                    onCompanyVATChange={setCompanyVAT}
-                    onSubmitAddress={handleSubmitAddress}
-                />
-            </div>
+                <div className="right-side1">
+                    <AddressForm
+                        onCompanyVATChange={setCompanyVAT}
+                        onSubmitAddress={handleSubmitAddress}
+                    />
+                </div>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className={"button-container"}>
