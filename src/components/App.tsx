@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Basket from './BasketSide';
-import CheckoutPage from "./CustomerInformationSide";
+import AddressFormPage from "./AddressFormSide.tsx";
 import productData from '../assets/product.json';
+import DeliveryAddressPage from "./DeliveryAddressSide.tsx";
 
 
 const itemList = productData;
@@ -37,8 +38,9 @@ const App = () => {
         <Router>
             <div>
                 <Routes>
-                    <Route path={"/"} element={<Basket  setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
-                    <Route path={"/Checkout"} element={<CheckoutPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/BasketSide"} element={<Basket  setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
+                    <Route path={"/AddressFormSide"} element={<AddressFormPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/DeliveryAddressSide"} element={<DeliveryAddressPage totalAmount={totalAmount} items={items} />} />
                 </Routes>
             </div>
         </Router>
