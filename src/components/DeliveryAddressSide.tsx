@@ -3,6 +3,7 @@ import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
 import { useOrderForm } from './UseOrderForm';
+import { Address } from "./DeliveryAddress";
 
 interface Item {
     name: string;
@@ -15,11 +16,11 @@ interface Item {
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
+    onAddressSelected: (address: Address) => void;
 }
 
 
-const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm}) => {
-
+const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm,onAddressSelected}) => {
 
     const handleUpdateTotal = () => {};
 
@@ -43,14 +44,14 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
                 <li className="step-done">Customer information</li>
                 <li className="step-active">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Reciept</li>
+                <li className="step-todo">Summary</li>
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className="right-side1">
-                <DeliveryAddress orderForm={orderForm}/>
+                <DeliveryAddress orderForm={orderForm} onAddressSelected={onAddressSelected}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>

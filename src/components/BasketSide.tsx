@@ -188,7 +188,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 <li className="step-todo">Customer information</li>
                 <li className="step-todo">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
