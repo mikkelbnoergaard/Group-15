@@ -26,7 +26,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}
     const navigate = useNavigate();
 
     const goToRecietSide = () => {
-        navigate('/RecietPage');
+        navigate('/RecieptPage');
     }
     const goToDeliveryAddressSide = () => {
         navigate('/DeliveryAddressPage');
