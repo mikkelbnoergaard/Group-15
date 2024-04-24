@@ -64,7 +64,7 @@
     flex-direction: row; /* or column, depending on your layout */
     align-items: flex-start; /* This aligns children to the top */
     justify-content: space-between;
-    margin: 20px;
+    margin: 50px;
     gap: 20px;
 }
 

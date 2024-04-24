@@ -3,11 +3,16 @@
     display: flex;
     border: 1px solid #ccc;
     padding: 10px;
+    margin: 50px;
     align-items: center;
     background-color: #FFFFFF; /* Ændret til hvid */
     justify-content: space-between;
 }
 
 h2 {
-    margin-left: -880px; /* Juster værdien efter behov */
+    margin-left: -770px; /* Juster værdien efter behov */
+}
+
+html, body {
+    overflow-x: hidden;
 }
