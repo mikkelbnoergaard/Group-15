@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import addressesData from "../assets/delivery.json";
-import {sendOrderData} from "../remote/handleOrder.tsx";
-import {AddressFields} from "./AddressForm.tsx";
-import {useOrderForm} from "./UseOrderForm.tsx";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {useOrderForm} from "./UseOrderForm.tsx";
 
 type Address = {
     country: string;
@@ -12,57 +10,25 @@ type Address = {
     addressLine1: string;
 };
 
-interface Item {
-    name: string;
-    quantity: number;
-}
+
 
 interface DeliveryAddressProps {
-    items: Item[];
-    addressInfo: AddressFields | null; // New prop to receive address info
-    orderForm: ReturnType<typeof useOrderForm>;
+
+    orderForm: ReturnType<typeof useOrderForm>; // You must import useOrderForm appropriately
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo, orderForm}) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ orderForm }) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        setPreDefinedAddresses(addressesData); // Set addresses using JSON data
-    }, []); // Empty dependency array to run only once on component mount
+        // Populate pre-defined addresses from a local JSON file or any other source
+        setPreDefinedAddresses(addressesData);
+    }, []);
 
     const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedIndex = parseInt(event.target.value);
-        setSelectedAddressIndex(selectedIndex);
-    };
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
-        if (!orderForm.termsChecked) {
-            alert('Please accept the terms & conditions to proceed.');
-            return;
-        }
-        console.log('Checkout button clicked');
-        setIsLoading(true);
-        setIsSubmitted(false);
-
-        setTimeout(() => {
-            setIsLoading(false);
-            setIsSubmitted(true);
-        }, 5000);
-
-        if (addressInfo !== null) {
-            sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo, orderForm.orderComment, orderForm.marketingChecked);
-        } else {
-            console.error('Address information is missing');
-        }
-
-        const selectedAddress = preDefinedAddresses[selectedAddressIndex];
-        console.log("Selected address:", selectedAddress);
-        alert('Form submitted');
+        setSelectedAddressIndex(parseInt(event.target.value, 10));
     };
 
     const closePopup = () => {
@@ -70,7 +36,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo, or
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
             <h2>Delivery Address</h2>
             <div>
                 <label>Select Delivery Address:</label>
@@ -127,18 +93,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo, or
                 <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
                 {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
             </div>
-            {isLoading ? (
-                <div className="overlay">
-                    <div className="loading-spinner"></div>
-                </div>
-            ) : isSubmitted ? (
-                <p>Formularen er blevet indsendt!</p>
-            ) : (
-                <button className="submitButton" type="submit">
-                    <span className="text">Submit</span>
-                </button>
-            )}
-        </form>
+        </div>
     );
 };
 
