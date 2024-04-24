@@ -196,8 +196,8 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onBlur={(e) => handleZipBlur(e)}
                     />
                 </label>
+            {errors['zip'] && <div className="error-message">{errors['zip']}</div>}
             </div>
-            {errors['zip'] && <div className="error">{errors['zip']}</div>}
             <div>
                 <label>
                     City:

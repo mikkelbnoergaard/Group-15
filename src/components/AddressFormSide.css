@@ -11,3 +11,34 @@
 h2 {
     margin-left: -880px; /* Juster værdien efter behov */
 }
+
+.AddressForm {
+    font-size: 14px;
+}
+
+.AddressForm input {
+    font-size: 14px;
+    position: relative;
+    display: flex; /* Anvend flexbox til at organisere børnene side om side */
+    align-items: center; /* Centrer elementerne vertikalt */
+    gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
+}
+
+.error-message {
+    color: red; /* Eller den farve du ønsker for fejlbeskeder */
+    margin-left: 10px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
+    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+}
+
+/* Stil containeren for input og fejlbesked */
+.input-container {
+    display: flex; /* Anvend flexbox til at organisere børnene side om side */
+    align-items: center; /* Centrer elementerne vertikalt */
+    gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
+}
+
+/* Du kan tilføje stilarter for at kontrollere bredden af input for at forhindre det i at fylde hele bredden */
+.input-container input {
+    flex-grow: 1; /* Lad inputfeltet tage den tilgængelige plads */
+    margin-right: auto; /* Dette skubber fejlbeskeden til højre */
+}
