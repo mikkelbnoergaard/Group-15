@@ -1,6 +1,4 @@
 import './BasketSide.css';
-import React, {useState} from 'react';
-import {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
@@ -21,7 +19,6 @@ interface CustomerProps {
 
 
 const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm}) => {
-    const [addressInfo] = useState<AddressFields | null>(null);
 
 
     const handleUpdateTotal = () => {};
@@ -53,7 +50,7 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className="right-side1">
-                <DeliveryAddress items={items} addressInfo={addressInfo} orderForm={orderForm}/>
+                <DeliveryAddress orderForm={orderForm}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>

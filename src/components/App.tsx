@@ -1,13 +1,12 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Basket from './BasketSide';
 import CheckoutPage from "./AddressFormSide.tsx";
-//import productData from '../assets/product.json';
 import DeliveryAddressPage from "./DeliveryAddressSide.tsx";
 import PaymentFormPage from "./PaymentFormSide.tsx";
-import ReceiptPage from "./ReceiptSide.tsx";
-import {AddressFields} from "./AddressForm.tsx";
-import { useOrderForm } from './UseOrderForm';
+import RecietPage from "./RecieptSide.tsx";
+import { useOrderForm } from './UseOrderForm'; // Import the hook here
+import { AddressFields } from "./AddressForm.tsx";
 
 type Item = {
     name: string;
@@ -15,20 +14,20 @@ type Item = {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Should also be optional here if it's optional in ProductItem
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
     rebatePercent: number;
     upsellProductId: string | null;
 };
+
 const App = () => {
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [CompanyVAT, setCompanyVAT] = useState<string>('');
-    const [, setAddressInfo] = useState<AddressFields | null>(null);
-    const orderForm = useOrderForm();
-
+    const [AddressInfo, setAddressInfo] = useState<AddressFields | null>(null);
     const [items, setItems] = useState<Item[]>([]);
+    const orderForm = useOrderForm();  // Use the hook here and pass down where necessary
 
     useEffect(() => {
         fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
@@ -36,8 +35,8 @@ const App = () => {
             .then(data => setItems(data.map((item: Item) => ({
                 ...item,
                 quantity: 0,
-                recurring: '', // Provide a default value if undefined
-                id: item.id || "default_id", // Provide a default id or generate one
+                recurring: '',
+                id: item.id || "default_id",
                 currency: 'USD',
                 rebateQuantity: item.rebateQuantity || 0,
                 rebatePercent: item.rebatePercent || 0,
@@ -46,16 +45,15 @@ const App = () => {
             .catch(error => console.error(error));
     }, []);
 
-
-    return(
+    return (
         <Router>
             <div>
                 <Routes>
-                    <Route path={"/"} element={<Basket  setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
+                    <Route path={"/"} element={<Basket setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
                     <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} setAddressInfo={setAddressInfo}/>} />
                     <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage orderForm={orderForm} totalAmount={totalAmount} items={items} />} />
                     <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT}/>} />
-                    <Route path={"/ReceiptPage"} element={<ReceiptPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/RecieptPage"} element={<RecietPage totalAmount={totalAmount} items={items} orderForm={orderForm} addressInfo={AddressInfo} />} />
                 </Routes>
             </div>
         </Router>
