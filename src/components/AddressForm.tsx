@@ -1,4 +1,5 @@
 import React, {useState, ChangeEvent, FocusEvent, FormEvent} from "react";
+import './AddressFormSide.css';
 
 export type AddressFields = {
     country: string;
@@ -172,6 +173,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
 
     return (
         <form onSubmit={handleSubmit} className="AddressForm">
+            <h2>Billing address</h2>
             <div>
                 <label>
                     Country:

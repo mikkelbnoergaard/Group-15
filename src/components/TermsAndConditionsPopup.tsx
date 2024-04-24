@@ -22,7 +22,7 @@ const TermsAndConditionsPopup: React.FC<{ onClose: () => void }> = ({onClose}) =
                     </li>
                 </ol>
                 <p>By proceeding with the purchase, you confirm that you accept the above terms and conditions.</p>
-                <button onClick={onClose}>Close</button>
+                <button className="button-view-terms-conditions" onClick={onClose}>Close</button>
             </div>
         </div>
     );

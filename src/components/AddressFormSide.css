@@ -1,0 +1,13 @@
+.Address-Form-Row {
+    flex-direction: row;
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+    align-items: center;
+    background-color: #FFFFFF; /* Ændret til hvid */
+    justify-content: space-between;
+}
+
+h2 {
+    margin-left: -880px; /* Juster værdien efter behov */
+}

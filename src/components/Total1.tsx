@@ -1,6 +1,7 @@
 import React from "react";
 
 interface Item {
+    name: string;
     price: number;
     quantity: number;
 }
