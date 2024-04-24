@@ -3,6 +3,7 @@ import PaymentForm from "./PaymentForm.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
 import {PaymentInformation} from "./PaymentForm.tsx"
+import {useState} from "react";
 interface Item {
     name: string;
     price: number;
@@ -20,15 +21,26 @@ interface CustomerProps {
 
 
 const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT,onSavePaymentMethod}) => {
+    const [paymentMethodSelected, setPaymentMethodSelected] = useState<boolean>(false);
 
 
     const handleUpdateTotal = () => {};
 
+
     const navigate = useNavigate();
 
     const goToRecietSide = () => {
-        navigate('/RecieptPage');
-    }
+        if (paymentMethodSelected) {
+            navigate('/RecieptPage');
+        } else {
+            alert('Please select a payment method before continuing.');
+        }
+    };
+    const handleSavePaymentMethod = (paymentInfo: PaymentInformation) => {
+        onSavePaymentMethod(paymentInfo);
+        // Update paymentMethodSelected state when a payment method is selected
+        setPaymentMethodSelected(!!paymentInfo.method);
+    };
     const goToDeliveryAddressSide = () => {
         navigate('/DeliveryAddressPage');
     }
@@ -50,7 +62,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT,
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT} onSavePaymentMethod={onSavePaymentMethod}/>
+                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT} onSavePaymentMethod={handleSavePaymentMethod}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>

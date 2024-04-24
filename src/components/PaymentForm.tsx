@@ -26,6 +26,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
         setIsFullyCoveredByGiftCard(giftAmount >= totalAmount);
     }, [giftCardAmount, totalAmount]);
 
+
     const isInvoiceAvailable = useMemo(() => {
         return !isFullyCoveredByGiftCard && !!companyVAT && companyVAT.trim() !== '' && companyVAT.length === 8;
     }, [isFullyCoveredByGiftCard, companyVAT]);
