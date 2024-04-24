@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { AddressFields } from "./AddressForm";
 import { useOrderForm } from "./UseOrderForm";
-
+import { Address } from "./DeliveryAddress";
 interface Item {
     name: string;
     price: number;
@@ -16,10 +16,11 @@ interface CustomerProps {
     items: Item[];
     totalAmount: number;
     addressInfo: AddressFields | null;
+    selectedAddress: Address | null;
     orderForm: ReturnType<typeof useOrderForm>;
 }
 
-const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo, orderForm }) => {
+const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm }) => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -66,10 +67,10 @@ const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo, 
                 <li className="step-done">Customer information</li>
                 <li className="step-done">Delivery address</li>
                 <li className="step-done">Payment</li>
-                <li className="step-active">Receipt</li>
+                <li className="step-active">Summary</li>
             </ol>
             <div className="content">
-                <h3 style={{ textAlign: 'center' }}>Receipt</h3>
+                <h3 style={{ textAlign: 'center' }}>Summary </h3>
                 <h3 style={{ textAlign: 'center' }}>Items</h3>
                 <ul style={{ listStyleType: 'none', paddingLeft: 0, textAlign: 'center' }}>
                     {items.filter(item => item.quantity > 0).map((item, index) => (
@@ -81,6 +82,7 @@ const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo, 
                 </ul>
                 <h3 style={{ textAlign: 'center' }}>Total Amount</h3>
                 <p style={{ textAlign: 'center' }}>${totalAmount.toFixed(2)}</p>
+
                 {addressInfo && (
                     <div>
                         <h3>Billing Address</h3>
@@ -93,6 +95,14 @@ const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo, 
                         <p>Email: {addressInfo.email}</p>
                         {addressInfo.companyName && <p>Company: {addressInfo.companyName}</p>}
                         {addressInfo.companyVAT && <p>VAT: {addressInfo.companyVAT}</p>}
+                    </div>
+                )}
+                {selectedAddress && (
+                    <div>
+                        <h3>Delivery Address</h3>
+                        <p>{selectedAddress.addressLine1}</p>
+                        <p>{selectedAddress.city}, {selectedAddress.country}</p>
+                        <p>Continent: {selectedAddress.continent}</p>
                     </div>
                 )}
                 {orderForm.orderComment && (
