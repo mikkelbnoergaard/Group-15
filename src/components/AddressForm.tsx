@@ -185,7 +185,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"AddressFormV2"}>
                 <label>
                     Zip Code:
                     <input

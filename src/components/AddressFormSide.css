@@ -16,6 +16,10 @@ h2 {
     font-size: 14px;
 }
 
+.AddressFormV2{
+    flex-direction: row;
+}
+
 .AddressForm input {
     font-size: 14px;
     position: relative;
