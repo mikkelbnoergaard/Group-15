@@ -28,10 +28,6 @@ const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,s
     };
 
     const handleSubmit = async () => {
-        if (!orderForm.termsChecked) {
-            alert('Please accept the terms & conditions to proceed.');
-            return;
-        }
         if (addressInfo !== null) {
             const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
                 method: 'POST',
