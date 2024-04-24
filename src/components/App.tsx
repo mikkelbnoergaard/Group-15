@@ -1,15 +1,13 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Basket from './BasketSide';
 import CheckoutPage from "./AddressFormSide.tsx";
-import productData from '../assets/product.json';
+//import productData from '../assets/product.json';
 import DeliveryAddressPage from "./DeliveryAddressSide.tsx";
 import PaymentFormPage from "./PaymentFormSide.tsx";
 import RecietPage from "./RecieptSide.tsx";
 import {AddressFields} from "./AddressForm.tsx";
 
-
-const itemList = productData;
 type Item = {
     name: string;
     price: number;
@@ -28,16 +26,24 @@ const App = () => {
     const [CompanyVAT, setCompanyVAT] = useState<string>('');
     const [, setAddressInfo] = useState<AddressFields | null>(null);
 
-    const [items, setItems] = useState<Item[]>(itemList.map(item => ({
-        ...item,
-        quantity: 0,
-        recurring: '', // Provide a default value if undefined
-        id: item.id || "default_id", // Provide a default id or generate one
-        currency: 'USD',
-        rebateQuantity: item.rebateQuantity || 0,
-        rebatePercent: item.rebatePercent || 0,
-        upsellProductId: item.upsellProductId || null,
-    })));
+    const [items, setItems] = useState<Item[]>([]);
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
+            .then(response => response.json())
+            .then(data => setItems(data.map((item: Item) => ({
+                ...item,
+                quantity: 0,
+                recurring: '', // Provide a default value if undefined
+                id: item.id || "default_id", // Provide a default id or generate one
+                currency: 'USD',
+                rebateQuantity: item.rebateQuantity || 0,
+                rebatePercent: item.rebatePercent || 0,
+                upsellProductId: item.upsellProductId || null,
+            }))))
+            .catch(error => console.error(error));
+    }, []);
+
 
     return(
         <Router>

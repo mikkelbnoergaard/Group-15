@@ -1,12 +1,10 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
 import React, {Dispatch, SetStateAction} from 'react';
-import productData from '../assets/product.json';
+//import productData from '../assets/product.json';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
-
-console.log(productData);
 
 interface ProductItem {
     name: string;
@@ -140,7 +138,17 @@ type BasketProps = {
 };
 
 
-const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
+const Basket: React.FC<BasketProps> = ({setItems, setTotalAmount }) => {
+
+    const [productData, setProductData] = React.useState<ProductItem[]>([]);
+
+    React.useEffect(() => {
+        fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
+            .then(response => response.json())
+            .then(data => setProductData(data))
+            .catch(error => console.error(error));
+    }, []);
+
 
     const navigate = useNavigate();
 
@@ -192,10 +200,10 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
-                    {items.map((item, index) => (
+                    {productData.map((product, index) => (
                         <BasketItem
                             key={index}
-                            item={item}
+                            item={product}
                             onChangeQuantity={onChangeQuantity}
                             onRemoveItem={onRemoveItem}
                             onToggleGiftWrap={onToggleGiftWrap}
@@ -203,9 +211,10 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                         />
                     ))}
                 </div>
+
                 <div className="right-side2">
                     <div className="right-side1 special-class">
-                        <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+                        <Total1 items={productData} onUpdateTotal={handleUpdateTotal}/>
                         <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>
