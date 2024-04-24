@@ -4,6 +4,7 @@ import {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
+import { useOrderForm } from './UseOrderForm';
 
 interface Item {
     name: string;
@@ -19,8 +20,9 @@ interface CustomerProps {
 }
 
 
-const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
+const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm}) => {
     const [addressInfo] = useState<AddressFields | null>(null);
+
 
     const handleUpdateTotal = () => {};
 
@@ -51,7 +53,7 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className="right-side1">
-                <DeliveryAddress items={items} addressInfo={addressInfo}/>
+                <DeliveryAddress items={items} addressInfo={addressInfo} orderForm={orderForm}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>

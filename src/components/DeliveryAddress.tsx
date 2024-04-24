@@ -20,27 +20,20 @@ interface Item {
 interface DeliveryAddressProps {
     items: Item[];
     addressInfo: AddressFields | null; // New prop to receive address info
+    orderForm: ReturnType<typeof useOrderForm>;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo, orderForm}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
-    const {
-        termsChecked,
-        marketingChecked,
-        orderComment,
-        handleCheckboxChange,
-        handleMarketingCheckboxChange,
-        handleOrderCommentChange
-    } = useOrderForm();
+    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
     }, []); // Empty dependency array to run only once on component mount
 
-    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedIndex = parseInt(event.target.value);
         setSelectedAddressIndex(selectedIndex);
@@ -48,7 +41,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        if (!termsChecked) {
+        if (!orderForm.termsChecked) {
             alert('Please accept the terms & conditions to proceed.');
             return;
         }
@@ -62,7 +55,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         }, 5000);
 
         if (addressInfo !== null) {
-            sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo, orderComment, marketingChecked);
+            sendOrderData('https://eowyyh7aavsptru.m.pipedream.net', items, addressInfo, orderForm.orderComment, orderForm.marketingChecked);
         } else {
             console.error('Address information is missing');
         }
@@ -76,9 +69,8 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         setShowPopup(false);
     };
 
-
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
             <h2>Delivery Address</h2>
             <div>
                 <label>Select Delivery Address:</label>
@@ -115,21 +107,20 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
                     <label htmlFor="order-comment">Order Comment:</label>
                     <textarea
                         id="order-comment"
-                        value={orderComment}
-                        onChange={handleOrderCommentChange}
+                        value={orderForm.orderComment}
+                        onChange={orderForm.handleOrderCommentChange}
                         placeholder="Any special instructions?"
                     />
                 </div>
                 <div className="form-checkbox">
                     <label>
-                        <input type="checkbox" checked={termsChecked} onChange={handleCheckboxChange}/>
+                        <input type="checkbox" checked={orderForm.termsChecked} onChange={orderForm.handleCheckboxChange}/>
                         <span>I accept the terms & conditions</span>
                     </label>
                 </div>
-
                 <div className="form-checkbox">
                     <label>
-                        <input type="checkbox" checked={marketingChecked} onChange={handleMarketingCheckboxChange}/>
+                        <input type="checkbox" checked={orderForm.marketingChecked} onChange={orderForm.handleMarketingCheckboxChange}/>
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>

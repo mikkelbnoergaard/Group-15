@@ -7,6 +7,7 @@ import DeliveryAddressPage from "./DeliveryAddressSide.tsx";
 import PaymentFormPage from "./PaymentFormSide.tsx";
 import RecietPage from "./RecieptSide.tsx";
 import {AddressFields} from "./AddressForm.tsx";
+import { useOrderForm } from './UseOrderForm';
 
 type Item = {
     name: string;
@@ -25,6 +26,7 @@ const App = () => {
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [CompanyVAT, setCompanyVAT] = useState<string>('');
     const [, setAddressInfo] = useState<AddressFields | null>(null);
+    const orderForm = useOrderForm();
 
     const [items, setItems] = useState<Item[]>([]);
 
@@ -51,7 +53,7 @@ const App = () => {
                 <Routes>
                     <Route path={"/"} element={<Basket  setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
                     <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} setAddressInfo={setAddressInfo}/>} />
-                    <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage orderForm={orderForm} totalAmount={totalAmount} items={items} />} />
                     <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT}/>} />
                     <Route path={"/RecieptPage"} element={<RecietPage totalAmount={totalAmount} items={items} />} />
                 </Routes>
