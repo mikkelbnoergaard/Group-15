@@ -82,6 +82,10 @@
     margin-bottom: 20px; /* Space from the bottom */
 }
 
+.spacing-giftwrap{
+    margin-left: 10px; /* Juster værdien efter behov */
+}
+
 .basket-Elements {
     display: flex;
     flex-direction: row;
@@ -122,15 +126,6 @@ body {
 
 .right-side1 h2 {
     font-size: 18px; /* Juster værdien for ønsket skriftstørrelse */
-}
-
-.AddressForm {
-    font-size: 14px;
-}
-
-.AddressForm input {
-    font-size: 14px;
-    position: relative;
 }
 
 .right-side1:not(:last-child) {
@@ -270,13 +265,6 @@ label {
 label input {
     width: 50%; /* Adjust the width as needed */
     margin-left: auto; /* This pushes the input to the right */
-}
-
-.error {
-    color: red;
-    font-size: 0.8em;
-    margin-top: -10px;
-    margin-bottom: 10px;
 }
 
 .popup-overlay {
