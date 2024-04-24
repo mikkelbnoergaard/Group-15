@@ -3,7 +3,7 @@ import addressesData from "../assets/delivery.json";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
 
-export type Address = {
+type Address = {
     country: string;
     city: string;
     continent: string;
@@ -15,27 +15,20 @@ export type Address = {
 interface DeliveryAddressProps {
 
     orderForm: ReturnType<typeof useOrderForm>; // You must import useOrderForm appropriately
-    onAddressSelected: (address: Address) => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ orderForm,onAddressSelected }) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ orderForm }) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
+        // Populate pre-defined addresses from a local JSON file or any other source
         setPreDefinedAddresses(addressesData);
-        // Call the callback with the initial address if available
-        if (addressesData.length > 0) {
-            onAddressSelected(addressesData[0]);
-        }
-    }, [onAddressSelected]);
+    }, []);
 
     const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const newIndex = parseInt(event.target.value, 10);
-        setSelectedAddressIndex(newIndex);
-        // Call the callback with the newly selected address
-        onAddressSelected(preDefinedAddresses[newIndex]);
+        setSelectedAddressIndex(parseInt(event.target.value, 10));
     };
 
     const closePopup = () => {
