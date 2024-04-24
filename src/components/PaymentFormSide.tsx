@@ -2,7 +2,7 @@ import './BasketSide.css';
 import PaymentForm from "./PaymentForm.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
-
+import {PaymentInformation} from "./PaymentForm.tsx"
 interface Item {
     name: string;
     price: number;
@@ -15,10 +15,11 @@ interface CustomerProps {
     items: Item[];
     totalAmount: number;
     CompanyVAT: string;
+    onSavePaymentMethod: (paymentInfo: PaymentInformation) => void;
 }
 
 
-const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}) => {
+const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT,onSavePaymentMethod}) => {
 
 
     const handleUpdateTotal = () => {};
@@ -49,7 +50,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}/>
+                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT} onSavePaymentMethod={onSavePaymentMethod}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>
