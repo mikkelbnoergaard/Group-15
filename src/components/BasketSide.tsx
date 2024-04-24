@@ -1,12 +1,10 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
-import React, {Dispatch, SetStateAction} from 'react';
-import productData from '../assets/product.json';
+import React, {Dispatch, SetStateAction, useState, useEffect} from 'react';
+//import productData from '../assets/product.json';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
-
-console.log(productData);
 
 interface ProductItem {
     name: string;
@@ -139,10 +137,15 @@ type BasketProps = {
     setTotalAmount: Dispatch<SetStateAction<number>>;
 };
 
-
 const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
-
+    const [productData, setProductData] = useState<ProductItem[]>([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
+            .then(response => response.json())
+            .then(data => setProductData(data));
+    }, []);
 
     const goToAddressFormSide = () => {
         navigate('/AddressFormPage');
@@ -192,7 +195,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
-                    {items.map((item, index) => (
+                    {productData.map((item, index) => (
                         <BasketItem
                             key={index}
                             item={item}
