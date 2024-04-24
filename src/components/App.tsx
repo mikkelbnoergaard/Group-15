@@ -7,7 +7,7 @@ import PaymentFormPage from "./PaymentFormSide.tsx";
 import RecietPage from "./RecieptSide.tsx";
 import { useOrderForm } from './UseOrderForm'; // Import the hook here
 import { AddressFields } from "./AddressForm.tsx";
-
+import { Address } from "./DeliveryAddress";
 type Item = {
     name: string;
     price: number;
@@ -28,6 +28,7 @@ const App = () => {
     const [AddressInfo, setAddressInfo] = useState<AddressFields | null>(null);
     const [items, setItems] = useState<Item[]>([]);
     const orderForm = useOrderForm();  // Use the hook here and pass down where necessary
+    const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
     useEffect(() => {
         fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
@@ -51,9 +52,9 @@ const App = () => {
                 <Routes>
                     <Route path={"/"} element={<Basket setTotalAmount={setTotalAmount} items={items} setItems={setItems} />} />
                     <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} setAddressInfo={setAddressInfo}/>} />
-                    <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage orderForm={orderForm} totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage orderForm={orderForm} totalAmount={totalAmount} items={items} onAddressSelected={setSelectedAddress}/>} />
                     <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT}/>} />
-                    <Route path={"/RecieptPage"} element={<RecietPage totalAmount={totalAmount} items={items} orderForm={orderForm} addressInfo={AddressInfo} />} />
+                    <Route path={"/RecieptPage"} element={<RecietPage totalAmount={totalAmount} items={items} orderForm={orderForm} addressInfo={AddressInfo} selectedAddress={selectedAddress}  />} />
                 </Routes>
             </div>
         </Router>

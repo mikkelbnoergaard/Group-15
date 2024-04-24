@@ -25,8 +25,8 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}
 
     const navigate = useNavigate();
 
-    const goToReceiptSide = () => {
-        navigate('/ReceiptPage');
+    const goToRecietSide = () => {
+        navigate('/RecieptPage');
     }
     const goToDeliveryAddressSide = () => {
         navigate('/DeliveryAddressPage');
@@ -43,7 +43,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}
                 <li className="step-done">Customer information</li>
                 <li className="step-done">Delivery address</li>
                 <li className="step-active">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
@@ -53,7 +53,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT}
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>
-                <button className={"button-right"} onClick={goToReceiptSide}>Continue</button>
+                <button className={"button-right"} onClick={goToRecietSide}>Continue</button>
             </div>
         </div>
     );
