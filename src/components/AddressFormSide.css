@@ -28,10 +28,16 @@ h2 {
     gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
 }
 
+.input-row {
+    position: relative; /* Denne container skal være relativ for at positionere fejlbeskeden i forhold til den */
+}
+
 .error-message {
     color: red; /* Eller den farve du ønsker for fejlbeskeder */
-    margin-left: 10px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
+    margin-right: 1070px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
     white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+    position: absolute; /* Absolut positionering i forhold til nærmeste relative container */
+    right: 0; /* Starter fra den højre side af .input-row */
 }
 
 /* Stil containeren for input og fejlbesked */
