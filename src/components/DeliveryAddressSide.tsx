@@ -44,7 +44,7 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
                 <li className="step-done">Customer information</li>
                 <li className="step-active">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Reciet</li>
+                <li className="step-todo">Reciept</li>
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>

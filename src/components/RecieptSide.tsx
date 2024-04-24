@@ -34,7 +34,7 @@ const RecietPage:React.FC<CustomerProps> = () => {
                 <li className="step-done">Customer information</li>
                 <li className="step-done">Delivery address</li>
                 <li className="step-done">Payment</li>
-                <li className="step-active">Reciet</li>
+                <li className="step-active">Reciept</li>
             </ol>
             <div className="right-side1">
                 <h2> Orale du klarede den :) </h2>
