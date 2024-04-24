@@ -82,6 +82,10 @@
     margin-bottom: 20px; /* Space from the bottom */
 }
 
+.spacing-giftwrap{
+    margin-left: 10px; /* Juster værdien efter behov */
+}
+
 .basket-Elements {
     display: flex;
     flex-direction: row;

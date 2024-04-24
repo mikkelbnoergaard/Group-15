@@ -77,6 +77,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
                         <label>
                             Gift Wrap:
                             <input
+                                className={"spacing-giftwrap"}
                                 type="checkbox"
                                 checked={item.giftWrap}
                                 onChange={() => onToggleGiftWrap(item.name)}
