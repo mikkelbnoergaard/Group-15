@@ -25,6 +25,15 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
     const handleUpdateTotal = () => {};
 
     const navigate = useNavigate();
+    const handlePress = async () => {
+        if (!orderForm.termsChecked) {
+            alert('Please accept the terms & conditions to proceed.');
+            return;
+        }
+    goToPaymentFormSide()
+
+
+    }
 
     const goToPaymentFormSide = () => {
         navigate('/PaymentFormPage');
@@ -55,7 +64,7 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>
-                <button className={"button-right"} onClick={goToPaymentFormSide}>Continue</button>
+                <button className={"button-right"} onClick={handlePress}>Continue</button>
             </div>
         </div>
     );
