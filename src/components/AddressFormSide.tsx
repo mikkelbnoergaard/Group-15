@@ -51,7 +51,7 @@ const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT, setAddressIn
                 <li className="step-active">Customer information</li>
                 <li className="step-todo">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Reciept</li>
+                <li className="step-todo">Receipt</li>
             </ol>
             <div className={"Address-Form-Row"}>
                 <div className="right-side1">

@@ -16,7 +16,7 @@ interface CustomerProps {
 }
 
 
-const RecietPage:React.FC<CustomerProps> = () => {
+const ReceiptPage:React.FC<CustomerProps> = () => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -34,7 +34,7 @@ const RecietPage:React.FC<CustomerProps> = () => {
                 <li className="step-done">Customer information</li>
                 <li className="step-done">Delivery address</li>
                 <li className="step-done">Payment</li>
-                <li className="step-active">Reciept</li>
+                <li className="step-active">Receipt</li>
             </ol>
             <div className="right-side1">
                 <h2> Orale du klarede den :) </h2>
@@ -46,4 +46,4 @@ const RecietPage:React.FC<CustomerProps> = () => {
     );
 }
 
-export default RecietPage;
+export default ReceiptPage;

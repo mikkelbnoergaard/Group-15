@@ -5,7 +5,7 @@ import CheckoutPage from "./AddressFormSide.tsx";
 import productData from '../assets/product.json';
 import DeliveryAddressPage from "./DeliveryAddressSide.tsx";
 import PaymentFormPage from "./PaymentFormSide.tsx";
-import RecietPage from "./RecieptSide.tsx";
+import ReceiptPage from "./ReceiptSide.tsx";
 import {AddressFields} from "./AddressForm.tsx";
 
 
@@ -47,7 +47,7 @@ const App = () => {
                     <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} setAddressInfo={setAddressInfo}/>} />
                     <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage totalAmount={totalAmount} items={items} />} />
                     <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT}/>} />
-                    <Route path={"/RecieptPage"} element={<RecietPage totalAmount={totalAmount} items={items} />} />
+                    <Route path={"/ReceiptPage"} element={<ReceiptPage totalAmount={totalAmount} items={items} />} />
                 </Routes>
             </div>
         </Router>
