@@ -52,3 +52,14 @@ h2 {
     flex-grow: 1; /* Lad inputfeltet tage den tilgængelige plads */
     margin-right: auto; /* Dette skubber fejlbeskeden til højre */
 }
+
+.AddressFormColumn {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 100px;
+    background-color: #fff;
+    border-radius: 0px;
+    font-size: 14px;
+}
