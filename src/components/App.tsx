@@ -57,7 +57,7 @@ const App = () => {
                     <Route path={"/AddressFormPage"} element={<CheckoutPage totalAmount={totalAmount} items={items} setCompanyVAT={setCompanyVAT} setAddressInfo={setAddressInfo}/>} />
                     <Route path={"/DeliveryAddressPage"} element={<DeliveryAddressPage orderForm={orderForm} totalAmount={totalAmount} items={items} onAddressSelected={setSelectedAddress}/>} />
                     <Route path={"/PaymentFormPage"} element={<PaymentFormPage totalAmount={totalAmount} items={items} CompanyVAT={CompanyVAT} onSavePaymentMethod={setPaymentInfo}/>} />
-                    <Route path={"/RecieptPage"} element={<ReceiptPage totalAmount={totalAmount} items={items} orderForm={orderForm} addressInfo={AddressInfo} selectedAddress={selectedAddress} paymentInfo={paymentInfo} />} />
+                    <Route path={"/ReceiptPage"} element={<ReceiptPage totalAmount={totalAmount} items={items} orderForm={orderForm} addressInfo={AddressInfo} selectedAddress={selectedAddress} paymentInfo={paymentInfo} />} />
                 </Routes>
             </div>
         </Router>
