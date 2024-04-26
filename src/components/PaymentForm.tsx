@@ -26,6 +26,13 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
         setIsFullyCoveredByGiftCard(giftAmount >= totalAmount);
     }, [giftCardAmount, totalAmount]);
 
+    useEffect(() => {
+        // Tjekker om der er en betalingsmetode valgt før opkald til savePaymentMethod
+        if (paymentMethod) {
+            savePaymentMethod();
+        }
+    }, [paymentMethod]);
+
 
     const isInvoiceAvailable = useMemo(() => {
         return !isFullyCoveredByGiftCard && !!companyVAT && companyVAT.trim() !== '' && companyVAT.length === 8;
