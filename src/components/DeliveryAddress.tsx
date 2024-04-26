@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import addressesData from "../assets/delivery.json";
-import {sendOrderData} from "../remote/handleOrder.tsx";
-import {AddressFields} from "./AddressForm.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 
@@ -21,21 +19,9 @@ interface DeliveryAddressProps {
     onAddressSelected: (address: Address) => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSelected}) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
-    const {
-        termsChecked,
-        marketingChecked,
-        orderComment,
-        handleCheckboxChange,
-        handleMarketingCheckboxChange,
-        handleOrderCommentChange
-    } = useOrderForm();
     const [showPopup, setShowPopup] = useState(false);
-
-    const handleButtonClick = (index: number) => {
-        setSelectedAddressIndex(index);
-    };
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData);
@@ -45,11 +31,8 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         }
     }, [onAddressSelected]);
 
-    const handleSelectDeliveryAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const newIndex = parseInt(event.target.value, 10);
-        setSelectedAddressIndex(newIndex);
-        // Call the callback with the newly selected address
-        onAddressSelected(preDefinedAddresses[newIndex]);
+    const handleButtonClick =  (index: number) => {
+        onAddressSelected(preDefinedAddresses[index]);
     };
 
     const closePopup = () => {
@@ -59,19 +42,9 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
     return (
         <div>
             <h2>Delivery Address</h2>
-            <div>
-                <label>Select Delivery Address:</label>
-                <select onChange={handleSelectDeliveryAddress}>
-                    {preDefinedAddresses.map((address, index) => (
-                        <option key={index} value={index}>
-                            {address.city}, {address.country}
-                        </option>
-                    ))}
-                </select>
-            </div>
             <div className={"select-delivery-address"}>
                 <div className="box-container">
-                    {preDefinedAddresses.slice(0, 4).map((address, index) => (
+                    {preDefinedAddresses.map((address, index) => (
                         <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
                             <div>
                                 <img className="box-image" src={address.image}
