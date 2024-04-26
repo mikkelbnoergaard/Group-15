@@ -22,33 +22,13 @@ interface CustomerProps {
     paymentInfo: PaymentInformation | null;
 }
 
-const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm,paymentInfo }) => {
+const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm }) => {
     const navigate = useNavigate();
 
     const goBack = () => {
         navigate('/PaymentFormPage');
     };
 
-    const paymentSummary = () => {
-        if (!paymentInfo) return ''; // If no paymentInfo is provided, return an empty string
-
-        let summary = `Payment Method: ${paymentInfo.method}`;
-        if (paymentInfo.method === 'giftCard' && paymentInfo.giftCardNumber) {
-            summary += `; Gift Card Number: ${paymentInfo.giftCardNumber}`;
-        }
-        if (paymentInfo.giftCardAmount) {
-            summary += `; Amount Used: $${paymentInfo.giftCardAmount.toFixed(2)}`;
-        }
-        if (paymentInfo.method === 'mobilePay' && paymentInfo.mobilePayNumber) {
-            summary += `; MobilePay Number: ${paymentInfo.mobilePayNumber}`;
-        }
-        if (paymentInfo.giftCardAmount && paymentInfo.mobilePayNumber) {
-            const remainingAmount = totalAmount - paymentInfo.giftCardAmount;
-            summary += `; Remaining Amount Paid with MobilePay: $${remainingAmount.toFixed(2)}`;
-        }
-
-        return summary;
-    };
 
     const handleSubmit = async () => {
         if (addressInfo !== null) {
@@ -131,7 +111,6 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
                         <p>{orderForm.orderComment}</p>
                     </div>
                 )}
-                <p>{paymentSummary()}</p>
             </div>
             <div className="button-container">
                 <button className="button-left" onClick={goBack}>Back</button>
