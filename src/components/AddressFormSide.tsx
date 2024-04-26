@@ -39,6 +39,7 @@ const CheckoutPage:React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo} ) 
     }
 
     return (
+        <div className={"page-background"}>
         <div className={"page-column"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
@@ -61,6 +62,7 @@ const CheckoutPage:React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo} ) 
                 <button className={"button-left"} onClick={goToBasketSide}>Back</button>
                 <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>
             </div>
+        </div>
         </div>
     );
 }
