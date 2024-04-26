@@ -1,10 +1,11 @@
 import { sendOrderData } from '../remote/handleOrder.tsx';
 import fetchMock from 'jest-fetch-mock';
 
-fetchMock.enableMocks();
+
 
 describe('sendOrderData', () => {
     beforeEach(() => {
+        fetchMock.enableMocks();
         fetchMock.resetMocks();
     });
 

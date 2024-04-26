@@ -1,14 +1,14 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, expect, test,} from "vitest";
+import { describe, expect, test} from "vitest";
 import App from "../components/App.tsx";
 import {calculateDiscounts, getTotalAmount,} from "../components/Total1.tsx";
 
 
-describe(App.name, () => {
+describe("App", () => {
     test("should display a Delivery Address section", () => {
         render(<App/>);
         const element =
-            screen.getByText("Delivery Address");
+            screen.getByText("Delivery address");
         expect(element).toBeInTheDocument();
     });
 });
@@ -17,7 +17,7 @@ describe('10% rebate test', () => {
     test('applies a 10% rebate if the total exceeds $300', async () => {
 
         render(<App  />);
-        const inputs = screen.getAllByRole('spinbutton');
+        const inputs = screen.getAllByRole('Quantity');
         const bicycleInput = inputs[1];
         fireEvent.change(bicycleInput, { target: { value: '2' } });
 
@@ -37,6 +37,8 @@ describe('10% rebate test', () => {
 describe('Zip code to city test', () => {
     test('enters Ballerup for zip code 2750', async () => {
         render(<App />);
+        const button = screen.getByText('Go to checkout');
+        fireEvent.click(button);
         const zipInput = screen.getByLabelText(/Zip Code/i);
         const cityInput = screen.getByLabelText(/City/i);
         fireEvent.change(zipInput, { target: { value: '2750' } });
@@ -99,23 +101,23 @@ describe('calculateDiscounts function', () => {
     test('should return correct discount amount for items', () => {
         // Test case 1: items with quantities less than or equal to 3
         const items1 = [
-            { price: 10, quantity: 2 },
-            { price: 20, quantity: 1 },
+            {name: "goat", price: 10, quantity: 2 },
+            {name: "goat1", price: 20, quantity: 1 },
         ];
         expect(calculateDiscounts(items1)).toBe(0); // No discount expected
-        
-        // Test case 2: items with quantities greater than 3 
+
+        // Test case 2: items with quantities greater than 3
         const items2 = [
-            { price: 10, quantity: 4 }, // quantity > 3
-            { price: 20, quantity: 2 },
+            {name: "goat", price: 10, quantity: 4 }, // quantity > 3
+            {name: "goat1", price: 20, quantity: 2 },
         ];
         // Expected discount: (10 * 0.05 * 4) = 2
         expect(calculateDiscounts(items2)).toBe(2);
 
         // Test case 3: items with subtotal greater than 300
         const items3 = [
-            { price: 50, quantity: 2 },
-            { price: 100, quantity: 3 },
+            {name: "goat", price: 50, quantity: 2 },
+            {name: "goat1", price: 100, quantity: 3 },
         ];
         // Expected discount: (50 * 2 + 100 * 3) * 0.10 = 40
         expect(calculateDiscounts(items3)).toBe(40);
@@ -126,14 +128,14 @@ describe('getTotalAmount function', () => {
     test('should return correct subtotal for items', () => {
         // Mock items data for testing
         const items = [
-            { price: 10, quantity: 3 },
-            { price: 20, quantity: 1 },
+            {name: "goat", price: 10, quantity: 3 },
+            {name: "goat1", price: 20, quantity: 1 },
         ];
 
         // Test getTotalAmount function with the mock items
         expect(getTotalAmount(items)).toBe(50); // Subtotal for the provided items
-        
-        
+
+
         // You can add more test cases as needed
     });
 });
@@ -164,6 +166,8 @@ describe('validatePhone shows error message for too short input', () => {
     test('shows error message for short phone number', async () => {
         render(<App/>);
         // Simulate user input of an invalid phone number
+        const button = screen.getByText('Go to checkout');
+        fireEvent.click(button);
         const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: '1234'}}); // Fire change event to simulate user input
 
@@ -178,6 +182,8 @@ describe('validatePhone shows error message for too short input', () => {
 describe('validatePhone shows error message for too long a number', () => {
     test('shows error message for too long phone number', async () => {
         render(<App/>);
+        const button = screen.getByText('Go to checkout');
+        fireEvent.click(button);
         // Simulate user input of an invalid phone number
         const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: '123456780'}}); // Fire change event to simulate user input
@@ -191,6 +197,8 @@ describe('validatePhone shows error message for too long a number', () => {
 describe('validateCompanyVAT shows error message if number isnt 8 inputs', () => {
     test('shows error message for uncomplete Company vat number', async () => {
         render(<App/>);
+        const button = screen.getByText('Go to checkout');
+        fireEvent.click(button);
         // Simulate user input of an invalid phone number
         const phoneInput = screen.getByLabelText(/Company VAT:/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: '12345'}}); // Fire change event to simulate user input
