@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import addressesData from "../assets/delivery.json";
-import {useOrderForm} from "./UseOrderForm.tsx";
-import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+
 
 export type Address = {
     country: string;
@@ -12,14 +11,12 @@ export type Address = {
 };
 
 interface DeliveryAddressProps {
-
-    orderForm: ReturnType<typeof useOrderForm>; // You must import useOrderForm appropriately
     onAddressSelected: (address: Address) => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSelected}) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ onAddressSelected}) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
-    const [showPopup, setShowPopup] = useState(false);
+
     const [selectedAddressIndex, setSelectedAddressIndex] = useState<number | null>(null);
 
     useEffect(() => {
@@ -35,9 +32,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSe
         setSelectedAddressIndex(index);
     };
 
-    const closePopup = () => {
-        setShowPopup(false);
-    };
+
 
     return (
         <div>
@@ -56,31 +51,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSe
                         </button>
                     ))}
                 </div>
-                <div className="form-row">
-                    <label htmlFor="order-comment">Order Comment:</label>
-                    <textarea
-                        id="order-comment"
-                        value={orderForm.orderComment}
-                        onChange={orderForm.handleOrderCommentChange}
-                        placeholder="Any special instructions?"
-                    />
-                </div>
-                <div className="form-checkbox">
-                    <label>
-                        <input type="checkbox" checked={orderForm.termsChecked}
-                               onChange={orderForm.handleCheckboxChange}/>
-                        <span>I accept the terms & conditions</span>
-                    </label>
-                </div>
-                <div className="form-checkbox">
-                    <label>
-                        <input type="checkbox" checked={orderForm.marketingChecked}
-                               onChange={orderForm.handleMarketingCheckboxChange}/>
-                        <span>I agree to receive marketing emails</span>
-                    </label>
-                </div>
-                <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-                {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
+
             </div>
         </div>
     );

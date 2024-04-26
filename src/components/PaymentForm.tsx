@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {useOrderForm} from "./UseOrderForm.tsx";
 
 export interface PaymentInformation {
     method: string;
@@ -11,15 +13,17 @@ type PaymentFormProps = {
     totalAmount: number;
     companyVAT?: string;
     onSavePaymentMethod: (paymentInfo: PaymentInformation) => void;
+    orderForm: ReturnType<typeof useOrderForm>;
 };
 
-const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSavePaymentMethod}) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSavePaymentMethod,orderForm}) => {
     const [paymentMethod, setPaymentMethod] = useState<string>('');
     const [giftCardAmount, setGiftCardAmount] = useState<string>('');
     const [giftCardNumber, setGiftCardNumber] = useState<string>('');
     const [mobilePayNumber, setMobilePayNumber] = useState<string>('');
     const [mobilePayNumberError, setMobilePayNumberError] = useState<string>('');
     const [isFullyCoveredByGiftCard, setIsFullyCoveredByGiftCard] = useState<boolean>(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         const giftAmount = parseFloat(giftCardAmount || '0'); // Use '0' as fallback
@@ -95,6 +99,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
         border: paymentMethod === method ? '2px solid black' : 'none', // Conditional border
         padding: 0
     });
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
 
     return (
@@ -155,6 +162,35 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 <div>
                 </div>
             )}
+            <div className="form-row">
+                <label htmlFor="order-comment">Order Comment:</label>
+                <textarea
+                    id="order-comment"
+                    value={orderForm.orderComment} // This will need to be passed down as a prop now
+                    onChange={orderForm.handleOrderCommentChange} // This too needs to be passed down as a prop
+                    placeholder="Any special instructions?"
+                />
+            </div>
+            <div className="form-checkbox">
+                <label>
+                    <input type="checkbox"
+                           checked={orderForm.termsChecked} // This will need to be passed down as a prop now
+                           onChange={orderForm.handleCheckboxChange} // This too needs to be passed down as a prop
+                    />
+                    <span>I accept the terms & conditions</span>
+                </label>
+            </div>
+            <div className="form-checkbox">
+                <label>
+                    <input type="checkbox"
+                           checked={orderForm.marketingChecked} // This will need to be passed down as a prop now
+                           onChange={orderForm.handleMarketingCheckboxChange} // This too needs to be passed down as a prop
+                    />
+                    <span>I agree to receive marketing emails</span>
+                </label>
+            </div>
+            <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+            {showPopup && <TermsAndConditionsPopup onClose={closePopup} />} {/* These will need to be managed in this component now */}
         </form>
     );
 };
