@@ -190,10 +190,10 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Zip Code:
-                    {errors['zip'] && <div className="error-message">{errors['zip']}</div>}
+                    {errors['zip'] && <div className="error-message1">{errors['zip']}</div>}
                     <input
                         type="text"
                         name="zip"
@@ -248,10 +248,10 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Phone:
-                    {errors.phone && <div className="error-message">{errors.phone}</div>} {/* Fejlbesked her */}
+                    {errors.phone && <div className="error-message1">{errors.phone}</div>} {/* Fejlbesked her */}
                     <input
                         type="text"
                         name="phone"
@@ -260,11 +260,11 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Email:
                     {errors.email &&
-                        <div className="error-message">{errors.email}</div>} {/* Display the email error message here */}
+                        <div className="error-message1">{errors.email}</div>} {/* Display the email error message here */}
                     <input
                         type="email"
                         name="email"
@@ -284,10 +284,10 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Company VAT:
-                    {errors.companyVAT && <div className="error-message">{errors.companyVAT}</div>}
+                    {errors.companyVAT && <div className="error-message1">{errors.companyVAT}</div>}
                     <input
                         type="text"
                         name="companyVAT"
