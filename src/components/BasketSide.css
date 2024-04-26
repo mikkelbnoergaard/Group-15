@@ -1,5 +1,6 @@
 .App {
     text-align: center;
+    background-color: white;
 }
 
 .App-logo {
@@ -40,6 +41,7 @@
 .page-column {
     flex-direction: column;
     display: flex;
+    background-color: white;
 }
 
 .header-top {
@@ -73,6 +75,7 @@
     background-color: #fff; /* White background for the content */
     border-radius: 0px; /* Slightly rounded corners for the boxes */
     margin-bottom: 20px; /* Space from the bottom */
+    background-color: #f8f8f8;
 }
 
 .basket-items2 {
