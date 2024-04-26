@@ -12,9 +12,10 @@ export type Address = {
 
 interface DeliveryAddressProps {
     onAddressSelected: (address: Address) => void;
+    onAddressPicked: () => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ onAddressSelected}) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ onAddressSelected, onAddressPicked}) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
 
     const [selectedAddressIndex, setSelectedAddressIndex] = useState<number | null>(null);
@@ -30,6 +31,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ onAddressSelected}) =
     const handleButtonClick =  (index: number) => {
         onAddressSelected(preDefinedAddresses[index]);
         setSelectedAddressIndex(index);
+        onAddressPicked();
     };
 
 
