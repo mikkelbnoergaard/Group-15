@@ -29,9 +29,9 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT,
 
     const navigate = useNavigate();
 
-    const goToRecietSide = () => {
+    const goToReceiptSide = () => {
         if (paymentMethodSelected) {
-            navigate('/RecieptPage');
+            navigate('/ReceiptPage');
         } else {
             alert('Please select a payment method before continuing.');
         }
@@ -66,7 +66,7 @@ const PaymentFormPage:React.FC<CustomerProps> = ({items, totalAmount,CompanyVAT,
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>
-                <button className={"button-right"} onClick={goToRecietSide}>Continue</button>
+                <button className={"button-right"} onClick={goToReceiptSide}>Continue</button>
             </div>
         </div>
     );
