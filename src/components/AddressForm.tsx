@@ -193,7 +193,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div className={"input-wrapper"}>
                 <label>
                     Zip Code:
-                    {errors['zip'] && <div className="error-message1">{errors['zip']}</div>}
                     <input
                         type="text"
                         name="zip"
@@ -201,6 +200,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onChange={(e) => handleInputChange(e)}
                         onBlur={(e) => handleZipBlur(e)}
                     />
+                    {errors['zip'] && <div className="error-message1">{errors['zip']}</div>}
                 </label>
             </div>
             <div>
@@ -251,26 +251,26 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div className={"input-wrapper"}>
                 <label>
                     Phone:
-                    {errors.phone && <div className="error-message1">{errors.phone}</div>} {/* Fejlbesked her */}
                     <input
                         type="text"
                         name="phone"
                         value={address.phone}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.phone && <div className="error-message1">{errors.phone}</div>} {/* Fejlbesked her */}
                 </label>
             </div>
             <div className={"input-wrapper"}>
                 <label>
                     Email:
-                    {errors.email &&
-                        <div className="error-message1">{errors.email}</div>} {/* Display the email error message here */}
                     <input
                         type="email"
                         name="email"
                         value={address.email}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.email &&
+                        <div className="error-message1">{errors.email}</div>} {/* Display the email error message here */}
                 </label>
             </div>
             <div>
@@ -287,13 +287,13 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div className={"input-wrapper"}>
                 <label>
                     Company VAT:
-                    {errors.companyVAT && <div className="error-message1">{errors.companyVAT}</div>}
                     <input
                         type="text"
                         name="companyVAT"
                         value={address.companyVAT}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.companyVAT && <div className="error-message1">{errors.companyVAT}</div>}
                 </label>
             </div>
         </form>
