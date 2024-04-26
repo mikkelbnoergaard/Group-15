@@ -1,0 +1,44 @@
+.right-side2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 2px;
+    flex: 1;
+    margin: 20px;
+}
+
+.right-side2 button {
+    color: antiquewhite;
+    padding: 10px 15px;
+    border: black;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 1000px;
+    padding: 9px 10px;
+    cursor: pointer;
+}
+
+.box1 {
+    flex: 1;
+    border: 2px solid black; /* Tilføjer en 2px solid sort kant */
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    background-color: white;
+}

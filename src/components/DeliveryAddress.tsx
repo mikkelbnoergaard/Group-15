@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import addressesData from "../assets/delivery.json";
-import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {sendOrderData} from "../remote/handleOrder.tsx";
+import {AddressFields} from "./AddressForm.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 
 export type Address = {
     country: string;
     city: string;
     continent: string;
     addressLine1: string;
+    image: string;
 };
 
 
@@ -18,10 +21,21 @@ interface DeliveryAddressProps {
     onAddressSelected: (address: Address) => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ orderForm,onAddressSelected }) => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
-    const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+    const {
+        termsChecked,
+        marketingChecked,
+        orderComment,
+        handleCheckboxChange,
+        handleMarketingCheckboxChange,
+        handleOrderCommentChange
+    } = useOrderForm();
     const [showPopup, setShowPopup] = useState(false);
+
+    const handleButtonClick = (index: number) => {
+        setSelectedAddressIndex(index);
+    };
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData);
@@ -56,25 +70,18 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ orderForm,onAddressSe
                 </select>
             </div>
             <div className={"select-delivery-address"}>
-                <div>
-                    <label>
-                        Address:
-                        {preDefinedAddresses.length > 0 ? (
-                            <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
-                        ) : (
-                            <span>Loading...</span>
-                        )}
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Continent:
-                        {preDefinedAddresses.length > 0 ? (
-                            <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-                        ) : (
-                            <span>Loading...</span>
-                        )}
-                    </label>
+                <div className="box-container">
+                    {preDefinedAddresses.slice(0, 4).map((address, index) => (
+                        <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
+                            <div>
+                                <img className="box-image" src={address.image}
+                                     alt={`${address.city}, ${address.country}`}/>
+                            </div>
+                            <div>
+                                {address.city}, {address.country}
+                            </div>
+                        </button>
+                    ))}
                 </div>
                 <div className="form-row">
                     <label htmlFor="order-comment">Order Comment:</label>
