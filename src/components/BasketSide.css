@@ -75,7 +75,8 @@
     background-color: #fff; /* White background for the content */
     border-radius: 0px; /* Slightly rounded corners for the boxes */
     margin-bottom: 20px; /* Space from the bottom */
-    background-color: #f8f8f8;
+    background-color: white;
+    border:0.5px solid #909090;
 }
 
 .basket-items2 {
