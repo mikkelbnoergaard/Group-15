@@ -44,7 +44,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
-        onSubmitAddress(address);
 
         if (name === 'companyVAT') {
             // Call the callback function when companyVAT changes
@@ -59,11 +58,17 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
         if (name === 'phone' && value !== '' && !/^\d+$/.test(value)) {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
         }
-        // Opdater din adresse state med den nye værdi først
-        setAddress((prevAddress: AddressFields) => ({
-            ...prevAddress,
-            [event.target.name]: event.target.value,
-        }));
+        setAddress((prevAddress: AddressFields) => {
+            const updatedAddress = {
+                ...prevAddress,
+                [name]: value,
+            };
+
+            // Then call the onSubmitAddress with the updated address
+            onSubmitAddress(updatedAddress);
+
+            return updatedAddress;
+        });
 
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = {...errors};
@@ -185,10 +190,9 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Zip Code:
-                    {errors['zip'] && <div className="error-message">{errors['zip']}</div>}
                     <input
                         type="text"
                         name="zip"
@@ -196,6 +200,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onChange={(e) => handleInputChange(e)}
                         onBlur={(e) => handleZipBlur(e)}
                     />
+                    {errors['zip'] && <div className="error-message1">{errors['zip']}</div>}
                 </label>
             </div>
             <div>
@@ -243,29 +248,29 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Phone:
-                    {errors.phone && <div className="error-message">{errors.phone}</div>} {/* Fejlbesked her */}
                     <input
                         type="text"
                         name="phone"
                         value={address.phone}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.phone && <div className="error-message1">{errors.phone}</div>} {/* Fejlbesked her */}
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Email:
-                    {errors.email &&
-                        <div className="error-message">{errors.email}</div>} {/* Display the email error message here */}
                     <input
                         type="email"
                         name="email"
                         value={address.email}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.email &&
+                        <div className="error-message1">{errors.email}</div>} {/* Display the email error message here */}
                 </label>
             </div>
             <div>
@@ -279,16 +284,16 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Company VAT:
-                    {errors.companyVAT && <div className="error-message">{errors.companyVAT}</div>}
                     <input
                         type="text"
                         name="companyVAT"
                         value={address.companyVAT}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.companyVAT && <div className="error-message1">{errors.companyVAT}</div>}
                 </label>
             </div>
         </form>

@@ -45,11 +45,11 @@
 .header-top {
     flex-direction: row;
     display: flex;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     padding: 10px;
     align-items: center;
     justify-content: center;
-    background-color: #FFFFFF; /* Ændret til hvid */
+    background-color: white;
 }
 
 .basket-item {
@@ -64,7 +64,7 @@
     flex-direction: row; /* or column, depending on your layout */
     align-items: flex-start; /* This aligns children to the top */
     justify-content: space-between;
-    margin: 20px;
+    margin: 50px;
     gap: 20px;
 }
 

@@ -9,7 +9,8 @@
 }
 
 h2 {
-    margin-left: -880px; /* Juster værdien efter behov */
+    align-items: center;
+    padding-bottom: 20px;
 }
 
 .AddressForm {
@@ -20,21 +21,9 @@ h2 {
     flex-direction: row;
 }
 
-.AddressForm input {
-    font-size: 14px;
-    position: relative;
-    display: flex; /* Anvend flexbox til at organisere børnene side om side */
-    align-items: center; /* Centrer elementerne vertikalt */
-    gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
-}
-
-.input-row {
-    position: relative; /* Denne container skal være relativ for at positionere fejlbeskeden i forhold til den */
-}
-
 .error-message {
     color: red; /* Eller den farve du ønsker for fejlbeskeder */
-    margin-right: 1070px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
+    margin-right: 870px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
     white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
     position: absolute; /* Absolut positionering i forhold til nærmeste relative container */
     right: 0; /* Starter fra den højre side af .input-row */
@@ -51,4 +40,36 @@ h2 {
 .input-container input {
     flex-grow: 1; /* Lad inputfeltet tage den tilgængelige plads */
     margin-right: auto; /* Dette skubber fejlbeskeden til højre */
+}
+
+.AddressFormColumn {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0px;
+    font-size: 14px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.input-wrapper label {
+    flex-grow: 1;
+}
+
+.input-wrapper .error-message1 {
+    margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+    color: red;
+    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+    position: absolute;
+    right: 52%;
 }

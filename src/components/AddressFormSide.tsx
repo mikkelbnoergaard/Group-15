@@ -1,7 +1,6 @@
 import './BasketSide.css';
 
 import AddressForm, {AddressFields} from "./AddressForm";
-import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
 import './AddressFormSide.css';
@@ -23,13 +22,12 @@ interface CustomerProps {
 }
 
 
-const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT, setAddressInfo} ) => {
+const CheckoutPage:React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo} ) => {
 
 
     const handleSubmitAddress = (address: AddressFields) => {
         setAddressInfo(address); // Update the address info state
     };
-    const handleUpdateTotal = () => {};
 
     const navigate = useNavigate();
 
@@ -51,17 +49,14 @@ const CheckoutPage:React.FC<CustomerProps> = ({items,setCompanyVAT, setAddressIn
                 <li className="step-active">Customer information</li>
                 <li className="step-todo">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
-            <div className={"Address-Form-Row"}>
-                <div className="right-side1">
+                <div className="AddressFormColumn">
                     <AddressForm
                         onCompanyVATChange={setCompanyVAT}
                         onSubmitAddress={handleSubmitAddress}
                     />
                 </div>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-            </div>
             <div className={"button-container"}>
                 <button className={"button-left"} onClick={goToBasketSide}>Back</button>
                 <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>

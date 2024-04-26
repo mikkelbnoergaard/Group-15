@@ -1,9 +1,9 @@
 import './BasketSide.css';
-import React, {useState} from 'react';
-import {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
+import { useOrderForm } from './UseOrderForm';
+import { Address } from "./DeliveryAddress";
 
 interface Item {
     name: string;
@@ -16,15 +16,24 @@ interface Item {
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
+    onAddressSelected: (address: Address) => void;
 }
 
 
-const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
-    const [addressInfo] = useState<AddressFields | null>(null);
+const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm,onAddressSelected}) => {
 
     const handleUpdateTotal = () => {};
 
     const navigate = useNavigate();
+    const handlePress = async () => {
+        if (!orderForm.termsChecked) {
+            alert('Please accept the terms & conditions to proceed.');
+            return;
+        }
+    goToPaymentFormSide()
+
+
+    }
 
     const goToPaymentFormSide = () => {
         navigate('/PaymentFormPage');
@@ -44,18 +53,18 @@ const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
                 <li className="step-done">Customer information</li>
                 <li className="step-active">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
             </div>
             <div className="right-side1">
-                <DeliveryAddress items={items} addressInfo={addressInfo}/>
+                <DeliveryAddress orderForm={orderForm} onAddressSelected={onAddressSelected}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>
-                <button className={"button-right"} onClick={goToPaymentFormSide}>Continue</button>
+                <button className={"button-right"} onClick={handlePress}>Continue</button>
             </div>
         </div>
     );
