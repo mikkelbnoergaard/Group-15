@@ -1,4 +1,5 @@
 import React, {useState, ChangeEvent, FocusEvent, FormEvent} from "react";
+import './AddressFormSide.css';
 
 export type AddressFields = {
     country: string;
@@ -172,6 +173,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
 
     return (
         <form onSubmit={handleSubmit} className="AddressForm">
+            <h2>Billing address</h2>
             <div>
                 <label>
                     Country:
@@ -186,6 +188,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div>
                 <label>
                     Zip Code:
+                    {errors['zip'] && <div className="error-message">{errors['zip']}</div>}
                     <input
                         type="text"
                         name="zip"
@@ -195,7 +198,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                     />
                 </label>
             </div>
-            {errors['zip'] && <div className="error">{errors['zip']}</div>}
             <div>
                 <label>
                     City:
@@ -244,6 +246,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div>
                 <label>
                     Phone:
+                    {errors.phone && <div className="error-message">{errors.phone}</div>} {/* Fejlbesked her */}
                     <input
                         type="text"
                         name="phone"
@@ -251,11 +254,12 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onChange={(e) => handleInputChange(e)}
                     />
                 </label>
-                {errors.phone && <div className="error">{errors.phone}</div>} {/* Fejlbesked her */}
             </div>
             <div>
                 <label>
                     Email:
+                    {errors.email &&
+                        <div className="error-message">{errors.email}</div>} {/* Display the email error message here */}
                     <input
                         type="email"
                         name="email"
@@ -263,8 +267,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onChange={(e) => handleInputChange(e)}
                     />
                 </label>
-                {errors.email &&
-                    <div className="error">{errors.email}</div>} {/* Display the email error message here */}
             </div>
             <div>
                 <label>
@@ -280,6 +282,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <div>
                 <label>
                     Company VAT:
+                    {errors.companyVAT && <div className="error-message">{errors.companyVAT}</div>}
                     <input
                         type="text"
                         name="companyVAT"
@@ -287,7 +290,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
                         onChange={(e) => handleInputChange(e)}
                     />
                 </label>
-                {errors.companyVAT && <div className="error">{errors.companyVAT}</div>}
             </div>
         </form>
     );
