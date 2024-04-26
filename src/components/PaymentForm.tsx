@@ -73,7 +73,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
         if (/^\d*$/.test(value) && value.length <= 8) {
             setMobilePayNumber(value);
             if (value.length !== 8) {
-                setMobilePayNumberError("The mobilepay number must be 8 digits");
+                setMobilePayNumberError("Bobilepay number must be 8 digits");
             } else {
                 setMobilePayNumberError(""); // Ryd fejlen, når betingelsen er opfyldt
             }
@@ -135,13 +135,13 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                         type="text"
                         value={giftCardAmount}
                         onChange={handleNumericChange(setGiftCardAmount)}
-                        placeholder="Enter gift card amount"
+                        placeholder="Gift card amount"
                     />
                     <input
                         type="text"
                         value={giftCardNumber}
                         onChange={handleNumericChange(setGiftCardNumber)}
-                        placeholder="Enter gift card number"
+                        placeholder="Gift card number"
                     />
                 </div>
             )}
@@ -152,7 +152,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                         type="text"
                         value={mobilePayNumber}
                         onChange={handleMobilePayNumberChange}
-                        placeholder="Enter MobilePay number"
+                        placeholder="MobilePay number"
                     />
                     {mobilePayNumberError && <div style={{color: 'red'}}>{mobilePayNumberError}</div>}
                 </div>
