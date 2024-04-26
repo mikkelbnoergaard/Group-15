@@ -1,0 +1,31 @@
+.right-side1 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 0px;
+    flex: 1;
+    margin: 20px;
+}
+
+.right-side2 button {
+    color: antiquewhite;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #fff;
+    color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 1000px;
+    padding: 9px 10px;
+    cursor: pointer;
+}

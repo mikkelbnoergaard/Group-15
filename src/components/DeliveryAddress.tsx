@@ -10,6 +10,7 @@ type Address = {
     city: string;
     continent: string;
     addressLine1: string;
+    image: string;
 };
 
 interface Item {
@@ -35,6 +36,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         handleOrderCommentChange
     } = useOrderForm();
     const [showPopup, setShowPopup] = useState(false);
+
+    const handleButtonClick = (index: number) => {
+        setSelectedAddressIndex(index);
+    };
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData); // Set addresses using JSON data
@@ -78,10 +83,17 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
 
     return (
-        <form onSubmit={handleSubmit} >
-            <h2>Delivery Address</h2>
+        <form onSubmit={handleSubmit}>
+            <div className="box-container">
+                {preDefinedAddresses.slice(0, 4).map((address, index) => (
+                    <button key={index} className="box" onClick={() => handleButtonClick(index)}>
+                        <img className="box-image" src={address.image} alt={`${address.city}, ${address.country}`}/>
+                        {address.city}, {address.country}
+                    </button>
+                ))}
+            </div>
             <div>
-                <label>Select Delivery Address:</label>
+            <label className="address-label">Select Delivery Address:</label>
                 <select onChange={handleSelectDeliveryAddress}>
                     {preDefinedAddresses.map((address, index) => (
                         <option key={index} value={index}>

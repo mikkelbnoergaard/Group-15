@@ -4,27 +4,31 @@
     "zip": "00000",
     "city": "Timbuctoo",
     "continent": "Africa",
-    "addressLine1": "Ahmed Baba Institute"
+    "addressLine1": "Ahmed Baba Institute",
+    "image": "https://cdn.outsideonline.com/wp-content/uploads/migrated-images_parent/migrated-images_62/bonfire-10_fe.jpg?width=800"
   },
   {
     "country": "Togo",
     "zip": "00000",
     "city": "Tchebebe",
     "continent": "Africa",
-    "addressLine1": "Epp Tchebebe Sud"
+    "addressLine1": "Epp Tchebebe Sud",
+    "image": "https://img.over-blog-kiwi.com/1/17/81/20/20190615/ob_c7eb21_index5.jpg"
   },
   {
     "country": "Ghana",
     "zip": "00000",
     "city": "Kumasi",
     "continent": "Africa",
-    "addressLine1": "Thinkers' Academy"
+    "addressLine1": "Thinkers' Academy",
+    "image":  "https://www.researchgate.net/profile/Edwin-Nuijten/publication/236862351/figure/fig3/AS:299498468331525@1448417407856/Offering-to-a-village-god-in-Lolobi-Kumasi-Ghana-in-which-African-rice-flour-is_Q320.jpg"
   },
   {
     "country": "Germany",
     "zip": "01067",
     "city": "Würstenhof",
     "continent": "Europe",
-    "addressLine1": "Würststrasse 19"
+    "addressLine1": "Würststrasse 19",
+    "image": "https://static.dw.com/image/40519918_605.jpg"
   }
 ]

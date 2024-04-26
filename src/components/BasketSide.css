@@ -109,19 +109,30 @@ body {
     flex-direction: row-reverse;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.address-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .right-side1 {
     display: flex;
     justify-content: space-between;
-    flex-grow: 1;
     flex-direction: column;
     padding: 12px;
+    font-size: 14px;
     background-color: #fff;
     border-radius: 0px;
-    font-size: 14px;
+    flex: 1;
+    margin: 20px;
 }
 
-.right-side1 h2 {
+h2 {
     font-size: 18px; /* Juster værdien for ønsket skriftstørrelse */
+
 }
 
 .AddressForm {
@@ -211,15 +222,6 @@ body {
 .text-field-right {
     margin-right: 10px; /* Adjust the value as needed */
     flex-direction: row-reverse;
-}
-
-button {
-    background-color: #fff;
-    color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 1000px;
-    padding: 9px 10px;
-    cursor: pointer;
 }
 
 button1 {
@@ -344,7 +346,6 @@ label input {
     border-radius: 4px; /* Slightly rounded corners for aesthetics */
     resize: vertical; /* Allow only vertical resize */
 }
-
 /* Checkbox specific styles */
 .form-checkbox {
     display: flex;
@@ -459,4 +460,24 @@ select {
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.box-image {
+    width: 100px; /* Billedets bredde */
+    height: 100px; /* Billedets højde */
+    object-fit: cover; /* Sørger for at billedet dækker hele området uden at miste proportionerne */
 }
