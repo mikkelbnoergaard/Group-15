@@ -44,7 +44,6 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
-        onSubmitAddress(address);
 
         if (name === 'companyVAT') {
             // Call the callback function when companyVAT changes
@@ -59,11 +58,17 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
         if (name === 'phone' && value !== '' && !/^\d+$/.test(value)) {
             return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
         }
-        // Opdater din adresse state med den nye værdi først
-        setAddress((prevAddress: AddressFields) => ({
-            ...prevAddress,
-            [event.target.name]: event.target.value,
-        }));
+        setAddress((prevAddress: AddressFields) => {
+            const updatedAddress = {
+                ...prevAddress,
+                [name]: value,
+            };
+
+            // Then call the onSubmitAddress with the updated address
+            onSubmitAddress(updatedAddress);
+
+            return updatedAddress;
+        });
 
         // Derefter tjek for fejl og opdater dem om nødvendigt
         let newErrors: ErrorsState = {...errors};
