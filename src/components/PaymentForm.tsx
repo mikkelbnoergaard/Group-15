@@ -62,7 +62,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     const handlePaymentMethodClick = (method: string) => {
         setPaymentMethod(method);
         // Call savePaymentMethod after state update
-        setTimeout(() => savePaymentMethod(), 0);
     };
 
     const handleMobilePayNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
