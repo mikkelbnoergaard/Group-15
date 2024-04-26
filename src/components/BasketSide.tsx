@@ -1,12 +1,10 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
-import React, {Dispatch, SetStateAction} from 'react';
-import productData from '../assets/product.json';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import { fetchProductData } from './fetchProductData';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
-
-console.log(productData);
 
 interface ProductItem {
     name: string;
@@ -142,6 +140,15 @@ type BasketProps = {
 
 
 const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
+    const [, setProductData] = useState([]);
+
+    useEffect(() => {
+        const getProductData = async () => {
+            const data = await fetchProductData();
+            setProductData(data);
+        }
+        getProductData().then(() => console.log("Product data fetched"));
+    }, []);
 
     const navigate = useNavigate();
 
@@ -156,8 +163,6 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             item.name === name ? {...item, quantity: newQuantity} : item
         ));
     };
-
-
 
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
