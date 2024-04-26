@@ -122,8 +122,9 @@ body {
     justify-content: space-between;
 }
 .address-label {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
+    justify-content: center;
 }
 
 .right-side1 {
