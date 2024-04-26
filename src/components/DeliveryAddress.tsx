@@ -86,7 +86,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
         <form onSubmit={handleSubmit}>
             <div className="box-container">
                 {preDefinedAddresses.slice(0, 4).map((address, index) => (
-                    <button key={index} className="box" onClick={() => handleButtonClick(index)}>
+                    <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
                         <img className="box-image" src={address.image} alt={`${address.city}, ${address.country}`}/>
                         {address.city}, {address.country}
                     </button>

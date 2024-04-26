@@ -22,7 +22,6 @@ interface CustomerProps {
 const DeliveryAddressPage:React.FC<CustomerProps> = ({items}) => {
     const [addressInfo] = useState<AddressFields | null>(null);
 
-
     const navigate = useNavigate();
 
     const goToPaymentFormSide = () => {

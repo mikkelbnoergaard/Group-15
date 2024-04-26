@@ -1,4 +1,4 @@
-.right-side1 {
+.right-side2 {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -28,4 +28,18 @@ button {
     border-radius: 1000px;
     padding: 9px 10px;
     cursor: pointer;
+}
+
+.box1 {
+    flex: 1;
+    border: 2px solid black; /* Tilføjer en 2px solid sort kant */
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+    color: inherit;
+    border: black;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    background-color: white;
 }
