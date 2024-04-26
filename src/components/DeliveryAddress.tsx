@@ -11,8 +11,6 @@ export type Address = {
     image: string;
 };
 
-
-
 interface DeliveryAddressProps {
 
     orderForm: ReturnType<typeof useOrderForm>; // You must import useOrderForm appropriately
@@ -22,6 +20,7 @@ interface DeliveryAddressProps {
 const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSelected}) => {
     const [preDefinedAddresses, setPreDefinedAddresses] = useState<Address[]>([]);
     const [showPopup, setShowPopup] = useState(false);
+    const [selectedAddressIndex, setSelectedAddressIndex] = useState<number | null>(null);
 
     useEffect(() => {
         setPreDefinedAddresses(addressesData);
@@ -33,6 +32,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSe
 
     const handleButtonClick =  (index: number) => {
         onAddressSelected(preDefinedAddresses[index]);
+        setSelectedAddressIndex(index);
     };
 
     const closePopup = () => {
@@ -41,11 +41,11 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSe
 
     return (
         <div>
-            <h2>Delivery Address</h2>
+            <label className="address-label">Select Delivery Address:</label>
             <div className={"select-delivery-address"}>
                 <div className="box-container">
                     {preDefinedAddresses.map((address, index) => (
-                        <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
+                        <button key={index} className={`box1 ${index === selectedAddressIndex ? 'selected' : ''}`} onClick={() => handleButtonClick(index)}>
                             <div>
                                 <img className="box-image" src={address.image}
                                      alt={`${address.city}, ${address.country}`}/>
@@ -67,13 +67,15 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({orderForm, onAddressSe
                 </div>
                 <div className="form-checkbox">
                     <label>
-                        <input type="checkbox" checked={orderForm.termsChecked} onChange={orderForm.handleCheckboxChange}/>
+                        <input type="checkbox" checked={orderForm.termsChecked}
+                               onChange={orderForm.handleCheckboxChange}/>
                         <span>I accept the terms & conditions</span>
                     </label>
                 </div>
                 <div className="form-checkbox">
                     <label>
-                        <input type="checkbox" checked={orderForm.marketingChecked} onChange={orderForm.handleMarketingCheckboxChange}/>
+                        <input type="checkbox" checked={orderForm.marketingChecked}
+                               onChange={orderForm.handleMarketingCheckboxChange}/>
                         <span>I agree to receive marketing emails</span>
                     </label>
                 </div>

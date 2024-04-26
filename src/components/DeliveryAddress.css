@@ -11,7 +11,7 @@
 }
 
 .right-side2 button {
-    color: antiquewhite;
+    color: black;
     padding: 10px 15px;
     border: black;
     border-radius: 1px;
@@ -36,9 +36,12 @@ button {
     padding: 10px;
     text-align: center;
     margin: 0 10px;
-    color: inherit;
     font: inherit;
     cursor: pointer;
     outline: inherit;
     background-color: white;
+}
+
+.box1.selected {
+    border: 2px solid black;
 }
