@@ -7,6 +7,7 @@ $Light-grey: #909090;
 .page-background{
   flex-direction: column;
   display: flex;
+  background-color: white;
   z-index: -3;
 }
 // Basic
@@ -51,7 +52,8 @@ body {
       margin: 0 auto 10px auto;
       border-radius: 50%;
       background-color: #fff;
-      z-index: -1;
+      z-index: 1;
+      position: relative;
     }
     &:after {
       width: 100%;
@@ -59,7 +61,6 @@ body {
       content: '';
       position: absolute;
       left: -50%;
-      z-index: -2;
       background-color: transparent; // Sæt dette til transparent
       border-top: 1px solid $Light-grey; // Gør linjen øverst
       top: 35%; // Centrer linjen
