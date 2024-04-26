@@ -22,7 +22,7 @@ interface CustomerProps {
     paymentInfo: PaymentInformation | null;
 }
 
-const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm,paymentInfo }) => {
+const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm,paymentInfo }) => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -141,4 +141,4 @@ const RecietPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,s
     );
 };
 
-export default RecietPage;
+export default ReceiptPage;
