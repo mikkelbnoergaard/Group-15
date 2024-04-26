@@ -7,7 +7,6 @@ $main-color: #f4a261;
 body {
   background-color: $grey;
   text-align: center;
-  padding-top: 50px;
   font-family: 'Open Sans', sans-serif;
   h1 {
     font-weight: 700;
@@ -17,6 +16,7 @@ body {
 // Progress bar
 #progress-bar {
   display: table;
+  max-width:97.5%;
   width: 100%;
   margin-bottom: 12px;
   padding: 15px 15px 0;
