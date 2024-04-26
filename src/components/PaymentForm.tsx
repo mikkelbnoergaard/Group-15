@@ -26,12 +26,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        const giftAmount = parseFloat(giftCardAmount || '0'); // Use '0' as fallback
+        const giftAmount = parseFloat(giftCardAmount || '-1');
         setIsFullyCoveredByGiftCard(giftAmount >= totalAmount);
     }, [giftCardAmount, totalAmount]);
 
     useEffect(() => {
-        // Tjekker om der er en betalingsmetode valgt før opkald til savePaymentMethod
         if (paymentMethod) {
             savePaymentMethod();
         }
@@ -48,7 +47,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     }, [giftCardAmount, totalAmount]);
 
     const savePaymentMethod = () => {
-        // Initialize paymentInfo with the method property
         const paymentInfo: PaymentInformation = {
             method: paymentMethod,
         };
@@ -65,7 +63,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
 
     const handlePaymentMethodClick = (method: string) => {
         setPaymentMethod(method);
-        // Call savePaymentMethod after state update
     };
 
     const handleMobilePayNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +72,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
             if (value.length !== 8) {
                 setMobilePayNumberError("Bobilepay number must be 8 digits");
             } else {
-                setMobilePayNumberError(""); // Ryd fejlen, når betingelsen er opfyldt
+                setMobilePayNumberError("");
             }
         }
         if (value.length === 8) {
@@ -86,17 +83,16 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     const handleNumericChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (value.length < 8) {
-            if (/^\d*$/.test(value)) { // Tjekker om værdien kun indeholder tal
+            if (/^\d*$/.test(value)) {
                 setter(value);
             }
         }
-        setter(value); // This sets either giftCardAmount or giftCardNumber based on the caller
-        // Call savePaymentMethod after state update
+        setter(value);
         setTimeout(() => savePaymentMethod(), 0);
     };
     const buttonStyle = (method: string) => ({
         background: 'transparent',
-        border: paymentMethod === method ? '2px solid black' : 'none', // Conditional border
+        border: paymentMethod === method ? '2px solid black' : 'none',
         padding: 0
     });
     const closePopup = () => {
@@ -128,7 +124,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 )}
             </div>
 
-            {/* Conditional input rendering */}
             {paymentMethod === 'giftCard' && (
                 <div>
                     <input
@@ -166,16 +161,16 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 <label htmlFor="order-comment">Order Comment:</label>
                 <textarea
                     id="order-comment"
-                    value={orderForm.orderComment} // This will need to be passed down as a prop now
-                    onChange={orderForm.handleOrderCommentChange} // This too needs to be passed down as a prop
+                    value={orderForm.orderComment}
+                    onChange={orderForm.handleOrderCommentChange}
                     placeholder="Any special instructions?"
                 />
             </div>
             <div className="form-checkbox">
                 <label>
                     <input type="checkbox"
-                           checked={orderForm.termsChecked} // This will need to be passed down as a prop now
-                           onChange={orderForm.handleCheckboxChange} // This too needs to be passed down as a prop
+                           checked={orderForm.termsChecked}
+                           onChange={orderForm.handleCheckboxChange}
                     />
                     <span>I accept the terms & conditions</span>
                 </label>
@@ -183,14 +178,14 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
             <div className="form-checkbox">
                 <label>
                     <input type="checkbox"
-                           checked={orderForm.marketingChecked} // This will need to be passed down as a prop now
-                           onChange={orderForm.handleMarketingCheckboxChange} // This too needs to be passed down as a prop
+                           checked={orderForm.marketingChecked}
+                           onChange={orderForm.handleMarketingCheckboxChange}
                     />
                     <span>I agree to receive marketing emails</span>
                 </label>
             </div>
             <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-            {showPopup && <TermsAndConditionsPopup onClose={closePopup} />} {/* These will need to be managed in this component now */}
+            {showPopup && <TermsAndConditionsPopup onClose={closePopup} />}
         </form>
     );
 };
