@@ -84,44 +84,22 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({items, addressInfo}) =
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="box-container">
-                {preDefinedAddresses.slice(0, 4).map((address, index) => (
-                    <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
-                        <img className="box-image" src={address.image} alt={`${address.city}, ${address.country}`}/>
-                        {address.city}, {address.country}
-                    </button>
-                ))}
-            </div>
             <div>
             <label className="address-label">Select Delivery Address:</label>
-                <select onChange={handleSelectDeliveryAddress}>
-                    {preDefinedAddresses.map((address, index) => (
-                        <option key={index} value={index}>
-                            {address.city}, {address.country}
-                        </option>
-                    ))}
-                </select>
             </div>
             <div className={"select-delivery-address"}>
-                <div>
-                    <label>
-                        Address:
-                        {preDefinedAddresses.length > 0 ? (
-                            <span>{preDefinedAddresses[selectedAddressIndex].addressLine1}</span>
-                        ) : (
-                            <span>Loading...</span>
-                        )}
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Continent:
-                        {preDefinedAddresses.length > 0 ? (
-                            <span>{preDefinedAddresses[selectedAddressIndex].continent}</span>
-                        ) : (
-                            <span>Loading...</span>
-                        )}
-                    </label>
+                <div className="box-container">
+                    {preDefinedAddresses.slice(0, 4).map((address, index) => (
+                        <button key={index} className="box1" onClick={() => handleButtonClick(index)}>
+                            <div>
+                                <img className="box-image" src={address.image}
+                                     alt={`${address.city}, ${address.country}`}/>
+                            </div>
+                            <div>
+                                {address.city}, {address.country}
+                            </div>
+                        </button>
+                    ))}
                 </div>
                 <div className="form-row">
                     <label htmlFor="order-comment">Order Comment:</label>

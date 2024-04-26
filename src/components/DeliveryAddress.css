@@ -5,7 +5,7 @@
     padding: 12px;
     font-size: 14px;
     background-color: #fff;
-    border-radius: 0px;
+    border-radius: 2px;
     flex: 1;
     margin: 20px;
 }
@@ -13,8 +13,8 @@
 .right-side2 button {
     color: antiquewhite;
     padding: 10px 15px;
-    border: none;
-    border-radius: 0px;
+    border: black;
+    border-radius: 1px;
     cursor: pointer;
     font-size: 18px;
     margin-top: 20px;
@@ -23,8 +23,8 @@
 
 button {
     background-color: #fff;
-    color: #fff;
-    border: 1px solid #e0e0e0;
+    color: black;
+    border: 1px solid black;
     border-radius: 1000px;
     padding: 9px 10px;
     cursor: pointer;
@@ -37,7 +37,6 @@ button {
     text-align: center;
     margin: 0 10px;
     color: inherit;
-    border: black;
     font: inherit;
     cursor: pointer;
     outline: inherit;
