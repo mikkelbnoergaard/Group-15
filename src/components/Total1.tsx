@@ -24,7 +24,7 @@ export const calculateDiscounts = (items: Item[]): number => {
         }
     });
     // 10% discount for orders over 300 DKK
-    if (subtotal > 300) {
+    if (subtotal >= 300) {
         discount += subtotal * 0.10;
     }
 

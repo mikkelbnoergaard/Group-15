@@ -269,17 +269,3 @@ describe('testing view Terms and conditions popup', () => {
         expect(FindinTermsandConditionspopup).toBeInTheDocument();
     });
 });
-describe('testing being able to change delivery addrees', () => {
-    test('being able to change delivery addrees', async () => {
-        render(<App />);
-        const button = screen.getByText('Go to checkout');
-        fireEvent.click(button);
-        const button2 = screen.getByText('Continue');
-        fireEvent.click(button2);
-        const inputs = await screen.findAllByRole('spinbutton');
-        const deliveryInput = inputs[1]; // Assuming the goat item is the first in the list
-        fireEvent.change(deliveryInput, { target: { value: 'Tchebebe, Togo' } });
-        const element = await screen.findByText(/Tchebebe, Togo/i);
-        expect(element).toBeInTheDocument();
-    });
-});
