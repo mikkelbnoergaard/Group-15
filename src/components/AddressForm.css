@@ -80,5 +80,8 @@ h2 {
         position: relative;
         right: 52%;
     }
+    .AddressForm label {
+        padding-right: 40px;
+    }
 }
 
