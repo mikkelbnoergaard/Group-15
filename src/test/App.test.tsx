@@ -265,3 +265,4 @@ describe('testing view Terms and conditions popup', () => {
     });
 });
 
+
