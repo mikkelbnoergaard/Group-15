@@ -65,8 +65,7 @@ h2 {
         /* Gør form elementer bredere til at tage mere plads */
         width: 75px;
         max-width: none;
-        margin-left: 100px;
-        margin-right: 100px;
+        margin-left: 50px;
         display: flex;
         justify-content: space-between;
         flex-grow: 1;
