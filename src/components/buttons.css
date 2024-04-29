@@ -1,7 +1,7 @@
 .button-container {
     display: flex;
     justify-content: space-between; /* Placerer indhold med maksimal afstand mellem elementerne */
-    padding: 10px 250px 300px; /* Giver mere plads på siderne */
+    padding: 10px 250px 1000px; /* Giver mere plads på siderne */
 }
 
 .button-left, .button-right {
