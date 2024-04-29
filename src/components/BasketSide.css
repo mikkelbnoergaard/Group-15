@@ -129,7 +129,8 @@ body {
 
 .right-side1 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding: 12px;
     font-size: 14px;
@@ -342,8 +343,9 @@ label input {
 
 .form-checkbox {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    max-width: 240px;
+    margin: 20px;
 }
 
 .form-checkbox label {
