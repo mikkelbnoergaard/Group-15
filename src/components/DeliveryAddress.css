@@ -82,3 +82,9 @@ button {
 .box1.selected {
     border: 2px solid black;
 }
+
+@media only screen and (max-width: 768px) {
+    .box-container{
+        flex-direction: column;
+    }
+}
