@@ -88,7 +88,7 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                         <li key={index}>
                             {item.name} - {item.quantity} x ${item.price.toFixed(2)}
                             {item.giftWrap && <span> - (Gift Wrapped)</span>}
-                            {" - (Recurring  " + item.recurring + ")"}
+                            {item.recurring && <span> - (Recurring: {item.recurring})</span>}
                         </li>
                     ))}
                 </ul>
