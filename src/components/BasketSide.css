@@ -171,4 +171,12 @@ label input {
         max-height: fit-content;
     }
 
+    label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+
 }

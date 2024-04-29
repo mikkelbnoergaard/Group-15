@@ -70,12 +70,16 @@ h2 {
         padding: 20px;
         background-color: #fff;
     }
+
     .input-wrapper .error-message1 {
-        margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+        margin-left: 130px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
         color: red;
         white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
         position: relative;
         right: 52%;
+        top: 0;
     }
+
+
 }
 
