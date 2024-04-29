@@ -5,8 +5,9 @@ import {calculateDiscounts, getTotalAmount,} from "../components/Total.tsx";
 
 
 describe("App", () => {
-    test("should display a Delivery Address section", () => {
+    test("should display a Delivery Address section", async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const element =
             screen.getByText("Delivery address");
         expect(element).toBeInTheDocument();
@@ -16,6 +17,7 @@ describe("App", () => {
 describe('10% rebate test', () => {
     test('applies a 10% rebate if the total exceeds $300', async () => {
         render(<App  />);
+        await screen.findByText("Go to checkout")
         const items1 = [
             {name: "goat", price: 300, quantity: 1 },
         ];
@@ -26,6 +28,7 @@ describe('10% rebate test', () => {
 describe('Zip code to city test and Customer information navigation works', () => {
     test('enters Ballerup for zip code 2750', async () => {
         render(<App />);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         const zipInput = screen.getByLabelText(/Zip Code/i);
@@ -42,6 +45,7 @@ describe('Zip code to city test and Customer information navigation works', () =
 describe('every product will get added to basket', () => {
     test('products gets added to basket', async () => {
         render(<App />);
+        await screen.findByText("Go to checkout")
         const inputs = await screen.findAllByRole('spinbutton');
         const goatInput = inputs[0];
         fireEvent.change(goatInput, { target: { value: '1' } });
@@ -115,6 +119,7 @@ describe('getTotalAmount function', () => {
 describe('amountNeedForDiscount test', () => {
     test('shows true price for discount', async () => {
         render(<App />);
+        await screen.findByText("Go to checkout")
         const inputs = await screen.findAllByRole('spinbutton');
         const goatInput = inputs[0]; // Assuming the goat item is the first in the list
         fireEvent.change(goatInput, { target: { value: '1' } });
@@ -126,6 +131,7 @@ describe('amountNeedForDiscount test', () => {
 describe('discountMessage test', () => {
     test('Displays the right message', async () => {
         render(<App />);
+        await screen.findByText("Go to checkout")
         const inputs = await screen.findAllByRole('spinbutton');
         const goatInput = inputs[0];
         fireEvent.change(goatInput, { target: { value: '3' } });
@@ -137,6 +143,7 @@ describe('discountMessage test', () => {
 describe('validatePhone shows error message for too short input', () => {
     test('shows error message for short phone number', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         // Simulate user input of an invalid phone number
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
@@ -154,6 +161,7 @@ describe('validatePhone shows error message for too short input', () => {
 describe('validatePhone shows error message for too long a number', () => {
     test('shows error message for too long phone number', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
@@ -169,6 +177,7 @@ describe('validatePhone shows error message for too long a number', () => {
 describe('validateCompanyVAT shows error message if number isnt 8 inputs', () => {
     test('shows error message for uncomplete Company vat number', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
@@ -185,6 +194,7 @@ describe('validateCompanyVAT shows error message if number isnt 8 inputs', () =>
 describe('validateEmail shows error message if illegal email address', () => {
     test('shows error message if illegal email address', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
@@ -201,6 +211,7 @@ describe('validateEmail shows error message if illegal email address', () => {
 describe('validateZipcode shows error message if zipcode is not 4 digits', () => {
     test('shows error message if zipcode is not 4 digits', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
@@ -217,6 +228,7 @@ describe('validateZipcode shows error message if zipcode is not 4 digits', () =>
     describe('test to see if the back button works', () => {
         test('testing back button', async () => {
             render(<App />);
+            await screen.findByText("Go to checkout")
             const button = screen.getByText('Go to checkout');
             fireEvent.click(button);
             const button2 = screen.getByText('Back');
@@ -228,8 +240,19 @@ describe('validateZipcode shows error message if zipcode is not 4 digits', () =>
 describe('testing continue button', () => {
     test('Testing that the continue button works', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
+        const zipInput = screen.getByLabelText(/Zip Code\*/i); // Get the phone input by its label
+        fireEvent.change(zipInput, {target: {value: '2100'}});
+        const addressInput = screen.getByLabelText(/Address Line 1\*/i); // Get the phone input by its label
+        fireEvent.change(addressInput, {target: {value: 'nyborhadde 4'}});
+        const nameInput = screen.getByLabelText(/Name\*/i); // Get the phone input by its label
+        fireEvent.change(nameInput, {target: {value: 'jaylo'}});
+        const phoneInput = screen.getByLabelText(/Phone Number\*/i); // Get the phone input by its label
+        fireEvent.change(phoneInput, {target: {value: '12345678'}});
+        const emailInput = screen.getByLabelText(/Email\*/i); // Get the phone input by its label
+        fireEvent.change(emailInput, {target: {value: 'niklas@hotmail.com'}});
         const button2 = screen.getByText('Continue');
         fireEvent.click(button2);
         const FindTermsandConditionsmessage = await screen.findByText("Select delivery address:");
@@ -241,6 +264,7 @@ describe('testing continue button', () => {
 describe('testing view Terms and conditions popup', () => {
     test('Testing the term and conditions', async () => {
         render(<App/>);
+        await screen.findByText("Go to checkout")
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         const zipInput = screen.getByLabelText(/Zip Code\*/i); // Get the phone input by its label
