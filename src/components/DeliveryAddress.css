@@ -84,12 +84,7 @@ button {
 }
 
 @media (max-width: 768px) {
-    .select-delivery-address select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 20px;
+    .select-delivery-address {
         flex-direction: column;
     }
 }
