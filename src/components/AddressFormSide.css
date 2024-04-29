@@ -1,10 +1,10 @@
 .Address-Form-Row {
     flex-direction: row;
     display: flex;
-    border: 1px solid #ccc;
+    border: none;
     padding: 10px;
     align-items: center;
-    background-color: #FFFFFF; /* Ændret til hvid */
+    background-color: white; /* Ændret til hvid */
     justify-content: space-between;
 }
 

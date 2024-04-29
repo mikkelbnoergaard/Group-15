@@ -18,12 +18,10 @@ export const calculateDiscounts = (items: Item[]): number => {
     items.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
-        // Assuming a rebate is applied per item for larger quantities
         if (item.quantity > 3) {
             discount += item.price * 0.05 * item.quantity;
         }
     });
-    // 10% discount for orders over 300 DKK
     if (subtotal > 300) {
         discount += subtotal * 0.10;
     }

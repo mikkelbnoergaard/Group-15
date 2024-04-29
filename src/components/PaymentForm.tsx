@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
 
@@ -16,7 +16,7 @@ type PaymentFormProps = {
     orderForm: ReturnType<typeof useOrderForm>;
 };
 
-const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSavePaymentMethod,orderForm}) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSavePaymentMethod, orderForm}) => {
     const [paymentMethod, setPaymentMethod] = useState<string>('');
     const [giftCardAmount, setGiftCardAmount] = useState<string>('');
     const [giftCardNumber, setGiftCardNumber] = useState<string>('');
@@ -185,7 +185,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 </label>
             </div>
             <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
-            {showPopup && <TermsAndConditionsPopup onClose={closePopup} />}
+            {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
         </form>
     );
 };
