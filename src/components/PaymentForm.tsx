@@ -113,7 +113,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                 )}
                 <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
                         style={buttonStyle('giftCard')}>
-                    <img src={"https://i.imgur.com/9Zfikfo.png"} alt="Gift Card"
+                    <img src={"https://i.imgur.com/kVDHGcq.png"} alt="Gift Card"
                          style={{width: '75px', height: '75px', objectFit: 'contain'}}/>
                 </button>
                 {isInvoiceAvailable && !canUseGiftCardOnly && (
