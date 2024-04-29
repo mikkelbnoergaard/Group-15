@@ -96,6 +96,8 @@
     padding: 20px;
     margin: 10px;
     gap: 20px;
+    height: 240px;
+    width: auto;
 }
 
 body {

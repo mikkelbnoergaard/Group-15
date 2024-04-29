@@ -165,7 +165,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             <h2>Billing address</h2>
             <div>
                 <label>
-                    Country:
+                    *Country:
                     <input
                         type="text"
                         name="country"
@@ -176,7 +176,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div className={"input-wrapper"}>
                 <label>
-                    Zip Code:
+                    *Zip Code:
                     <input
                         type="text"
                         name="zip"
@@ -189,7 +189,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div>
                 <label>
-                    City:
+                    *City:
                     <input
                         type="text"
                         name="city"
@@ -201,7 +201,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div>
                 <label>
-                    Address Line 1:
+                    *Address Line 1:
                     <input
                         type="text"
                         name="addressLine1"
@@ -212,7 +212,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div>
                 <label>
-                    Address Line 2:
+                    &nbsp;Address Line 2:
                     <input
                         type="text"
                         name="addressLine2"
@@ -223,7 +223,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div>
                 <label>
-                    Name:
+                    *Name:
                     <input
                         type="text"
                         name="name"
@@ -234,7 +234,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div className={"input-wrapper"}>
                 <label>
-                    Phone:
+                    *Phone:
                     <input
                         type="text"
                         name="phone"
@@ -246,7 +246,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div className={"input-wrapper"}>
                 <label>
-                    Email:
+                    *Email:
                     <input
                         type="email"
                         name="email"
@@ -259,7 +259,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div>
                 <label>
-                    Company Name:
+                    &nbsp;Company Name:
                     <input
                         type="text"
                         name="companyName"
@@ -270,7 +270,7 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
             </div>
             <div className={"input-wrapper"}>
                 <label>
-                    Company VAT:
+                    &nbsp;Company VAT:
                     <input
                         type="text"
                         name="companyVAT"

@@ -1,28 +1,28 @@
 .button-container {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 250px;
+    justify-content: space-between; /* Placerer indhold med maksimal afstand mellem elementerne */
+    padding: 10px 250px 300px; /* Giver mere plads på siderne */
 }
 
 .button-left, .button-right {
-    padding: 10px 15px;
+    padding: 10px 15px; /* Tilføjer lidt padding til knapperne */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Giver knapperne let afrundede hjørner */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 16px; /* Justerer skriftstørrelsen */
 }
 
 .button-left {
-    background-color: #212121;
-    color: white;
+    background-color: #212121; /* Grøn baggrund for venstre knap */
+    color: white; /* Hvid tekstfarve */
 }
 
 .button-right {
-    background-color: #f4a261;
-    color: white;
+    background-color: #f4a261; /* Blå baggrund for højre knap */
+    color: white; /* Hvid tekstfarve */
 }
 
-.button-view-terms-conditions {
-    background-color: #212121;
-    color: white;
+.button-view-terms-conditions{
+    background-color: #212121; /* Grøn baggrund for venstre knap */
+    color: white; /* Hvid tekstfarve */
 }
