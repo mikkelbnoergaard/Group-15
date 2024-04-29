@@ -158,6 +158,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                 <div>
                 </div>
             )}
+            <span style={{display: 'block', height: '20px'}}></span>
             <div className="form-row">
                 <label htmlFor="order-comment">Order Comment:</label>
                 <textarea
