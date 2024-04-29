@@ -164,7 +164,7 @@ label input {
     margin-left: auto;
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 769px) {
 
     .basket-layout {
         flex-wrap: wrap;

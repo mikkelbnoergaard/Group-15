@@ -4,26 +4,6 @@
     background-color: white;
 }
 
-@media (max-width: 768px) {
-    /* Dette er et breakpoint for tablets og nedad */
-    .page-column-AFS {
-        /* Tilpas layout for mobile enheder */
-        flex-direction: column;
-        padding: 20px; /* mere plads på små skærme */
-    }
-    .header-top img {
-        width: 80px; /* mindre billede på små skærme */
-    }
-
-    .AddressFormColumn {
-        /* Gør form elementer bredere til at tage mere plads */
-        width: 100%;
-        max-width: none;
-        margin-left: 100px;
-        margin-right: 100px;
-    }
-}
-
 .AddressFormColumn {
     display: flex;
     justify-content: space-between;
@@ -71,3 +51,22 @@ h2 {
     right: 52%;
 }
 
+@media only screen and (max-width: 769px) {
+    /* Dette er et breakpoint for tablets og nedad */
+    .page-column-AFS {
+        /* Tilpas layout for mobile enheder */
+        flex-direction: column;
+        padding: 20px; /* mere plads på små skærme */
+    }
+    .header-top img {
+        width: 80px; /* mindre billede på små skærme */
+    }
+
+    .AddressFormColumn {
+        /* Gør form elementer bredere til at tage mere plads */
+        width: 90%;
+        max-width: none;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
