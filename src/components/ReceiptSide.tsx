@@ -4,7 +4,6 @@ import {AddressFields} from "./AddressForm";
 import {useOrderForm} from "./UseOrderForm";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
-import LoadingIndicator from "./LoadingIndicator.tsx";
 import './App.css';
 
 interface Item {
@@ -61,12 +60,14 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
     return (
         <div className="page-column">
             {isLoading ? (
-                <LoadingIndicator/>
+                <div className="overlay">
+                    <div className="loading-spinner"></div>
+                </div>
             ) : (
                 <>
 
                 <div className="header-top">
-                <img src="https://i.imgur.com/J5OAFS3.png"
+                    <img src="https://i.imgur.com/J5OAFS3.png"
                      style={{width: '120px', height: 'auto', borderRadius: '20px'}}/>
                     </div>
                     <ol id="progress-bar">
