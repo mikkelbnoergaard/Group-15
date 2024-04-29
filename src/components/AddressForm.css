@@ -60,15 +60,16 @@ h2 {
     }
 
     .AddressFormColumn {
-        width: 75%;
-        max-width: none;
-        margin-left: 50px;
         display: flex;
         justify-content: space-between;
         flex-grow: 1;
         flex-direction: column;
-        padding: 20px;
         background-color: #fff;
+        border-radius: 0px;
+        font-size: 14px;
+        width: 75%; /* Tilføj en bredde til elementet */
+        margin-left: auto; /* Centrer elementet horisontalt */
+        margin-right: auto;
     }
 
     .input-wrapper .error-message1 {
@@ -79,7 +80,5 @@ h2 {
         right: 52%;
         top: 0;
     }
-
-
 }
 
