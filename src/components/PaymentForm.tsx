@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
+import './PaymentForm.css';
 
 export interface PaymentInformation {
     method: string;
@@ -70,7 +71,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
         if (/^\d*$/.test(value) && value.length <= 8) {
             setMobilePayNumber(value);
             if (value.length !== 8) {
-                setMobilePayNumberError("Bobilepay number must be 8 digits");
+                setMobilePayNumberError("Mobilepay number must be 8 digits");
             } else {
                 setMobilePayNumberError("");
             }
@@ -112,7 +113,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                 )}
                 <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
                         style={buttonStyle('giftCard')}>
-                    <img src={"https://i.imgur.com/9Zfikfo.png"} alt="Gift Card"
+                    <img src={"https://i.imgur.com/kVDHGcq.png"} alt="Gift Card"
                          style={{width: '75px', height: '75px', objectFit: 'contain'}}/>
                 </button>
                 {isInvoiceAvailable && !canUseGiftCardOnly && (

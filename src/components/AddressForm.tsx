@@ -1,5 +1,5 @@
 import React, {useState, ChangeEvent, FocusEvent} from "react";
-import './AddressFormSide.css';
+import './AddressForm.css';
 
 export type AddressFields = {
     country: string;
@@ -141,9 +141,9 @@ const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAd
     };
     const validatePhone = (phone: string): string => {
         if (phone.length > 8) {
-            return "The phone number must not exceed 8 digits";
+            return "Must not exceed 8 digits";
         } else if (phone.length < 8 || isNaN(Number(phone))) {
-            return "The phone number must be 8 digits";
+            return "Must be 8 digits";
         }
         return "";
     };

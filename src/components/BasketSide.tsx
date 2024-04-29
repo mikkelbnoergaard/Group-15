@@ -107,7 +107,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
                     <div className="delete-button">
                         <button onClick={() => onRemoveItem(item.name)}>
                             <img src={"https://i.imgur.com/3ZyQkuC.png"}
-                                 style={{width: '30px', height: 'auto', borderRadius: '20px',}}/>
+                                 style={{width: '30px', height: 'auto', borderRadius: '20px'}}/>
                         </button>
                     </div>
                 </div>
@@ -184,7 +184,7 @@ const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
     };
 
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-BS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -211,7 +211,9 @@ const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
                 </div>
                 <div className="right-side2">
                     <div className="right-side1 special-class">
-                        <Total items={items} onUpdateTotal={handleUpdateTotal}/>
+                        <Total
+                            items={items}
+                            onUpdateTotal={handleUpdateTotal}/>
                         <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>

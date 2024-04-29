@@ -1,4 +1,5 @@
 import React from "react";
+import './Total.css';
 
 interface Item {
     name: string;
