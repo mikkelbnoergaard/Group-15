@@ -9,6 +9,7 @@ import {useOrderForm} from './UseOrderForm';
 import {AddressFields} from "./AddressForm.tsx";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx"
+import {useFetchProduct} from "../Hooks/UseFetchProduct.ts";
 
 type Item = {
     name: string;
@@ -33,11 +34,14 @@ const App = () => {
     const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInformation | null>(null);
 
+    const {products, loading, error} = useFetchProduct();
 
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
-            .then(response => response.json())
-            .then(data => setItems(data.map((item: Item) => ({
+        if(loading||error)  {
+            return;
+        }
+        if (products.length > 0) {
+        products.map((item: Item) => (setItems(prevItems => [...prevItems, {
                 ...item,
                 quantity: 0,
                 recurring: '',
@@ -46,9 +50,11 @@ const App = () => {
                 rebateQuantity: item.rebateQuantity || 0,
                 rebatePercent: item.rebatePercent || 0,
                 upsellProductId: item.upsellProductId || null,
-            }))))
-            .catch(error => console.error(error));
-    }, []);
+            },])))
+            }
+        console.log(loading,error,products)
+
+    }, [loading, error, products]);
 
     return (
         <Router>
