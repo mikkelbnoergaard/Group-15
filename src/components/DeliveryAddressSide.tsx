@@ -3,7 +3,7 @@
 
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import {useNavigate} from "react-router-dom";
-import { Address } from "./DeliveryAddress";
+import {Address} from "./DeliveryAddress";
 import './DeliveryAddress.css';
 import {useState} from "react";
 
@@ -15,7 +15,7 @@ interface CustomerProps {
 }
 
 
-const DeliveryAddressPage: React.FC<CustomerProps> = ({ onAddressSelected}) => {
+const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
     const [hasSelectedAddress, setHasSelectedAddress] = useState(false);
     const navigate = useNavigate();
     const handleAddressSelection = () => {
@@ -50,7 +50,7 @@ const DeliveryAddressPage: React.FC<CustomerProps> = ({ onAddressSelected}) => {
             </ol>
             <div className="flex-container">
                 <div className="right-side2">
-                    <DeliveryAddress  onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
+                    <DeliveryAddress onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
                 </div>
             </div>
             <div className="button-container">

@@ -32,7 +32,7 @@ button {
 
 .box1 {
     flex: 1;
-    border: 2px solid black; /* Tilføjer en 2px solid sort kant */
+    border: 2px solid black;
     padding: 10px;
     text-align: center;
     margin: 0 10px;

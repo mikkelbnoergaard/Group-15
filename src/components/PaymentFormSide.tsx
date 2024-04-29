@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {PaymentInformation} from "./PaymentForm.tsx"
 import {useState} from "react";
 import {useOrderForm} from "./UseOrderForm.tsx";
+
 interface Item {
     name: string;
     price: number;
@@ -13,6 +14,7 @@ interface Item {
     giftWrap?: boolean;
     recurring?: string;
 }
+
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
@@ -21,11 +23,18 @@ interface CustomerProps {
 }
 
 
-const PaymentFormPage:React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }>= ({items, totalAmount,CompanyVAT,onSavePaymentMethod,orderForm}) => {
+const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({
+                                                                                                       items,
+                                                                                                       totalAmount,
+                                                                                                       CompanyVAT,
+                                                                                                       onSavePaymentMethod,
+                                                                                                       orderForm
+                                                                                                   }) => {
     const [paymentMethodSelected, setPaymentMethodSelected] = useState<boolean>(false);
 
 
-    const handleUpdateTotal = () => {};
+    const handleUpdateTotal = () => {
+    };
 
 
     const navigate = useNavigate();
@@ -39,7 +48,6 @@ const PaymentFormPage:React.FC<CustomerProps & { orderForm: ReturnType<typeof us
     };
     const handleSavePaymentMethod = (paymentInfo: PaymentInformation) => {
         onSavePaymentMethod(paymentInfo);
-        // Update paymentMethodSelected state when a payment method is selected
         setPaymentMethodSelected(!!paymentInfo.method);
     };
     const goToDeliveryAddressSide = () => {
@@ -71,7 +79,8 @@ const PaymentFormPage:React.FC<CustomerProps & { orderForm: ReturnType<typeof us
                 <h2> Basket </h2>
                 <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT} onSavePaymentMethod={handleSavePaymentMethod} orderForm={orderForm}/>
+                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}
+                             onSavePaymentMethod={handleSavePaymentMethod} orderForm={orderForm}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>
