@@ -34,34 +34,21 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, a
 
     const navigate = useNavigate();
 
-    const goToDeliveryAddressSide = () => {
-        if (addressInfo?.zip == null) {
-            alert("Missing zip")
-            return
-        }
-        if (addressInfo?.city == null) {
-            alert("Missing City")
-            return
-        }
-        if (addressInfo?.addressLine1 == null) {
-            alert("Missing address")
-            return
-        }
-        if (addressInfo?.name == null) {
-            alert("Missing Name")
-            return
-        }
-        if (addressInfo?.phone == null) {
-            alert("Missing Phone")
-            return
-        }
-        if (addressInfo?.email == null) {
-            alert("Missing Email")
-            return
-        } else {
-            navigate('/DeliveryAddressPage');
-        }
-    }
+   const validateAddress = (): boolean => {
+           const requiredFields: (keyof AddressFields)[] = ['zip', 'addressLine1', 'name', 'phone', 'email'];
+           for (const field of requiredFields) {
+               if (!addressInfo || !addressInfo[field]) {
+                   alert(`Missing ${field.charAt(0).toUpperCase() + field.slice(1)}`);
+                   return false;
+               }
+           }
+           return true;
+       };
+       const goToDeliveryAddressSide = () => {
+           if (validateAddress()) {
+               navigate('/DeliveryAddressPage');
+           }
+       };
     const goToBasketSide = () => {
         navigate('/');
     }
