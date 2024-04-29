@@ -1,5 +1,5 @@
-import './BasketSide.css';
 import './App.css';
+import './PaymentForm.css';
 import PaymentForm from "./PaymentForm.tsx";
 import Total from "./Total.tsx";
 import {useNavigate} from "react-router-dom";
@@ -64,7 +64,7 @@ const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof u
 
     }
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-PFS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -76,12 +76,17 @@ const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof u
                 <li className="step-active">Payment</li>
                 <li className="step-todo">Summary</li>
             </ol>
-            <div className="right-side1">
+            <div className="Payment-Form">
                 <h2> Basket </h2>
-                <Total items={items} onUpdateTotal={handleUpdateTotal}/>
+                <Total
+                    items={items}
+                    onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}
-                             onSavePaymentMethod={handleSavePaymentMethod} orderForm={orderForm}/>
+                <PaymentForm
+                    totalAmount={totalAmount}
+                    companyVAT={CompanyVAT}
+                    onSavePaymentMethod={handleSavePaymentMethod}
+                    orderForm={orderForm}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>

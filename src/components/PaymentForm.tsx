@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
 import {useOrderForm} from "./UseOrderForm.tsx";
+import './PaymentForm.css';
 
 export interface PaymentInformation {
     method: string;

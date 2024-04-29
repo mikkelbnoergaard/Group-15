@@ -1,4 +1,15 @@
-.right-side2 {
+.page-column-DAS {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-DAS {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -10,7 +21,7 @@
     margin: 20px;
 }
 
-.right-side2 button {
+.right-side-DAS button {
     color: black;
     padding: 10px 15px;
     border: black;
@@ -19,6 +30,32 @@
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.address-label {
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.select-delivery-address select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }
 
 button {

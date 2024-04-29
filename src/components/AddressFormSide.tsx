@@ -1,7 +1,7 @@
 import AddressForm, {AddressFields} from "./AddressForm";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
-import './AddressFormSide.css';
+import './AddressForm.css';
 import './App.css';
 import React from "react";
 
@@ -44,6 +44,7 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, a
            return true;
        };
        const goToDeliveryAddressSide = () => {
+         navigate('/DeliveryAddressPage');
            if (validateAddress()) {
                navigate('/DeliveryAddressPage');
            }
