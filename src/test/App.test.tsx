@@ -51,36 +51,19 @@ describe('every product will get added to basket', () => {
         fireEvent.change(songbookInput, { target: { value: '1' } });
         const cowInput = inputs[3];
         fireEvent.change(cowInput, { target: { value: '1' } });
-        const antilopineKangarooInput = inputs[4];
-        fireEvent.change(antilopineKangarooInput, { target: { value: '1' } });
+        const chickenInput = inputs[4];
+        fireEvent.change(chickenInput, { target: { value: '1' } });
         const greyKangarooInput = inputs[5];
         fireEvent.change(greyKangarooInput, { target: { value: '1' } });
-        const hoppopotamusInput = inputs[6];
-        fireEvent.change(hoppopotamusInput, { target: { value: '1' } });
-        const footballInput = inputs[7];
+        const footballInput = inputs[6];
         fireEvent.change(footballInput, { target: { value: '1' } });
-        const squirrelInput = inputs[8];
-        fireEvent.change(squirrelInput, { target: { value: '1' } });
-        const toothbrushInput = inputs[9];
+        const toothbrushInput = inputs[7];
         fireEvent.change(toothbrushInput, { target: { value: '1' } });
-        const blobfishInput = inputs[10];
-        fireEvent.change(blobfishInput, { target: { value: '1' } });
-        const tetherballInput = inputs[11];
-        fireEvent.change(tetherballInput, { target: { value: '1' } });
-        const chargerInput = inputs[12];
-        fireEvent.change(chargerInput, { target: { value: '1' } });
-        const sodaInput = inputs[13];
-        fireEvent.change(sodaInput, { target: { value: '1' } });
-        const flightSuitInput = inputs[14];
-        fireEvent.change(flightSuitInput, { target: { value: '1' } });
-        const panInput = inputs[15];
-        fireEvent.change(panInput, { target: { value: '1' } });
-
-        const subtotalElement = await screen.findByText(/2227.85/i);
+        const subtotalElement = await screen.findByText(/556.14/i);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
         const subtotal = parseFloat(subtotalElement.textContent.replace(/[^0-9.-]+/g, ""));
-        const expectedSubtotal = 2227.85;
+        const expectedSubtotal = 556.14;
         expect(subtotal).toBeCloseTo(expectedSubtotal);
     });
 });
@@ -157,11 +140,11 @@ describe('validatePhone shows error message for too short input', () => {
         // Simulate user input of an invalid phone number
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
-        const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
+        const phoneInput = screen.getByLabelText(/Phone Number\*/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: '1234'}}); // Fire change event to simulate user input
 
         // Use findByText to wait for the error message to appear in the document asynchronously
-        const errorMessage = await screen.findByText("The phone number must be 8 digits");
+        const errorMessage = await screen.findByText("Must be 8 digits");
 
         // Assert that the error message is in the document
         expect(errorMessage).toBeInTheDocument();
@@ -174,10 +157,10 @@ describe('validatePhone shows error message for too long a number', () => {
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
-        const phoneInput = screen.getByLabelText(/Phone:/i); // Get the phone input by its label
+        const phoneInput = screen.getByLabelText(/Phone Number\*/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: '123456780'}}); // Fire change event to simulate user input
         // Use findByText to wait for the error message to appear in the document asynchronously
-        const errorMessage = await screen.findByText("The phone number must not exceed 8 digits");
+        const errorMessage = await screen.findByText("Must not exceed 8 digits");
         // Assert that the error message is in the document
         expect(errorMessage).toBeInTheDocument();
     });
@@ -205,7 +188,7 @@ describe('validateEmail shows error message if illegal email address', () => {
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
-        const phoneInput = screen.getByLabelText(/Email:/i); // Get the phone input by its label
+        const phoneInput = screen.getByLabelText(/Email\*/i); // Get the phone input by its label
         fireEvent.change(phoneInput, {target: {value: 'lola 123@hotmail.com'}}); // Fire change event to simulate user input
 
         // Use findByText to wait for the error message to appear in the document asynchronously
@@ -221,8 +204,8 @@ describe('validateZipcode shows error message if zipcode is not 4 digits', () =>
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
         // Simulate user input of an invalid phone number
-        const phoneInput = screen.getByLabelText(/Zip Code:/i); // Get the phone input by its label
-        fireEvent.change(phoneInput, {target: {value: '321'}}); // Fire change event to simulate user input
+        const zipInput = screen.getByLabelText(/Zip Code\*/i); // Get the phone input by its label
+        fireEvent.change(zipInput, {target: {value: '321'}}); // Fire change event to simulate user input
 
         // Use findByText to wait for the error message to appear in the document asynchronously
         const errorMessage = await screen.findByText("Postcode must be 4 digits");
@@ -249,7 +232,7 @@ describe('testing continue button', () => {
         fireEvent.click(button);
         const button2 = screen.getByText('Continue');
         fireEvent.click(button2);
-        const FindTermsandConditionsmessage = await screen.findByText("I accept the terms & conditions");
+        const FindTermsandConditionsmessage = await screen.findByText("Select delivery address:");
         // Assert that the error message is in the document
         expect(FindTermsandConditionsmessage).toBeInTheDocument();
     });
@@ -260,12 +243,25 @@ describe('testing view Terms and conditions popup', () => {
         render(<App/>);
         const button = screen.getByText('Go to checkout');
         fireEvent.click(button);
+        const zipInput = screen.getByLabelText(/Zip Code\*/i); // Get the phone input by its label
+        fireEvent.change(zipInput, {target: {value: '2100'}});
+        const addressInput = screen.getByLabelText(/Address Line 1\*/i); // Get the phone input by its label
+        fireEvent.change(addressInput, {target: {value: 'nyborhadde 4'}});
+        const nameInput = screen.getByLabelText(/Name\*/i); // Get the phone input by its label
+        fireEvent.change(nameInput, {target: {value: 'jaylo'}});
+        const phoneInput = screen.getByLabelText(/Phone Number\*/i); // Get the phone input by its label
+        fireEvent.change(phoneInput, {target: {value: '12345678'}});
+        const emailInput = screen.getByLabelText(/Email\*/i); // Get the phone input by its label
+        fireEvent.change(emailInput, {target: {value: 'niklas@hotmail.com'}});
         const button2 = screen.getByText('Continue');
         fireEvent.click(button2);
-        const button3 = screen.getByText('View Terms and Conditions');
-        fireEvent.click(button3);
-        const FindinTermsandConditionspopup = await screen.findByText("By proceeding with the purchase, you accept the following terms and conditions:");
+        const image = await screen.getByAltText('Kumasi, Ghana');
+        fireEvent.click(image);
+        const button4 = screen.getByText('Continue');
+        fireEvent.click(button4);
+        const FindinTermsandConditionspopup = await screen.findByText("View Terms and Conditions");
         // Assert that the error message is in the document
         expect(FindinTermsandConditionspopup).toBeInTheDocument();
     });
 });
+
