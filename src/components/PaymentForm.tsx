@@ -118,7 +118,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                 {isInvoiceAvailable && !canUseGiftCardOnly && (
                     <button type="button" onClick={() => handlePaymentMethodClick('invoice')}
                             style={buttonStyle('invoice')}>
-                        <img src={"https://i.imgur.com/vKuWIyM.png"} alt="Invoice"
+                        <img src={"https://i.imgur.com/BflFwJY.png"} alt="Invoice"
                              style={{width: '75px', height: '75px', objectFit: 'contain'}}/>
                     </button>
                 )}
