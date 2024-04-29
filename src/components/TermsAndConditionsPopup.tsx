@@ -1,4 +1,6 @@
 import React from "react";
+import './TermsAndConditionsPopup.css';
+import './buttons.css';
 
 const TermsAndConditionsPopup: React.FC<{ onClose: () => void }> = ({onClose}) => {
     return (
