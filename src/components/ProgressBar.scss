@@ -38,6 +38,7 @@ body {
     font-size: 16px;
     position: relative;
     text-align: center;
+    color: $Light-grey;
     &:before {
       width: 50px;
       height: 50px;
@@ -61,9 +62,9 @@ body {
       content: '';
       position: absolute;
       left: -50%;
-      background-color: transparent;
-      border-top: 1px solid $Light-grey;
-      top: 35%;
+      background-color: transparent; // Sæt dette til transparent
+      border-top: 1px solid $Light-grey; // Gør linjen øverst
+      top: 33%; // Centrer linjen
     }
     &:first-child:after {
       content: none;
