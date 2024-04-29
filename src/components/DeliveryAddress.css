@@ -84,7 +84,5 @@ button {
 }
 
 @media (max-width: 768px) {
-    .select-delivery-address {
-        flex-direction: column;
-    }
+
 }
