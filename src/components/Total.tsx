@@ -50,7 +50,7 @@ const calculateActualAmount = (items: Item[]) => {
     };
 
 };
-const Total1: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
+const Total: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
 
     const {subtotal, discount, total} = calculateActualAmount(items);
 
@@ -83,4 +83,4 @@ const Total1: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
     );
 };
 
-export default Total1;
+export default Total;

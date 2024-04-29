@@ -5,6 +5,7 @@ import {useOrderForm} from "./UseOrderForm";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
 import LoadingIndicator from "./LoadingIndicator.tsx";
+import './App.css';
 
 interface Item {
     name: string;
