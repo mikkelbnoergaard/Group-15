@@ -50,7 +50,7 @@ h2 {
     right: 52%;
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 768px) {
     /* Dette er et breakpoint for tablets og nedad */
     .page-column-AFS {
         /* Tilpas layout for mobile enheder */
