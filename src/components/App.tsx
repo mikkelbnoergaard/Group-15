@@ -9,6 +9,7 @@ import {useOrderForm} from './UseOrderForm';
 import {AddressFields} from "./AddressForm.tsx";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx"
+import {useFetchProduct} from "../Hooks/UseFetchProduct.ts";
 
 type Item = {
     name: string;
@@ -33,22 +34,30 @@ const App = () => {
     const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInformation | null>(null);
 
+    const {products, loading, error} = useFetchProduct();
 
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/mikkelbnoergaard/Group-15/main/src/assets/product.json')
-            .then(response => response.json())
-            .then(data => setItems(data.map((item: Item) => ({
-                ...item,
-                quantity: 0,
-                recurring: '',
-                id: item.id || "default_id",
-                currency: 'USD',
-                rebateQuantity: item.rebateQuantity || 0,
-                rebatePercent: item.rebatePercent || 0,
-                upsellProductId: item.upsellProductId || null,
-            }))))
-            .catch(error => console.error(error));
-    }, []);
+        if (loading || error) {
+            return;
+        }
+        if (products.length > 0) {
+            setItems(prevItems => {
+                if (prevItems.length === 0) {
+                    return products.map((product: Item) => ({
+                        ...product,
+                        quantity: 0,
+                        recurring: '',
+                        id: product.id || "default_id",
+                        currency: 'USD',
+                        rebateQuantity: product.rebateQuantity || 0,
+                        rebatePercent: product.rebatePercent || 0,
+                        upsellProductId: product.upsellProductId || null,
+                    }));
+                }
+                return prevItems;
+            });
+        }
+    }, [loading, error, products]);
 
     return (
         <Router>

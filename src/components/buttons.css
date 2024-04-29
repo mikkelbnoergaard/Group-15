@@ -26,3 +26,14 @@
     background-color: #212121; /* Grøn baggrund for venstre knap */
     color: white; /* Hvid tekstfarve */
 }
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column; /* Stabler knapperne vertikalt */
+        gap: 10px; /* Tilføjer plads mellem knapperne */
+    }
+
+    .button-left, .button-right {
+        width: 100%; /* Fuld bredde knapper på små skærme */
+    }
+}

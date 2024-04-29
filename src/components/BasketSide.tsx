@@ -1,6 +1,5 @@
 import './BasketSide.css';
-import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
-import {fetchProductData} from './fetchProductData';
+import React, {Dispatch, SetStateAction} from 'react';
 import Total from "./Total.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
@@ -141,15 +140,6 @@ type BasketProps = {
 
 
 const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
-    const [, setProductData] = useState([]);
-
-    useEffect(() => {
-        const getProductData = async () => {
-            const data = await fetchProductData();
-            setProductData(data);
-        }
-        getProductData().then(() => console.log("Product data fetched"));
-    }, []);
 
     const navigate = useNavigate();
 
