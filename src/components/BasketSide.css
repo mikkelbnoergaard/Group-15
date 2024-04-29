@@ -118,6 +118,21 @@ h2 {
     margin-left: 10px;
 }
 
+.quantity-container {
+    display: flex;
+    align-items: center; /* Centrerer elementerne vertikalt */
+    gap: 8px; /* Tilføjer lidt plads mellem elementerne */
+}
+
+.discount-message {
+    color: red;
+    margin-top: -12px; /* Fjern alle marginer for at sikre konsistent placering */
+    padding: 0; /* Fjern padding */
+    white-space: nowrap; /* Forhindrer tekst i at bryde over flere linjer */
+    font-size: 0.9em; /* Justér fontstørrelsen efter behov */
+    align-self: center; /* Centrerer fejlmeddelelsen vertikalt i flex containeren */
+}
+
 label {
     display: flex;
     justify-content: space-between;
