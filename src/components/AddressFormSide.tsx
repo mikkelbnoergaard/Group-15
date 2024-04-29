@@ -45,6 +45,7 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, a
            return true;
        };
        const goToDeliveryAddressSide = () => {
+         navigate('/DeliveryAddressPage');
            if (validateAddress()) {
                navigate('/DeliveryAddressPage');
            }
