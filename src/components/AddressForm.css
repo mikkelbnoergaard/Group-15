@@ -63,7 +63,7 @@ h2 {
 
     .AddressFormColumn {
         /* Gør form elementer bredere til at tage mere plads */
-        width: 75px;
+        width: 75%;
         max-width: none;
         margin-left: 50px;
         display: flex;
