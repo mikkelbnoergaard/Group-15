@@ -78,10 +78,15 @@ const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof u
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
-                <Total items={items} onUpdateTotal={handleUpdateTotal}/>
+                <Total
+                    items={items}
+                    onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
-                <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}
-                             onSavePaymentMethod={handleSavePaymentMethod} orderForm={orderForm}/>
+                <PaymentForm
+                    totalAmount={totalAmount}
+                    companyVAT={CompanyVAT}
+                    onSavePaymentMethod={handleSavePaymentMethod}
+                    orderForm={orderForm}/>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToDeliveryAddressSide}>Back</button>

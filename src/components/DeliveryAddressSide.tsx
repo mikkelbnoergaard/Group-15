@@ -48,7 +48,9 @@ const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
             </ol>
             <div className="flex-container">
                 <div className="right-side2">
-                    <DeliveryAddress onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
+                    <DeliveryAddress
+                        onAddressSelected={onAddressSelected}
+                        onAddressPicked={handleAddressSelection}/>
                 </div>
             </div>
             <div className="button-container">
