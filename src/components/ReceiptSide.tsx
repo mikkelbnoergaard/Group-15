@@ -51,9 +51,11 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
             });
 
             if (response.ok) {
+                setIsLoading(false)
                 console.log("Submission successful");
                 alert('Form submitted successfully!');
             } else {
+                setIsLoading(false)
                 console.error('Submission failed');
                 alert('Form submission failed!');
             }
