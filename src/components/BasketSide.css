@@ -13,6 +13,8 @@
     gap: 20px;
 }
 
+
+
 .basket-items {
     flex: 3;
     background-color: #fff;
@@ -160,4 +162,18 @@ label {
 label input {
     width: 50%;
     margin-left: auto;
+}
+
+@media only screen and (max-width: 430px) {
+
+    .basket-layout {
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+    }
+
+    .basket-Elements{
+        flex-direction: column;
+        max-height: fit-content;
+    }
+
 }
