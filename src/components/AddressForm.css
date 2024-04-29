@@ -21,6 +21,12 @@
         max-width: none;
         margin-left: 100px;
         margin-right: 100px;
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+        flex-direction: column;
+        padding: 20px;
+        background-color: #fff;
     }
 }
 
@@ -29,12 +35,11 @@
     justify-content: space-between;
     flex-grow: 1;
     flex-direction: column;
-    padding: 20px;
     background-color: #fff;
     border-radius: 0px;
     font-size: 14px;
-    margin-left: 400px;
-    margin-right: 400px;
+    padding-left: 400px;
+    padding-right: 400px;
 }
 
 h2 {
