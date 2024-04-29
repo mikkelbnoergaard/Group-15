@@ -1,17 +1,25 @@
-.Address-Form-Row {
-    flex-direction: row;
-    display: flex;
-    border: none;
-    padding: 10px;
-    align-items: center;
-    background-color: white; /* Ændret til hvid */
-    justify-content: space-between;
-}
-
 .page-column-AFS {
     flex-direction: column;
     display: flex;
     background-color: white;
+}
+
+@media (max-width: 768px) {
+    /* Dette er et breakpoint for tablets og nedad */
+    .page-column-AFS {
+        /* Tilpas layout for mobile enheder */
+        flex-direction: column;
+        padding: 20px; /* mere plads på små skærme */
+    }
+    .header-top img {
+        width: 80px; /* mindre billede på små skærme */
+    }
+
+    .AddressFormColumn {
+        /* Gør form elementer bredere til at tage mere plads */
+        width: 100%;
+        max-width: none;
+    }
 }
 
 .AddressFormColumn {

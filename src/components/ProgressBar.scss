@@ -20,6 +20,13 @@ body {
   }
 }
 
+@media (max-width: 768px) { /* Dette er et breakpoint for tablets og nedad */
+  #progress-bar li {
+    /* Gør progress bar elementerne mindre eller skjul dem om nødvendigt */
+    font-size: 12px; /* mindre tekst */
+  }
+}
+
 // Progress bar
 #progress-bar {
   display: table;
