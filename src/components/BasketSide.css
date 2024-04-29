@@ -45,9 +45,8 @@
 }
 
 .header-top {
-    flex-direction:column;
+    flex-direction: column;
     display: flex;
-    /*border: 1px solid #ccc;*/
     padding: 20px;
     align-items: center;
     justify-content: center;
@@ -63,8 +62,8 @@
 
 .basket-layout {
     display: flex;
-    flex-direction: row; /* or column, depending on your layout */
-    align-items: flex-start; /* This aligns children to the top */
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 50px;
     gap: 20px;
@@ -72,22 +71,22 @@
 
 .basket-items {
     flex: 3;
-    background-color: #fff; /* White background for the content */
-    border-radius: 0px; /* Slightly rounded corners for the boxes */
-    margin-bottom: 20px; /* Space from the bottom */
+    background-color: #fff;
+    border-radius: 0px;
+    margin-bottom: 20px;
     background-color: white;
-    border:0.5px solid #909090;
+    border: 0.5px solid #909090;
 }
 
 .basket-items2 {
     flex: 3;
-    padding: 0px; /* Inner spacing */
-    border-radius: 0px; /* Slightly rounded corners for the boxes */
-    margin-bottom: 20px; /* Space from the bottom */
+    padding: 0px;
+    border-radius: 0px;
+    margin-bottom: 20px;
 }
 
-.spacing-giftwrap{
-    margin-left: 10px; /* Juster værdien efter behov */
+.spacing-giftwrap {
+    margin-left: 10px;
 }
 
 .basket-Elements {
@@ -100,7 +99,7 @@
 }
 
 body {
-    background-color: #F5F5F5; /* Ændret til en mørkere hvid */
+    background-color: #F5F5F5;
 }
 
 .product-details {
@@ -121,6 +120,7 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
 .address-label {
     font-size: 25px;
     font-weight: bold;
@@ -140,12 +140,12 @@ body {
 }
 
 h2 {
-    font-size: 18px; /* Juster værdien for ønsket skriftstørrelse */
+    font-size: 18px;
 
 }
 
 .right-side1:not(:last-child) {
-    margin-bottom: 20px; /* or the amount of space you want between the boxes */
+    margin-bottom: 20px;
 }
 
 .special-class {
@@ -153,7 +153,7 @@ h2 {
 }
 
 .right-side1 button {
-    background-color: #f4a261; /* Set your desired background color */
+    background-color: #f4a261;
     color: antiquewhite;
     padding: 10px 15px;
     border: none;
@@ -176,7 +176,7 @@ h2 {
     border-radius: 0px;
     margin-bottom: 20px;
     flex: 1;
-    align-self: flex-start; /* This will override the parent alignment if necessary */
+    align-self: flex-start;
 }
 
 .terms-conditions-layout {
@@ -211,16 +211,16 @@ h2 {
 .discount-container,
 .total-container {
     display: flex;
-    justify-content: space-between; /* Adjust the value as needed */
-    margin-bottom: 10px; /* Adjust the value as needed */
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .label {
-    margin-right: 20px; /* Adjust the value as needed */
+    margin-right: 20px;
 }
 
 .text-field-right {
-    margin-right: 10px; /* Adjust the value as needed */
+    margin-right: 10px;
     flex-direction: row-reverse;
 }
 
@@ -238,7 +238,7 @@ quantityField {
 }
 
 .quantity-input {
-    margin-left: 10px; /* Juster værdien efter behov */
+    margin-left: 10px;
 }
 
 .row-container-text-field {
@@ -249,19 +249,19 @@ quantityField {
 }
 
 .label-container {
-    flex-basis: 20%; /* Adjust the width as needed */
+    flex-basis: 20%;
     text-align: left;
 }
 
 .text-field-container {
-    flex-basis: 75%; /* Adjust the width as needed */
+    flex-basis: 75%;
 }
 
 .text-field {
     width: 100%;
 }
 
-/* Apply similar styles to other labels and inputs */
+
 label {
     display: flex;
     justify-content: space-between;
@@ -270,28 +270,28 @@ label {
 }
 
 label input {
-    width: 50%; /* Adjust the width as needed */
-    margin-left: auto; /* This pushes the input to the right */
+    width: 50%;
+    margin-left: auto;
 }
 
 .popup-overlay {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .popup-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s;
 }
@@ -319,7 +319,7 @@ label input {
     }
 }
 
-/* Form layout and alignment */
+
 .form-row {
     display: flex;
     flex-direction: column;
@@ -328,18 +328,18 @@ label input {
 
 .form-row label {
     margin-bottom: 5px;
-    font-weight: bold; /* Make labels bold for better readability */
+    font-weight: bold;
 }
 
-/* Textarea specific styles */
+
 .form-row textarea {
-    width: 100%; /* Full width of the container */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px; /* Slightly rounded corners for aesthetics */
-    resize: vertical; /* Allow only vertical resize */
+    border-radius: 4px;
+    resize: vertical;
 }
-/* Checkbox specific styles */
+
 .form-checkbox {
     display: flex;
     align-items: center;
@@ -353,75 +353,25 @@ label input {
 }
 
 .form-checkbox input[type="checkbox"] {
-    margin-right: 10px; /* Spacing between checkbox and label text */
+    margin-right: 10px;
 }
 
-/* Select dropdown specific styles */
+
 .select-delivery-address select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 20px; /* Spacing after the select dropdown */
-}
-
-.submitButton {
-    cursor: pointer;
-    outline: none;
-    font-size: 16px;
-    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-    color: white; /* Tekstfarve */
-    padding: 1em 2em; /* Juster padding for størrelse på knappen */
-    border-radius: 0px; /* Afrundede hjørner */
-    border: none; /* Ingen kant */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Indre skygge */ 0 7px 20px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-    position: relative; /* For pseudo-elementer */
-}
-
-/* Pseudo-element for ekstra effekt */
-.submitButton:before {
-    content: '';
-    position: absolute;
-    top: -5px; /* Juster position */
-    right: -5px; /* Juster position */
-    bottom: -5px; /* Juster position */
-    left: -5px; /* Juster position */
-    z-index: -1;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 0px; /* Skal være større end knappens border-radius */
-    transition: opacity 0.3s ease-in-out;
-}
-
-
-/* Hover effekt */
-.submitButton:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), /* Indre skygge */ 0 15px 35px rgba(0, 0, 0, 0.2); /* Ydre glød/skygge */
-    transform: translateY(-2px);
-}
-
-.submitButton:hover:before {
-    opacity: 0; /* Gør pseudo-elementet usynligt ved hover */
-}
-
-/* Fokus og aktive tilstande for tilgængelighed */
-.submitButton:focus,
-.submitButton:active {
-    box-shadow: 0 0 0 3px rgba(70, 102, 255, 0.5); /* Tilgængelighed: outline effekt */
-}
-
-/* Stil til tekst inden i knappen, hvis nødvendigt */
-.submitButton .text {
-    /* Stil til tekst går her */
+    margin-bottom: 20px;
 }
 
 .AddressForm input, .form-row textarea {
-    border-radius: 0px; /* Ændret til 0px for firkantede kanter */
-    border: 0.5px solid #ccc; /* Ændret til 0.5px for tyndere kanter */
+    border-radius: 0px;
+    border: 0.5px solid #ccc;
 }
 
 select {
-    border-radius: 0px; /* Ændret til 0px for firkantede kanter */
+    border-radius: 0px;
 }
 
 @keyframes spin {
@@ -470,7 +420,7 @@ select {
 }
 
 .box-image {
-    width: 100px; /* Billedets bredde */
-    height: 100px; /* Billedets højde */
-    object-fit: cover; /* Sørger for at billedet dækker hele området uden at miste proportionerne */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }

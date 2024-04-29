@@ -14,6 +14,7 @@ interface Item {
     giftWrap?: boolean;
     recurring?: string;
 }
+
 interface CustomerProps {
     items: Item[];
     totalAmount: number;
@@ -22,11 +23,11 @@ interface CustomerProps {
 }
 
 
-const CheckoutPage:React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo} ) => {
+const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo}) => {
 
 
     const handleSubmitAddress = (address: AddressFields) => {
-        setAddressInfo(address); // Update the address info state
+        setAddressInfo(address);
     };
 
     const navigate = useNavigate();
@@ -40,29 +41,29 @@ const CheckoutPage:React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo} ) 
 
     return (
         <div className={"page-background"}>
-        <div className={"page-column"}>
-            <div className={"header-top"}>
-                <img src={"https://i.imgur.com/J5OAFS3.png"}
-                     style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
-            </div>
-            <ol id="progress-bar">
-                <li className="step-done">Basket</li>
-                <li className="step-active">Customer information</li>
-                <li className="step-todo">Delivery address</li>
-                <li className="step-todo">Payment</li>
-                <li className="step-todo">Summary</li>
-            </ol>
+            <div className={"page-column"}>
+                <div className={"header-top"}>
+                    <img src={"https://i.imgur.com/J5OAFS3.png"}
+                         style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
+                </div>
+                <ol id="progress-bar">
+                    <li className="step-done">Basket</li>
+                    <li className="step-active">Customer information</li>
+                    <li className="step-todo">Delivery address</li>
+                    <li className="step-todo">Payment</li>
+                    <li className="step-todo">Summary</li>
+                </ol>
                 <div className="AddressFormColumn">
                     <AddressForm
                         onCompanyVATChange={setCompanyVAT}
                         onSubmitAddress={handleSubmitAddress}
                     />
                 </div>
-            <div className={"button-container"}>
-                <button className={"button-left"} onClick={goToBasketSide}>Back</button>
-                <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>
+                <div className={"button-container"}>
+                    <button className={"button-left"} onClick={goToBasketSide}>Back</button>
+                    <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>
+                </div>
             </div>
-        </div>
         </div>
     );
 }

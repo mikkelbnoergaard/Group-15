@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
 import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
-import { fetchProductData } from './fetchProductData';
+import {fetchProductData} from './fetchProductData';
 import Total1 from "./Total1.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
@@ -12,7 +12,7 @@ interface ProductItem {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Notice the optional `recurring`
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -27,7 +27,6 @@ interface BasketItemProps {
     onToggleGiftWrap: (name: string) => void;
     onChangeRecurring: (name: string, schedule: string) => void;
 }
-
 
 
 const BasketItem: React.FC<BasketItemProps> = ({
@@ -123,7 +122,7 @@ type Item = {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Should also be optional here if it's optional in ProductItem
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -139,7 +138,7 @@ type BasketProps = {
 };
 
 
-const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
+const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
     const [, setProductData] = useState([]);
 
     useEffect(() => {

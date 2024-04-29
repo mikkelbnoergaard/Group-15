@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 
 export const useOrderForm = () => {
     const [termsChecked, setTermsChecked] = useState(false);

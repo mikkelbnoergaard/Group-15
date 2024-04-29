@@ -4,7 +4,7 @@
     border: 1px solid #ccc;
     padding: 10px;
     align-items: center;
-    background-color: #FFFFFF; /* Ændret til hvid */
+    background-color: #FFFFFF;
     justify-content: space-between;
 }
 
@@ -18,29 +18,29 @@ h2 {
     font-size: 14px;
 }
 
-.AddressFormV2{
+.AddressFormV2 {
     flex-direction: row;
 }
 
 .error-message {
-    color: red; /* Eller den farve du ønsker for fejlbeskeder */
-    margin-right: 870px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
-    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
-    position: absolute; /* Absolut positionering i forhold til nærmeste relative container */
-    right: 0; /* Starter fra den højre side af .input-row */
+    color: red;
+    margin-right: 870px;
+    white-space: nowrap;
+    position: absolute;
+    right: 0;
 }
 
-/* Stil containeren for input og fejlbesked */
+
 .input-container {
-    display: flex; /* Anvend flexbox til at organisere børnene side om side */
-    align-items: center; /* Centrer elementerne vertikalt */
-    gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Du kan tilføje stilarter for at kontrollere bredden af input for at forhindre det i at fylde hele bredden */
+
 .input-container input {
-    flex-grow: 1; /* Lad inputfeltet tage den tilgængelige plads */
-    margin-right: auto; /* Dette skubber fejlbeskeden til højre */
+    flex-grow: 1;
+    margin-right: auto;
 }
 
 .AddressFormColumn {
@@ -68,9 +68,9 @@ h2 {
 }
 
 .input-wrapper .error-message1 {
-    margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+    margin-left: 10px;
     color: red;
-    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+    white-space: nowrap;
     position: absolute;
     right: 52%;
 }

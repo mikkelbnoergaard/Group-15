@@ -61,9 +61,9 @@ body {
       content: '';
       position: absolute;
       left: -50%;
-      background-color: transparent; // Sæt dette til transparent
-      border-top: 1px solid $Light-grey; // Gør linjen øverst
-      top: 35%; // Centrer linjen
+      background-color: transparent;
+      border-top: 1px solid $Light-grey;
+      top: 35%;
     }
     &:first-child:after {
       content: none;
@@ -74,15 +74,15 @@ body {
 
       &:before {
         content: "\f00c";
-        font-family: "Font Awesome 5 Free"; /* Make sure this is correct */
-        font-weight: 900; /* Solid style icons need this font-weight */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
         color: #fff;
         background-color: $main-color;
         border-color: $main-color;
       }
       & + li:after {
         background-color: transparent;
-        border-top: 4px solid $main-color; // Gør linjen øverst
+        border-top: 4px solid $main-color;
       }
     }
     &.step-active {

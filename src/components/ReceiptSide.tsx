@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import { AddressFields } from "./AddressForm";
-import { useOrderForm } from "./UseOrderForm";
-import { Address } from "./DeliveryAddress";
+import {useNavigate} from "react-router-dom";
+import {AddressFields} from "./AddressForm";
+import {useOrderForm} from "./UseOrderForm";
+import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
+
 interface Item {
     name: string;
     price: number;
@@ -22,7 +23,7 @@ interface CustomerProps {
     paymentInfo: PaymentInformation | null;
 }
 
-const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm }) => {
+const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, selectedAddress, orderForm}) => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -59,7 +60,8 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
     return (
         <div className="page-column">
             <div className="header-top">
-                <img src="https://i.imgur.com/J5OAFS3.png" style={{ width: '120px', height: 'auto', borderRadius: '20px' }} />
+                <img src="https://i.imgur.com/J5OAFS3.png"
+                     style={{width: '120px', height: 'auto', borderRadius: '20px'}}/>
             </div>
             <ol id="progress-bar">
                 <li className="step-done">Basket</li>
