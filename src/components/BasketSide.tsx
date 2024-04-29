@@ -59,17 +59,19 @@ const BasketItem: React.FC<BasketItemProps> = ({
                     </div>
                     <div>Price: ${item.price}
                     </div>
-                    <div>Quantity:
+                    <div className={"quantity-container"}>
+                    <label>Quantity:
                         <input
                             className="quantity-input"
                             type="number"
                             value={item.quantity}
                             min="0"
                             onChange={(e) => onChangeQuantity(item.name, parseInt(e.target.value))}
-                            style={{width: "24px"}}
+                            style={{width: "50px"}}
                         />
+                    </label>
+                    {discountMessage && <div className={"discount-message"}>{discountMessage}</div>}
                     </div>
-                    {discountMessage && <div style={{color: 'red', marginTop: '10px'}}>{discountMessage}</div>}
                     <div>
                         <label>
                             Gift Wrap:
