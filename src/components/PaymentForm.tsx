@@ -174,7 +174,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                            checked={orderForm.termsChecked}
                            onChange={orderForm.handleCheckboxChange}
                     />
-                    <span>I accept the terms & conditions</span>
+                    <span>I accept the terms & conditions*</span>
                 </label>
             </div>
             <div className="form-checkbox">
