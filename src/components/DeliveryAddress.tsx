@@ -38,7 +38,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ onAddressSelected, on
 
     return (
         <div>
-            <label className="address-label">Select Delivery Address:</label>
+            <label className="address-label">Select delivery address:</label>
             <div className={"select-delivery-address"}>
                 <div className="box-container">
                     {preDefinedAddresses.map((address, index) => (
