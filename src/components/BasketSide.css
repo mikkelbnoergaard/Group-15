@@ -126,7 +126,7 @@ h2 {
 
 .discount-message {
     color: red;
-    margin-top: -12px; /* Fjern alle marginer for at sikre konsistent placering */
+    margin-top: -10px; /* Fjern alle marginer for at sikre konsistent placering */
     padding: 0; /* Fjern padding */
     white-space: nowrap; /* Forhindrer tekst i at bryde over flere linjer */
     font-size: 0.9em; /* Justér fontstørrelsen efter behov */
