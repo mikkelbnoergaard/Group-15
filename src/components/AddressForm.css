@@ -3,19 +3,19 @@
     display: flex;
     background-color: white;
 }
-
-.AddressFormColumn {
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 0px;
-    font-size: 14px;
-    padding-left: 400px;
-    padding-right: 400px;
+@media (min-width: 768px) {
+    .AddressFormColumn {
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 0px;
+        font-size: 14px;
+        padding-left: 400px;
+        padding-right: 400px;
+    }
 }
-
 h2 {
     align-items: center;
     padding-bottom: 20px;
