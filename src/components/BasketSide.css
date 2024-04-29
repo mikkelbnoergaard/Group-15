@@ -168,7 +168,7 @@ label input {
 
     .basket-layout {
         flex-wrap: wrap;
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .basket-Elements{
