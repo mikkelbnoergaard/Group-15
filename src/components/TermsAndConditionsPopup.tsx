@@ -1,4 +1,6 @@
 import React from "react";
+import './TermsAndConditionsPopup.css';
+import './buttons.css';
 
 const TermsAndConditionsPopup: React.FC<{ onClose: () => void }> = ({onClose}) => {
     return (
@@ -6,8 +8,8 @@ const TermsAndConditionsPopup: React.FC<{ onClose: () => void }> = ({onClose}) =
             <div className="popup-content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Terms and Conditions</h2>
-                <ol>
-                    <li>By proceeding with the purchase, you accept the following terms and conditions:</li>
+                    <li>By proceeding with the purchase, you accept the following terms and conditions:
+                    </li>
                     <li>You agree that the sender assumes full responsibility for any damages or losses you may suffer
                         as a result of the delivered goods. This includes any form of personal injury or property damage
                         caused by the goods.
@@ -20,8 +22,6 @@ const TermsAndConditionsPopup: React.FC<{ onClose: () => void }> = ({onClose}) =
                     </li>
                     <li>The sender reserves the right to change or update these terms and conditions without notice.
                     </li>
-                </ol>
-                <p>By proceeding with the purchase, you confirm that you accept the above terms and conditions.</p>
                 <button className="button-view-terms-conditions" onClick={onClose}>Close</button>
             </div>
         </div>

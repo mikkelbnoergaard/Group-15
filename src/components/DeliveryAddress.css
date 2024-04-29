@@ -1,0 +1,84 @@
+.page-column-DAS {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-DAS {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 2px;
+    flex: 1;
+    margin: 20px;
+}
+
+.right-side-DAS button {
+    color: black;
+    padding: 10px 15px;
+    border: black;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.address-label {
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.select-delivery-address select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+button {
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 1000px;
+    padding: 9px 10px;
+    cursor: pointer;
+}
+
+.box1 {
+    flex: 1;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    background-color: white;
+}
+
+.box1.selected {
+    border: 2px solid black;
+}

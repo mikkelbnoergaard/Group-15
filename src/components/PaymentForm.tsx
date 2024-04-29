@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
+import TermsAndConditionsPopup from "./TermsAndConditionsPopup.tsx";
+import {useOrderForm} from "./UseOrderForm.tsx";
+import './PaymentForm.css';
 
 export interface PaymentInformation {
     method: string;
@@ -11,23 +14,24 @@ type PaymentFormProps = {
     totalAmount: number;
     companyVAT?: string;
     onSavePaymentMethod: (paymentInfo: PaymentInformation) => void;
+    orderForm: ReturnType<typeof useOrderForm>;
 };
 
-const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSavePaymentMethod}) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSavePaymentMethod, orderForm}) => {
     const [paymentMethod, setPaymentMethod] = useState<string>('');
     const [giftCardAmount, setGiftCardAmount] = useState<string>('');
     const [giftCardNumber, setGiftCardNumber] = useState<string>('');
     const [mobilePayNumber, setMobilePayNumber] = useState<string>('');
     const [mobilePayNumberError, setMobilePayNumberError] = useState<string>('');
     const [isFullyCoveredByGiftCard, setIsFullyCoveredByGiftCard] = useState<boolean>(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        const giftAmount = parseFloat(giftCardAmount || '0'); // Use '0' as fallback
+        const giftAmount = parseFloat(giftCardAmount || '-1');
         setIsFullyCoveredByGiftCard(giftAmount >= totalAmount);
     }, [giftCardAmount, totalAmount]);
 
     useEffect(() => {
-        // Tjekker om der er en betalingsmetode valgt før opkald til savePaymentMethod
         if (paymentMethod) {
             savePaymentMethod();
         }
@@ -44,7 +48,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     }, [giftCardAmount, totalAmount]);
 
     const savePaymentMethod = () => {
-        // Initialize paymentInfo with the method property
         const paymentInfo: PaymentInformation = {
             method: paymentMethod,
         };
@@ -61,8 +64,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
 
     const handlePaymentMethodClick = (method: string) => {
         setPaymentMethod(method);
-        // Call savePaymentMethod after state update
-        setTimeout(() => savePaymentMethod(), 0);
     };
 
     const handleMobilePayNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,9 +71,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
         if (/^\d*$/.test(value) && value.length <= 8) {
             setMobilePayNumber(value);
             if (value.length !== 8) {
-                setMobilePayNumberError("The mobilepay number must be 8 digits");
+                setMobilePayNumberError("Mobilepay number must be 8 digits");
             } else {
-                setMobilePayNumberError(""); // Ryd fejlen, når betingelsen er opfyldt
+                setMobilePayNumberError("");
             }
         }
         if (value.length === 8) {
@@ -83,19 +84,20 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
     const handleNumericChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (value.length < 8) {
-            if (/^\d*$/.test(value)) { // Tjekker om værdien kun indeholder tal
+            if (/^\d*$/.test(value)) {
                 setter(value);
             }
         }
-        setter(value); // This sets either giftCardAmount or giftCardNumber based on the caller
-        // Call savePaymentMethod after state update
+        setter(value);
         setTimeout(() => savePaymentMethod(), 0);
     };
     const buttonStyle = (method: string) => ({
         background: 'transparent',
-        border: paymentMethod === method ? '2px solid black' : 'none', // Conditional border
-        padding: 0
+        border: paymentMethod === method ? '0.5px solid black' : 'none'
     });
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
 
     return (
@@ -110,32 +112,32 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 )}
                 <button type="button" onClick={() => handlePaymentMethodClick('giftCard')}
                         style={buttonStyle('giftCard')}>
-                    <img src={"https://i.imgur.com/9Zfikfo.png"} alt="Gift Card"
+                    <img src={"https://i.imgur.com/kVDHGcq.png"} alt="Gift Card"
                          style={{width: '75px', height: '75px', objectFit: 'contain'}}/>
                 </button>
                 {isInvoiceAvailable && !canUseGiftCardOnly && (
                     <button type="button" onClick={() => handlePaymentMethodClick('invoice')}
                             style={buttonStyle('invoice')}>
-                        <img src={"https://i.imgur.com/vKuWIyM.png"} alt="Invoice"
+                        <img src={"https://i.imgur.com/BflFwJY.png"} alt="Invoice"
                              style={{width: '75px', height: '75px', objectFit: 'contain'}}/>
                     </button>
                 )}
             </div>
+            <span style={{display: 'block', height: '20px'}}></span>
 
-            {/* Conditional input rendering */}
             {paymentMethod === 'giftCard' && (
                 <div>
                     <input
                         type="text"
                         value={giftCardAmount}
                         onChange={handleNumericChange(setGiftCardAmount)}
-                        placeholder="Enter gift card amount"
+                        placeholder="Gift card amount"
                     />
                     <input
                         type="text"
                         value={giftCardNumber}
                         onChange={handleNumericChange(setGiftCardNumber)}
-                        placeholder="Enter gift card number"
+                        placeholder="Gift card number"
                     />
                 </div>
             )}
@@ -146,7 +148,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                         type="text"
                         value={mobilePayNumber}
                         onChange={handleMobilePayNumberChange}
-                        placeholder="Enter MobilePay number"
+                        placeholder="MobilePay number"
                     />
                     {mobilePayNumberError && <div style={{color: 'red'}}>{mobilePayNumberError}</div>}
                 </div>
@@ -156,6 +158,36 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT,onSave
                 <div>
                 </div>
             )}
+            <span style={{display: 'block', height: '20px'}}></span>
+            <div className="form-row">
+                <label htmlFor="order-comment">Order Comment:</label>
+                <textarea
+                    id="order-comment"
+                    value={orderForm.orderComment}
+                    onChange={orderForm.handleOrderCommentChange}
+                    placeholder="Any special instructions?"
+                />
+            </div>
+            <div className="form-checkbox">
+                <label>
+                    <input type="checkbox"
+                           checked={orderForm.termsChecked}
+                           onChange={orderForm.handleCheckboxChange}
+                    />
+                    <span>I accept the terms & conditions</span>
+                </label>
+            </div>
+            <div className="form-checkbox">
+                <label>
+                    <input type="checkbox"
+                           checked={orderForm.marketingChecked}
+                           onChange={orderForm.handleMarketingCheckboxChange}
+                    />
+                    <span>I agree to receive marketing emails</span>
+                </label>
+            </div>
+            <button type="button" onClick={() => setShowPopup(true)}>View Terms and Conditions</button>
+            {showPopup && <TermsAndConditionsPopup onClose={closePopup}/>}
         </form>
     );
 };

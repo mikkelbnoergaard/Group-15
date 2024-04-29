@@ -1,9 +1,13 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
-import { AddressFields } from "./AddressForm";
-import { useOrderForm } from "./UseOrderForm";
-import { Address } from "./DeliveryAddress";
+import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
+import {AddressFields} from "./AddressForm";
+import {useOrderForm} from "./UseOrderForm";
+import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
+import './App.css';
+import './Receipt.css';
+import './buttons.css';
+
 interface Item {
     name: string;
     price: number;
@@ -22,37 +26,18 @@ interface CustomerProps {
     paymentInfo: PaymentInformation | null;
 }
 
-const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,selectedAddress, orderForm,paymentInfo }) => {
+const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, selectedAddress, orderForm}) => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const goBack = () => {
         navigate('/PaymentFormPage');
     };
 
-    const paymentSummary = () => {
-        if (!paymentInfo) return ''; // If no paymentInfo is provided, return an empty string
-
-        let summary = `Payment Method: ${paymentInfo.method}`;
-        if (paymentInfo.method === 'giftCard' && paymentInfo.giftCardNumber) {
-            summary += `; Gift Card Number: ${paymentInfo.giftCardNumber}`;
-        }
-        if (paymentInfo.giftCardAmount) {
-            summary += `; Amount Used: $${paymentInfo.giftCardAmount.toFixed(2)}`;
-        }
-        if (paymentInfo.method === 'mobilePay' && paymentInfo.mobilePayNumber) {
-            summary += `; MobilePay Number: ${paymentInfo.mobilePayNumber}`;
-        }
-        if (paymentInfo.giftCardAmount && paymentInfo.mobilePayNumber) {
-            const remainingAmount = totalAmount - paymentInfo.giftCardAmount;
-            summary += `; Remaining Amount Paid with MobilePay: $${remainingAmount.toFixed(2)}`;
-        }
-
-        return summary;
-    };
 
     const handleSubmit = async () => {
-        if (addressInfo !== null) {
-            const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
+        setIsLoading(true)
+        const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,20 +51,28 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
             });
 
             if (response.ok) {
+                setIsLoading(false)
                 console.log("Submission successful");
                 alert('Form submitted successfully!');
             } else {
+                setIsLoading(false)
                 console.error('Submission failed');
+                alert('Form submission failed!');
             }
-        } else {
-            console.error('Address information is missing');
-        }
     };
 
     return (
-        <div className="page-column">
-            <div className="header-top">
-                <img src="https://i.imgur.com/J5OAFS3.png" style={{ width: '120px', height: 'auto', borderRadius: '20px' }} />
+        <div className="page-column-BS">
+            {isLoading ? (
+                <div className="overlay">
+                    <div className="loading-spinner"></div>
+                </div>
+            ) : (
+                <>
+
+                <div className="header-top">
+                    <img src="https://i.imgur.com/J5OAFS3.png"
+                     style={{width: '120px', height: 'auto', borderRadius: '20px'}}/>
             </div>
             <ol id="progress-bar">
                 <li className="step-done">Basket</li>
@@ -88,15 +81,14 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
                 <li className="step-done">Payment</li>
                 <li className="step-active">Summary</li>
             </ol>
-            <div className="content">
-                <h3 style={{textAlign: 'center'}}>Summary </h3>
+                <h2 style={{textAlign: 'center'}}>Summary </h2>
                 <h3 style={{textAlign: 'center'}}>Items</h3>
                 <ul style={{listStyleType: 'none', paddingLeft: 0, textAlign: 'center'}}>
                     {items.filter(item => item.quantity > 0).map((item, index) => (
                         <li key={index}>
                             {item.name} - {item.quantity} x ${item.price.toFixed(2)}
                             {item.giftWrap && <span> - (Gift Wrapped)</span>}
-                            {" - (Recurring  " + item.recurring + ")"}
+                            {item.recurring && <span> - (Recurring: {item.recurring})</span>}
                         </li>
                     ))}
                 </ul>
@@ -131,12 +123,12 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
                         <p>{orderForm.orderComment}</p>
                     </div>
                 )}
-                <p>{paymentSummary()}</p>
-            </div>
             <div className="button-container">
                 <button className="button-left" onClick={goBack}>Back</button>
                 <button className="button-right" onClick={handleSubmit}>Submit Order</button>
             </div>
+            </>
+            )}
         </div>
     );
 };

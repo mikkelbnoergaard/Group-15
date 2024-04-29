@@ -1,4 +1,5 @@
 import React from "react";
+import './Total.css';
 
 interface Item {
     name: string;
@@ -18,13 +19,12 @@ export const calculateDiscounts = (items: Item[]): number => {
     items.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
-        // Assuming a rebate is applied per item for larger quantities
         if (item.quantity > 3) {
             discount += item.price * 0.05 * item.quantity;
         }
     });
     // 10% discount for orders over 300 DKK
-    if (subtotal > 300) {
+    if (subtotal >= 300) {
         discount += subtotal * 0.10;
     }
 
@@ -52,7 +52,7 @@ const calculateActualAmount = (items: Item[]) => {
     };
 
 };
-const Total1: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
+const Total: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
 
     const {subtotal, discount, total} = calculateActualAmount(items);
 
@@ -85,4 +85,4 @@ const Total1: React.FC<Total1Props> = ({items, onUpdateTotal}) => {
     );
 };
 
-export default Total1;
+export default Total;

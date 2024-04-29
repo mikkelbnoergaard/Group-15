@@ -1,12 +1,10 @@
-//import logo from './logo.svg';
 import './BasketSide.css';
-import React, {Dispatch, SetStateAction} from 'react';
-import productData from '../assets/product.json';
-import Total1 from "./Total1.tsx";
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {fetchProductData} from './fetchProductData';
+import Total from "./Total.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
-
-console.log(productData);
+import './App.css';
 
 interface ProductItem {
     name: string;
@@ -14,7 +12,7 @@ interface ProductItem {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Notice the optional `recurring`
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -29,7 +27,6 @@ interface BasketItemProps {
     onToggleGiftWrap: (name: string) => void;
     onChangeRecurring: (name: string, schedule: string) => void;
 }
-
 
 
 const BasketItem: React.FC<BasketItemProps> = ({
@@ -62,17 +59,19 @@ const BasketItem: React.FC<BasketItemProps> = ({
                     </div>
                     <div>Price: ${item.price}
                     </div>
-                    <div>Quantity:
+                    <div className={"quantity-container"}>
+                    <label>Quantity:
                         <input
                             className="quantity-input"
                             type="number"
                             value={item.quantity}
-                            min="1"
+                            min="0"
                             onChange={(e) => onChangeQuantity(item.name, parseInt(e.target.value))}
-                            style={{width: "24px"}}
+                            style={{width: "50px"}}
                         />
+                    </label>
+                    {discountMessage && <div className={"discount-message"}>{discountMessage}</div>}
                     </div>
-                    {discountMessage && <div style={{color: 'red', marginTop: '10px'}}>{discountMessage}</div>}
                     <div>
                         <label>
                             Gift Wrap:
@@ -98,9 +97,9 @@ const BasketItem: React.FC<BasketItemProps> = ({
                             <option value="1 year">1 Year</option>
                         </select>
                     </label>
-                    <div>
+                    <div className={"price-container"}>
                         <b>${(item.price * item.quantity).toFixed(2)} </b>
-                        {itemDiscount !== '0.00' && <div>Discount: -${itemDiscount}</div>}
+                        {itemDiscount !== '0.00' && <div className={"discount"}>Discount: -${itemDiscount}</div>}
                     </div>
                     <div>
                     </div>
@@ -109,7 +108,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
                     <div className="delete-button">
                         <button onClick={() => onRemoveItem(item.name)}>
                             <img src={"https://i.imgur.com/3ZyQkuC.png"}
-                                 style={{width: '30px', height: 'auto', borderRadius: '20px',}}/>
+                                 style={{width: '30px', height: 'auto', borderRadius: '20px'}}/>
                         </button>
                     </div>
                 </div>
@@ -125,7 +124,7 @@ type Item = {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Should also be optional here if it's optional in ProductItem
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -141,7 +140,16 @@ type BasketProps = {
 };
 
 
-const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
+const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
+    const [, setProductData] = useState([]);
+
+    useEffect(() => {
+        const getProductData = async () => {
+            const data = await fetchProductData();
+            setProductData(data);
+        }
+        getProductData().then(() => console.log("Product data fetched"));
+    }, []);
 
     const navigate = useNavigate();
 
@@ -156,8 +164,6 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             item.name === name ? {...item, quantity: newQuantity} : item
         ));
     };
-
-
 
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
@@ -179,7 +185,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
     };
 
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-BS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -206,7 +212,9 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 </div>
                 <div className="right-side2">
                     <div className="right-side1 special-class">
-                        <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+                        <Total
+                            items={items}
+                            onUpdateTotal={handleUpdateTotal}/>
                         <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>

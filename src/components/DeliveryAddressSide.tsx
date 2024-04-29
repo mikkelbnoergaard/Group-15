@@ -1,49 +1,40 @@
-import './BasketSide.css';
 import DeliveryAddress from "./DeliveryAddress.tsx";
-import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
-import { useOrderForm } from './UseOrderForm';
-import { Address } from "./DeliveryAddress";
+import {Address} from "./DeliveryAddress";
+import './DeliveryAddress.css';
+import './App.css';
+import {useState} from "react";
 
-interface Item {
-    name: string;
-    price: number;
-    quantity: number;
-    ImageURL: string;
-    giftWrap?: boolean;
-    recurring?: string;
-}
+
 interface CustomerProps {
-    items: Item[];
+
     totalAmount: number;
     onAddressSelected: (address: Address) => void;
 }
 
 
-const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm,onAddressSelected}) => {
-
-    const handleUpdateTotal = () => {};
-
+const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
+    const [hasSelectedAddress, setHasSelectedAddress] = useState(false);
     const navigate = useNavigate();
-    const handlePress = async () => {
-        if (!orderForm.termsChecked) {
-            alert('Please accept the terms & conditions to proceed.');
-            return;
-        }
-    goToPaymentFormSide()
+    const handleAddressSelection = () => {
 
-
-    }
+        setHasSelectedAddress(true);
+    };
 
     const goToPaymentFormSide = () => {
-        navigate('/PaymentFormPage');
-    }
+        if (!hasSelectedAddress) {
+            alert('Please select a delivery address before continuing.');
+        } else {
+            navigate('/PaymentFormPage');
+        }
+    };
+
     const goToAddressFormSide = () => {
         navigate('/AddressFormPage');
     }
 
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-DAS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -55,16 +46,14 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
                 <li className="step-todo">Payment</li>
                 <li className="step-todo">Summary</li>
             </ol>
-            <div className="right-side1">
-                <h2> Basket </h2>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-            </div>
-            <div className="right-side1">
-                <DeliveryAddress orderForm={orderForm} onAddressSelected={onAddressSelected}/>
+            <div className="flex-container">
+                <div className="right-side-DAS">
+                    <DeliveryAddress onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
+                </div>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>
-                <button className={"button-right"} onClick={handlePress}>Continue</button>
+                <button className={"button-right"} onClick={goToPaymentFormSide}>Continue</button>
             </div>
         </div>
     );
