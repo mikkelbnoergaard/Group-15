@@ -82,3 +82,14 @@ button {
 .box1.selected {
     border: 2px solid black;
 }
+
+@media (max-width: 768px) {
+    .select-delivery-address select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+}
