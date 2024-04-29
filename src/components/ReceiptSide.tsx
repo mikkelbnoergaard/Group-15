@@ -32,7 +32,6 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
 
 
     const handleSubmit = async () => {
-        if (addressInfo !== null) {
             const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
                 method: 'POST',
                 headers: {
@@ -52,9 +51,6 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
             } else {
                 console.error('Submission failed');
             }
-        } else {
-            console.error('Address information is missing');
-        }
     };
 
     return (

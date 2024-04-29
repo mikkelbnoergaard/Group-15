@@ -63,7 +63,8 @@ const App = () => {
                            element={<CheckoutPage totalAmount={totalAmount}
                                                   items={items}
                                                   setCompanyVAT={setCompanyVAT}
-                                                  setAddressInfo={setAddressInfo}/>}/>
+                                                  setAddressInfo={setAddressInfo}
+                                                  addressInfo={AddressInfo}/>}/>
 
                     <Route path={"/DeliveryAddressPage"}
                            element={<DeliveryAddressPage totalAmount={totalAmount}

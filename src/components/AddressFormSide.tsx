@@ -6,6 +6,7 @@ import './buttons.css';
 import './AddressFormSide.css';
 import React from "react";
 
+
 interface Item {
     name: string;
     price: number;
@@ -20,10 +21,11 @@ interface CustomerProps {
     totalAmount: number;
     setCompanyVAT: (vat: string) => void;
     setAddressInfo: React.Dispatch<React.SetStateAction<AddressFields | null>>;
+    addressInfo: AddressFields | null;
 }
 
 
-const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo}) => {
+const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, addressInfo}) => {
 
 
     const handleSubmitAddress = (address: AddressFields) => {
@@ -33,7 +35,32 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo}) 
     const navigate = useNavigate();
 
     const goToDeliveryAddressSide = () => {
-        navigate('/DeliveryAddressPage');
+        if (addressInfo?.zip == null) {
+            alert("Missing zip")
+            return
+        }
+        if (addressInfo?.city == null) {
+            alert("Missing City")
+            return
+        }
+        if (addressInfo?.addressLine1 == null) {
+            alert("Missing address")
+            return
+        }
+        if (addressInfo?.name == null) {
+            alert("Missing Name")
+            return
+        }
+        if (addressInfo?.phone == null) {
+            alert("Missing Phone")
+            return
+        }
+        if (addressInfo?.email == null) {
+            alert("Missing Email")
+            return
+        } else {
+            navigate('/DeliveryAddressPage');
+        }
     }
     const goToBasketSide = () => {
         navigate('/');
