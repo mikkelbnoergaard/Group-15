@@ -64,7 +64,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
                             className="quantity-input"
                             type="number"
                             value={item.quantity}
-                            min="1"
+                            min="0"
                             onChange={(e) => onChangeQuantity(item.name, parseInt(e.target.value))}
                             style={{width: "24px"}}
                         />
