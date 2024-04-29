@@ -190,18 +190,6 @@ h2 {
     margin-top: 10px;
 }
 
-.subtotal-container,
-.discount-container,
-.total-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.label {
-    margin-right: 20px;
-}
-
 .text-field-right {
     margin-right: 10px;
     flex-direction: row-reverse;

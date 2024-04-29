@@ -6,6 +6,7 @@ import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
 import './App.css';
 import './Receipt.css';
+import './buttons.css';
 
 interface Item {
     name: string;
@@ -68,7 +69,6 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                 <li className="step-done">Payment</li>
                 <li className="step-active">Summary</li>
             </ol>
-            <div className="content">
                 <h3 style={{textAlign: 'center'}}>Summary </h3>
                 <h3 style={{textAlign: 'center'}}>Items</h3>
                 <ul style={{listStyleType: 'none', paddingLeft: 0, textAlign: 'center'}}>
@@ -111,7 +111,6 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                         <p>{orderForm.orderComment}</p>
                     </div>
                 )}
-            </div>
             <div className="button-container">
                 <button className="button-left" onClick={goBack}>Back</button>
                 <button className="button-right" onClick={handleSubmit}>Submit Order</button>
