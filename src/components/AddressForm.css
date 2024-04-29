@@ -19,6 +19,8 @@
         /* Gør form elementer bredere til at tage mere plads */
         width: 100%;
         max-width: none;
+        margin-left: 100px;
+        margin-right: 100px;
     }
 }
 
