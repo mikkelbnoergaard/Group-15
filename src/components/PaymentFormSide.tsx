@@ -1,4 +1,5 @@
 import './BasketSide.css';
+import './App.css';
 import PaymentForm from "./PaymentForm.tsx";
 import Total from "./Total.tsx";
 import {useNavigate} from "react-router-dom";

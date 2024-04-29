@@ -8,39 +8,10 @@
     justify-content: space-between;
 }
 
-h2 {
-    align-items: center;
-    padding-bottom: 20px;
-    font-size: 25px;
-}
-
-.AddressForm {
-    font-size: 14px;
-}
-
-.AddressFormV2{
-    flex-direction: row;
-}
-
-.error-message {
-    color: red; /* Eller den farve du ønsker for fejlbeskeder */
-    margin-right: 870px; /* Tilføj lidt mellemrum mellem inputfeltet og fejlbeskeden */
-    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
-    position: absolute; /* Absolut positionering i forhold til nærmeste relative container */
-    right: 0; /* Starter fra den højre side af .input-row */
-}
-
-/* Stil containeren for input og fejlbesked */
-.input-container {
-    display: flex; /* Anvend flexbox til at organisere børnene side om side */
-    align-items: center; /* Centrer elementerne vertikalt */
-    gap: 8px; /* Tilføj lidt mellemrum mellem input og fejlbesked */
-}
-
-/* Du kan tilføje stilarter for at kontrollere bredden af input for at forhindre det i at fylde hele bredden */
-.input-container input {
-    flex-grow: 1; /* Lad inputfeltet tage den tilgængelige plads */
-    margin-right: auto; /* Dette skubber fejlbeskeden til højre */
+.page-column-AFS {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
 }
 
 .AddressFormColumn {
@@ -54,6 +25,16 @@ h2 {
     font-size: 14px;
     margin-left: 400px;
     margin-right: 400px;
+}
+
+h2 {
+    align-items: center;
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+
+.AddressForm {
+    font-size: 14px;
 }
 
 .input-wrapper {

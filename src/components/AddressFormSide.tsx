@@ -1,9 +1,8 @@
-import './BasketSide.css';
-
 import AddressForm, {AddressFields} from "./AddressForm";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
 import './AddressFormSide.css';
+import './App.css';
 import React from "react";
 
 
@@ -55,8 +54,7 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, a
     }
 
     return (
-        <div className={"page-background"}>
-            <div className={"page-column"}>
+            <div className={"page-column-AFS"}>
                 <div className={"header-top"}>
                     <img src={"https://i.imgur.com/J5OAFS3.png"}
                          style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -79,7 +77,6 @@ const CheckoutPage: React.FC<CustomerProps> = ({setCompanyVAT, setAddressInfo, a
                     <button className={"button-right"} onClick={goToDeliveryAddressSide}>Continue</button>
                 </div>
             </div>
-        </div>
     );
 }
 

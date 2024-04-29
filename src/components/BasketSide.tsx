@@ -5,6 +5,7 @@ import {fetchProductData} from './fetchProductData';
 import Total from "./Total.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
+import './App.css';
 
 interface ProductItem {
     name: string;
