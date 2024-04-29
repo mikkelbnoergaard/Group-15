@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import './BasketSide.css';
 import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {fetchProductData} from './fetchProductData';

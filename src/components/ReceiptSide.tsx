@@ -81,7 +81,7 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                 <li className="step-done">Payment</li>
                 <li className="step-active">Summary</li>
             </ol>
-                <h3 style={{textAlign: 'center'}}>Summary </h3>
+                <h2 style={{textAlign: 'center'}}>Summary </h2>
                 <h3 style={{textAlign: 'center'}}>Items</h3>
                 <ul style={{listStyleType: 'none', paddingLeft: 0, textAlign: 'center'}}>
                     {items.filter(item => item.quantity > 0).map((item, index) => (
