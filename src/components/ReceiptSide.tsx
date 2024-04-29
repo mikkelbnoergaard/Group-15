@@ -62,7 +62,7 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
     };
 
     return (
-        <div className="page-column">
+        <div className="page-column-BS">
             {isLoading ? (
                 <div className="overlay">
                     <div className="loading-spinner"></div>

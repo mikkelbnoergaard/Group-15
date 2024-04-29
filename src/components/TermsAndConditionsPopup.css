@@ -10,6 +10,15 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .popup-content {
     background-color: #fefefe;
     margin: 15% auto;

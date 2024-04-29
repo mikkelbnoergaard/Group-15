@@ -184,7 +184,7 @@ const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
     };
 
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-BS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
