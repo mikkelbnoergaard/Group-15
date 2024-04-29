@@ -53,3 +53,7 @@
 .form-checkbox input[type="checkbox"] {
     margin-right: 10px;
 }
+
+#order-comment {
+    width: 92%;
+}
