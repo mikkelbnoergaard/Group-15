@@ -71,7 +71,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
         if (/^\d*$/.test(value) && value.length <= 8) {
             setMobilePayNumber(value);
             if (value.length !== 8) {
-                setMobilePayNumberError("Bobilepay number must be 8 digits");
+                setMobilePayNumberError("Mobilepay number must be 8 digits");
             } else {
                 setMobilePayNumberError("");
             }
