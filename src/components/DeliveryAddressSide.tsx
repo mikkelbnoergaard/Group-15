@@ -1,10 +1,8 @@
-//import './BasketSide.css';
-
-
 import DeliveryAddress from "./DeliveryAddress.tsx";
 import {useNavigate} from "react-router-dom";
 import {Address} from "./DeliveryAddress";
 import './DeliveryAddress.css';
+import './App.css';
 import {useState} from "react";
 
 

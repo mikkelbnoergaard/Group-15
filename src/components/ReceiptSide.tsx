@@ -4,6 +4,7 @@ import {AddressFields} from "./AddressForm";
 import {useOrderForm} from "./UseOrderForm";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
+import './App.css';
 
 interface Item {
     name: string;
