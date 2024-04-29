@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {AddressFields} from "./AddressForm";
 import {useOrderForm} from "./UseOrderForm";
@@ -125,6 +125,8 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                 <button className="button-left" onClick={goBack}>Back</button>
                 <button className="button-right" onClick={handleSubmit}>Submit Order</button>
             </div>
+            </>
+            )}
         </div>
     );
 };
