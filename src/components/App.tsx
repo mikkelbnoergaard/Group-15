@@ -37,23 +37,26 @@ const App = () => {
     const {products, loading, error} = useFetchProduct();
 
     useEffect(() => {
-        if(loading||error)  {
+        if (loading || error) {
             return;
         }
         if (products.length > 0) {
-        products.map((item: Item) => (setItems(prevItems => [...prevItems, {
-                ...item,
-                quantity: 0,
-                recurring: '',
-                id: item.id || "default_id",
-                currency: 'USD',
-                rebateQuantity: item.rebateQuantity || 0,
-                rebatePercent: item.rebatePercent || 0,
-                upsellProductId: item.upsellProductId || null,
-            },])))
-            }
-        console.log(loading,error,products)
-
+            setItems(prevItems => {
+                if (prevItems.length === 0) {
+                    return products.map((product: Item) => ({
+                        ...product,
+                        quantity: 0,
+                        recurring: '',
+                        id: product.id || "default_id",
+                        currency: 'USD',
+                        rebateQuantity: product.rebateQuantity || 0,
+                        rebatePercent: product.rebatePercent || 0,
+                        upsellProductId: product.upsellProductId || null,
+                    }));
+                }
+                return prevItems;
+            });
+        }
     }, [loading, error, products]);
 
     return (
