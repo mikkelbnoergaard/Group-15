@@ -43,26 +43,23 @@ h2 {
 }
 
 .input-wrapper .error-message1 {
-    margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+    margin-left: 10px;
     color: red;
-    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+    white-space: nowrap;
     position: absolute;
     right: 52%;
 }
 
 @media only screen and (max-width: 768px) {
-    /* Dette er et breakpoint for tablets og nedad */
     .page-column-AFS {
-        /* Tilpas layout for mobile enheder */
         flex-direction: column;
-        padding: 20px; /* mere plads på små skærme */
+        padding: 20px;
     }
     .header-top img {
-        width: 80px; /* mindre billede på små skærme */
+        width: 80px;
     }
 
     .AddressFormColumn {
-        /* Gør form elementer bredere til at tage mere plads */
         width: 75%;
         max-width: none;
         margin-left: 50px;
@@ -72,6 +69,16 @@ h2 {
         flex-direction: column;
         padding: 20px;
         background-color: #fff;
+    }
+    .input-wrapper .error-message1 {
+        margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+        color: red;
+        white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+        position: relative;
+        right: 52%;
+    }
+    .AddressForm label {
+        padding-right: 40px;
     }
 }
 

@@ -36,15 +36,15 @@
 
 .alert-modal {
     position: fixed;
-    z-index: 10000; /* Ensure it's on top of other elements */
-    left: 50%; /* Center horizontally */
-    top: 50%; /* Center vertically */
-    transform: translate(-50%, -50%); /* Adjust position to the exact center */
+    z-index: 10000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Adjust width as necessary */
-    max-width: 500px; /* Optional: Set a max-width for larger screens */
+    width: 80%;
+    max-width: 500px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s;
     display: flex;
@@ -54,13 +54,13 @@
 }
 
 .close {
-    background-color: #000; /* Change this to the color you want for the button background */
-    color: #fff; /* Change this to the color you want for the text */
+    background-color: #000;
+    color: #fff;
     font-size: 12px;
     font-weight: bold;
     border: none;
-    padding: 10px 20px; /* Optional: Add some padding */
-    text-align: center; /* Optional: Center the text */
+    padding: 10px 20px;
+    text-align: center;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
@@ -68,6 +68,6 @@
 
 .close:hover,
 .close:focus {
-    background-color: #444; /* Change this to the color you want for the button background when hovered or focused */
+    background-color: #444;
     color: #fff;
 }
