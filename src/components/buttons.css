@@ -31,6 +31,7 @@
     .button-container {
         flex-direction: column; /* Stabler knapperne vertikalt */
         gap: 10px; /* Tilføjer plads mellem knapperne */
+        padding: 10px 10px 100px; /* Giver mere plads på siderne */
     }
 
     .button-left, .button-right {
