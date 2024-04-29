@@ -1,7 +1,7 @@
 import './BasketSide.css';
 import './App.css';
 import PaymentForm from "./PaymentForm.tsx";
-import Total1 from "./Total1.tsx";
+import Total from "./Total.tsx";
 import {useNavigate} from "react-router-dom";
 import {PaymentInformation} from "./PaymentForm.tsx"
 import {useState} from "react";
@@ -78,7 +78,7 @@ const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof u
             </ol>
             <div className="right-side1">
                 <h2> Basket </h2>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+                <Total items={items} onUpdateTotal={handleUpdateTotal}/>
                 <h2> Payment</h2>
                 <PaymentForm totalAmount={totalAmount} companyVAT={CompanyVAT}
                              onSavePaymentMethod={handleSavePaymentMethod} orderForm={orderForm}/>

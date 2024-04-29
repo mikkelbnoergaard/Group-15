@@ -2,7 +2,7 @@
 import './BasketSide.css';
 import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {fetchProductData} from './fetchProductData';
-import Total1 from "./Total1.tsx";
+import Total from "./Total.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
 import './App.css';
@@ -211,7 +211,7 @@ const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
                 </div>
                 <div className="right-side2">
                     <div className="right-side1 special-class">
-                        <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+                        <Total items={items} onUpdateTotal={handleUpdateTotal}/>
                         <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>
