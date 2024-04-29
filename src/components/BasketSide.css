@@ -1,0 +1,162 @@
+.page-column-BS {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+}
+
+.basket-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 50px;
+    gap: 20px;
+}
+
+.basket-items {
+    flex: 3;
+    background-color: #fff;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 0.5px solid #909090;
+}
+
+.basket-items2 {
+    flex: 3;
+    padding: 0px;
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
+
+.spacing-giftwrap {
+    margin-left: 10px;
+}
+
+.basket-Elements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    gap: 20px;
+    height: 240px;
+    width: auto;
+}
+
+.product-details {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.details-right {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: row-reverse;
+}
+
+.right-side1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 0px;
+    flex: 1;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 18px;
+
+}
+
+.right-side1:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.special-class {
+    margin-top: 11px;
+}
+
+.right-side1 button {
+    background-color: #f4a261;
+    color: antiquewhite;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.right-side2 {
+    position: sticky;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    margin-left: 10px;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    flex: 1;
+    align-self: flex-start;
+}
+
+.delete-button {
+    padding-right: 25px;
+}
+
+.quantity-input {
+    margin-left: 10px;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center; /* Centrerer elementerne vertikalt */
+    gap: 8px; /* Tilføjer lidt plads mellem elementerne */
+}
+
+.discount-message {
+    color: red;
+    margin-top: -10px; /* Fjern alle marginer for at sikre konsistent placering */
+    padding: 0; /* Fjern padding */
+    white-space: nowrap; /* Forhindrer tekst i at bryde over flere linjer */
+    font-size: 0.9em; /* Justér fontstørrelsen efter behov */
+    align-self: center; /* Centrerer fejlmeddelelsen vertikalt i flex containeren */
+}
+
+.price-container {
+    display: flex;
+    align-items: center; /* Centrerer elementerne vertikalt */
+    justify-content: space-between; /* Placerer elementerne på hver sin side af containeren */
+}
+
+.price-container b {
+    /* Tilpas efter behov for at style den samlede pris */
+}
+
+.price-container .discount {
+    color: green; /* Giver discount tekst en rød farve eller en anden farve efter ønske */
+    font-size: 0.9em; /* Mindre skriftstørrelse for rabatmeddelelsen, juster efter behov */
+    padding-left: 16px; /* Tilføjer lidt plads til venstre for rabatmeddelelsen */
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label input {
+    width: 50%;
+    margin-left: auto;
+}

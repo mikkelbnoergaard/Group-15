@@ -1,0 +1,62 @@
+.Address-Form-Row {
+    flex-direction: row;
+    display: flex;
+    border: none;
+    padding: 10px;
+    align-items: center;
+    background-color: white; /* Ændret til hvid */
+    justify-content: space-between;
+}
+
+.page-column-AFS {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+}
+
+.AddressFormColumn {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0px;
+    font-size: 14px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+h2 {
+    align-items: center;
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+
+.AddressForm {
+    font-size: 14px;
+}
+
+.AddressForm input, .form-row textarea {
+    border-radius: 0px;
+    border: 0.5px solid #ccc;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.input-wrapper label {
+    flex-grow: 1;
+}
+
+.input-wrapper .error-message1 {
+    margin-left: 10px; /* Tilføj mellemrum mellem inputfeltet og fejlbeskeden */
+    color: red;
+    white-space: nowrap; /* Sørg for at fejlbeskeden ikke bryder over flere linjer */
+    position: absolute;
+    right: 52%;
+}

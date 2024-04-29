@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, FocusEvent, FormEvent } from "react";
+import React, {useState, ChangeEvent, FocusEvent} from "react";
+import './AddressForm.css';
 
 export type AddressFields = {
     country: string;
@@ -16,13 +17,14 @@ export type AddressFields = {
 type ErrorsState = {
     [key: string]: string;
 };
+
 interface AddressFormProps {
     onCompanyVATChange: (vat: string) => void;
     onSubmitAddress: (address: AddressFields) => void;
 }
 
 
-const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitAddress }) => {
+const AddressForm: React.FC<AddressFormProps> = ({onCompanyVATChange, onSubmitAddress}) => {
     const [address, setAddress] = useState<AddressFields>({
         country: 'Denmark',
         zip: '',
@@ -41,36 +43,36 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
     const [errors, setErrors] = useState<ErrorsState>({});
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        onSubmitAddress(address);
+        const {name, value} = event.target;
 
         if (name === 'companyVAT') {
-            // Call the callback function when companyVAT changes
             onCompanyVATChange(value);
         }
         if (name === 'zip' && value !== '' && !/^\d+$/.test(value)) {
-            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+            return;
         }
         if (name === 'companyVAT' && value !== '' && !/^\d+$/.test(value)) {
-            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+            return;
         }
         if (name === 'phone' && value !== '' && !/^\d+$/.test(value)) {
-            return; // Forhindrer opdatering af værdien, hvis den indeholder ikke-numeriske tegn
+            return;
         }
-        // Opdater din adresse state med den nye værdi først
-        setAddress((prevAddress: AddressFields) => ({
-            ...prevAddress,
-            [event.target.name]: event.target.value,
-        }));
+        setAddress((prevAddress: AddressFields) => {
+            const updatedAddress = {
+                ...prevAddress,
+                [name]: value,
+            };
+            onSubmitAddress(updatedAddress);
+            return updatedAddress;
+        });
 
-        // Derefter tjek for fejl og opdater dem om nødvendigt
-        let newErrors: ErrorsState = { ...errors };
+        let newErrors: ErrorsState = {...errors};
         if (name === "email" && !validateEmail(value)) {
-            newErrors.email = 'Invalid email'; // Ensure consistent key usage
+            newErrors.email = 'Invalid email';
         } else if (name === "phone") {
             const phoneError = validatePhone(value);
             if (phoneError) {
-                newErrors = { ...newErrors, phone: phoneError };
+                newErrors = {...newErrors, phone: phoneError};
             } else {
                 delete newErrors.phone;
             }
@@ -82,11 +84,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                 delete newErrors.companyVAT;
             }
         } else {
-            delete newErrors[name]; // This will remove the error if the input becomes valid
+            delete newErrors[name];
         }
         setErrors(newErrors);
-
-        // Specifik logik for postnummer-validering
         if (name === 'zip') {
             validateZipCode(value);
         }
@@ -111,7 +111,6 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                     }));
                     setCityLocked(true);
                 } else {
-                    // Set error message if zip is not found
                     setErrors(prevErrors => ({
                         ...prevErrors,
                         zip: 'Ugyldigt postnummer'
@@ -142,38 +141,31 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
     };
     const validatePhone = (phone: string): string => {
         if (phone.length > 8) {
-            return "The phone number must not exceed 8 digits";
+            return "Must not exceed 8 digits";
         } else if (phone.length < 8 || isNaN(Number(phone))) {
-            return "The phone number must be 8 digits";
+            return "Must be 8 digits";
         }
-        return ""; // Ingen fejl
+        return "";
     };
 
     const handleZipBlur = async (e: FocusEvent<HTMLInputElement>) => {
         const zip = e.target.value;
         await validateZipCode(zip);
     };
-    //Placeholder for validateZip and other validation functions
 
     const validateCompanyVAT = (companyVAT: string): string => {
         if (companyVAT.length !== 8 || isNaN(Number(companyVAT))) {
             return "The VAT number must be 8 digits";
         }
-        return ""; // Ingen fejl
+        return "";
     };
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('Form data submitted:', address);
-        alert('Form submitted!');
-    };
-
 
     return (
-        <form onSubmit={handleSubmit} className="AddressForm">
+        <form className="AddressForm">
+            <h2>Billing address</h2>
             <div>
                 <label>
-                    Country:
+                    Country*
                     <input
                         type="text"
                         name="country"
@@ -182,9 +174,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
-                    Zip Code:
+                    Zip Code*
                     <input
                         type="text"
                         name="zip"
@@ -192,24 +184,24 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                         onChange={(e) => handleInputChange(e)}
                         onBlur={(e) => handleZipBlur(e)}
                     />
+                    {errors['zip'] && <div className="error-message1">{errors['zip']}</div>}
                 </label>
             </div>
-            {errors['zip'] && <div className="error">{errors['zip']}</div>}
             <div>
                 <label>
-                    City:
+                    City*
                     <input
                         type="text"
                         name="city"
                         value={address.city}
                         onChange={handleInputChange}
-                        readOnly={cityLocked} // Gør feltet skrivebeskyttet, hvis cityLocked er true
+                        readOnly={cityLocked}
                     />
                 </label>
             </div>
             <div>
                 <label>
-                    Address Line 1:
+                    Address Line 1*
                     <input
                         type="text"
                         name="addressLine1"
@@ -220,7 +212,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
             </div>
             <div>
                 <label>
-                    Address Line 2:
+                    Address Line 2
                     <input
                         type="text"
                         name="addressLine2"
@@ -231,7 +223,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
             </div>
             <div>
                 <label>
-                    Name:
+                    Name*
                     <input
                         type="text"
                         name="name"
@@ -240,29 +232,30 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
-                    Phone:
+                    Phone Number*
                     <input
                         type="text"
                         name="phone"
                         value={address.phone}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.phone && <div className="error-message1">{errors.phone}</div>}
                 </label>
-                {errors.phone && <div className="error">{errors.phone}</div>} {/* Fejlbesked her */}
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
-                    Email:
+                    Email*
                     <input
                         type="email"
                         name="email"
                         value={address.email}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.email &&
+                        <div className="error-message1">{errors.email}</div>}
                 </label>
-                {errors.email && <div className="error">{errors.email}</div>} {/* Display the email error message here */}
             </div>
             <div>
                 <label>
@@ -275,7 +268,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                     />
                 </label>
             </div>
-            <div>
+            <div className={"input-wrapper"}>
                 <label>
                     Company VAT:
                     <input
@@ -284,8 +277,8 @@ const AddressForm: React.FC<AddressFormProps> = ({ onCompanyVATChange, onSubmitA
                         value={address.companyVAT}
                         onChange={(e) => handleInputChange(e)}
                     />
+                    {errors.companyVAT && <div className="error-message1">{errors.companyVAT}</div>}
                 </label>
-                {errors.companyVAT && <div className="error">{errors.companyVAT}</div>}
             </div>
         </form>
     );
