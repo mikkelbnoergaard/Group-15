@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {AddressFields} from "./AddressForm";
 import {useOrderForm} from "./UseOrderForm";
@@ -28,6 +28,7 @@ interface CustomerProps {
 
 const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, selectedAddress, orderForm}) => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const goBack = () => {
         navigate('/PaymentFormPage');
@@ -35,7 +36,8 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
 
 
     const handleSubmit = async () => {
-            const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
+        setIsLoading(true)
+        const response = await fetch('https://eowyyh7aavsptru.m.pipedream.net', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,17 +51,27 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
             });
 
             if (response.ok) {
+                setIsLoading(false)
                 console.log("Submission successful");
                 alert('Form submitted successfully!');
             } else {
+                setIsLoading(false)
                 console.error('Submission failed');
+                alert('Form submission failed!');
             }
     };
 
     return (
-        <div className="page-column-receipt">
-            <div className="header-top">
-                <img src="https://i.imgur.com/J5OAFS3.png"
+        <div className="page-column">
+            {isLoading ? (
+                <div className="overlay">
+                    <div className="loading-spinner"></div>
+                </div>
+            ) : (
+                <>
+
+                <div className="header-top">
+                    <img src="https://i.imgur.com/J5OAFS3.png"
                      style={{width: '120px', height: 'auto', borderRadius: '20px'}}/>
             </div>
             <ol id="progress-bar">
@@ -115,6 +127,8 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
                 <button className="button-left" onClick={goBack}>Back</button>
                 <button className="button-right" onClick={handleSubmit}>Submit Order</button>
             </div>
+            </>
+            )}
         </div>
     );
 };
