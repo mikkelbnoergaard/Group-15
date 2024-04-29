@@ -4,7 +4,7 @@ import PaymentForm from "./PaymentForm.tsx";
 import Total from "./Total.tsx";
 import {useNavigate} from "react-router-dom";
 import {PaymentInformation} from "./PaymentForm.tsx"
-import {useState} from "react";
+import React, {useState} from "react";
 import {useOrderForm} from "./UseOrderForm.tsx";
 
 interface Item {
@@ -76,8 +76,17 @@ const PaymentFormPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof u
                 <li className="step-active">Payment</li>
                 <li className="step-todo">Summary</li>
             </ol>
+            <h3 style={{textAlign: 'center'}}>Items</h3>
+            <ul style={{listStyleType: 'none', paddingLeft: 0, textAlign: 'center'}}>
+                {items.filter(item => item.quantity > 0).map((item, index) => (
+                    <li key={index}>
+                        {item.name} - {item.quantity} x ${item.price.toFixed(2)}
+                        {item.giftWrap && <span> - (Gift Wrapped)</span>}
+                        {item.recurring && <span> - (Recurring: {item.recurring})</span>}
+                    </li>
+                ))}
+            </ul>
             <div className="Payment-Form">
-                <h2> Basket </h2>
                 <Total
                     items={items}
                     onUpdateTotal={handleUpdateTotal}/>
