@@ -133,6 +133,22 @@ h2 {
     align-self: center; /* Centrerer fejlmeddelelsen vertikalt i flex containeren */
 }
 
+.price-container {
+    display: flex;
+    align-items: center; /* Centrerer elementerne vertikalt */
+    justify-content: space-between; /* Placerer elementerne på hver sin side af containeren */
+}
+
+.price-container b {
+    /* Tilpas efter behov for at style den samlede pris */
+}
+
+.price-container .discount {
+    color: green; /* Giver discount tekst en rød farve eller en anden farve efter ønske */
+    font-size: 0.9em; /* Mindre skriftstørrelse for rabatmeddelelsen, juster efter behov */
+    padding-left: 16px; /* Tilføjer lidt plads til venstre for rabatmeddelelsen */
+}
+
 label {
     display: flex;
     justify-content: space-between;

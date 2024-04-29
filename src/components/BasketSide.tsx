@@ -97,9 +97,9 @@ const BasketItem: React.FC<BasketItemProps> = ({
                             <option value="1 year">1 Year</option>
                         </select>
                     </label>
-                    <div>
+                    <div className={"price-container"}>
                         <b>${(item.price * item.quantity).toFixed(2)} </b>
-                        {itemDiscount !== '0.00' && <div>Discount: -${itemDiscount}</div>}
+                        {itemDiscount !== '0.00' && <div className={"discount"}>Discount: -${itemDiscount}</div>}
                     </div>
                     <div>
                     </div>
