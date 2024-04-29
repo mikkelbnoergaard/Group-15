@@ -62,9 +62,9 @@ body {
       content: '';
       position: absolute;
       left: -50%;
-      background-color: transparent; // Sæt dette til transparent
-      border-top: 1px solid $Light-grey; // Gør linjen øverst
-      top: 33%; // Centrer linjen
+      background-color: transparent;
+      border-top: 1px solid $Light-grey;
+      top: 33%;
     }
     &:first-child:after {
       content: none;
