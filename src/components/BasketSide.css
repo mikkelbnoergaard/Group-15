@@ -37,7 +37,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px;
     margin: 10px;
     gap: 20px;
     height: 240px;
@@ -112,7 +111,7 @@ h2 {
 }
 
 .delete-button {
-    margin-left: 10px;
+    padding-right: 25px;
 }
 
 .quantity-input {
