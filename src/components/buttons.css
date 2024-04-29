@@ -1,7 +1,7 @@
 .button-container {
     display: flex;
     justify-content: space-between; /* Placerer indhold med maksimal afstand mellem elementerne */
-    padding: 10px 250px 300px; /* Giver mere plads på siderne */
+    padding: 10px 250px 1000px; /* Giver mere plads på siderne */
 }
 
 .button-left, .button-right {
@@ -31,6 +31,7 @@
     .button-container {
         flex-direction: column; /* Stabler knapperne vertikalt */
         gap: 10px; /* Tilføjer plads mellem knapperne */
+        padding: 0px 10px 100px; /* Giver mere plads på siderne */
     }
 
     .button-left, .button-right {

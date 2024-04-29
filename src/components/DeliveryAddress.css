@@ -40,7 +40,7 @@
 
 .select-delivery-address select {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -49,7 +49,7 @@
 .box-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .box-image {
@@ -81,4 +81,10 @@ button {
 
 .box1.selected {
     border: 2px solid black;
+}
+
+@media only screen and (max-width: 768px) {
+    .box-container{
+        flex-direction: column;
+    }
 }
