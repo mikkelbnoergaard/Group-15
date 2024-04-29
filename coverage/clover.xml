@@ -673,7 +673,7 @@
       <line num="100" count="1" type="stmt"/>
       <line num="101" count="1" type="stmt"/>
     </file>
-    <file name="Total1.tsx" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\Total1.tsx">
+    <file name="Total.tsx" path="C:\Users\hakan\WebstormProjects\Group-15_FE\src\assets\Total.tsx">
       <metrics statements="47" coveredstatements="43" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>

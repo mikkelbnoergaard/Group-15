@@ -1,12 +1,11 @@
 //import logo from './logo.svg';
 import './BasketSide.css';
-import React, {Dispatch, SetStateAction} from 'react';
-import productData from '../assets/product.json';
-import Total1 from "./Total1.tsx";
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {fetchProductData} from './fetchProductData';
+import Total from "./Total.tsx";
 import {useNavigate} from 'react-router-dom';
 import './ProgressBar.scss'
-
-console.log(productData);
+import './App.css';
 
 interface ProductItem {
     name: string;
@@ -14,7 +13,7 @@ interface ProductItem {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Notice the optional `recurring`
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -29,7 +28,6 @@ interface BasketItemProps {
     onToggleGiftWrap: (name: string) => void;
     onChangeRecurring: (name: string, schedule: string) => void;
 }
-
 
 
 const BasketItem: React.FC<BasketItemProps> = ({
@@ -125,7 +123,7 @@ type Item = {
     quantity: number;
     ImageURL: string;
     giftWrap?: boolean;
-    recurring?: string; // Should also be optional here if it's optional in ProductItem
+    recurring?: string;
     id: string;
     currency: string;
     rebateQuantity: number;
@@ -141,7 +139,16 @@ type BasketProps = {
 };
 
 
-const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
+const Basket: React.FC<BasketProps> = ({items, setItems, setTotalAmount}) => {
+    const [, setProductData] = useState([]);
+
+    useEffect(() => {
+        const getProductData = async () => {
+            const data = await fetchProductData();
+            setProductData(data);
+        }
+        getProductData().then(() => console.log("Product data fetched"));
+    }, []);
 
     const navigate = useNavigate();
 
@@ -156,8 +163,6 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
             item.name === name ? {...item, quantity: newQuantity} : item
         ));
     };
-
-
 
     const handleUpdateTotal = (newTotal: React.SetStateAction<number>) => {
         setTotalAmount(newTotal);
@@ -189,7 +194,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 <li className="step-todo">Customer information</li>
                 <li className="step-todo">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
             <div className="basket-layout">
                 <div className={"basket-items2"}>
@@ -206,7 +211,7 @@ const Basket: React.FC<BasketProps> = ({ items, setItems, setTotalAmount }) => {
                 </div>
                 <div className="right-side2">
                     <div className="right-side1 special-class">
-                        <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
+                        <Total items={items} onUpdateTotal={handleUpdateTotal}/>
                         <button onClick={goToAddressFormSide}>Go to checkout</button>
                     </div>
                 </div>

@@ -1,36 +1,34 @@
-import './BasketSide.css';
-import React, {useState} from 'react';
-import {AddressFields} from "./AddressForm";
 import DeliveryAddress from "./DeliveryAddress.tsx";
-import Total1 from "./Total1.tsx";
 import {useNavigate} from "react-router-dom";
-import { useOrderForm } from './UseOrderForm';
+import {Address} from "./DeliveryAddress";
+import './DeliveryAddress.css';
+import './App.css';
+import {useState} from "react";
 
-interface Item {
-    name: string;
-    price: number;
-    quantity: number;
-    ImageURL: string;
-    giftWrap?: boolean;
-    recurring?: string;
-}
+
 interface CustomerProps {
-    items: Item[];
+
     totalAmount: number;
+    onAddressSelected: (address: Address) => void;
 }
 
 
-const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<typeof useOrderForm> }> = ({items, orderForm}) => {
-    const [addressInfo] = useState<AddressFields | null>(null);
-
-
-    const handleUpdateTotal = () => {};
-
+const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
+    const [hasSelectedAddress, setHasSelectedAddress] = useState(false);
     const navigate = useNavigate();
+    const handleAddressSelection = () => {
+
+        setHasSelectedAddress(true);
+    };
 
     const goToPaymentFormSide = () => {
-        navigate('/PaymentFormPage');
-    }
+        if (!hasSelectedAddress) {
+            alert('Please select a delivery address before continuing.');
+        } else {
+            navigate('/PaymentFormPage');
+        }
+    };
+
     const goToAddressFormSide = () => {
         navigate('/AddressFormPage');
     }
@@ -46,14 +44,12 @@ const DeliveryAddressPage: React.FC<CustomerProps & { orderForm: ReturnType<type
                 <li className="step-done">Customer information</li>
                 <li className="step-active">Delivery address</li>
                 <li className="step-todo">Payment</li>
-                <li className="step-todo">Receipt</li>
+                <li className="step-todo">Summary</li>
             </ol>
-            <div className="right-side1">
-                <h2> Basket </h2>
-                <Total1 items={items} onUpdateTotal={handleUpdateTotal}/>
-            </div>
-            <div className="right-side1">
-                <DeliveryAddress items={items} addressInfo={addressInfo} orderForm={orderForm}/>
+            <div className="flex-container">
+                <div className="right-side2">
+                    <DeliveryAddress onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
+                </div>
             </div>
             <div className="button-container">
                 <button className={"button-left"} onClick={goToAddressFormSide}>Back</button>
