@@ -12,8 +12,8 @@ describe('sendOrderData', () => {
     it('should send order data with correct parameters', async () => {
         const url = 'https://eowyyh7aavsptru.m.pipedream.net';
         const items = [{name: 'item1', quantity: 1}, {name: 'item2', quantity: 2}];
-        const user = {name: 'John Doe', phone: '1234567890', email: 'john@example.com', address: '123 Street'};
-        const orderComment = 'No comment';
+        const user = {name: 'Test', phone: '12341234', email: 'test@test.test', address: 'Testgade'};
+        const orderComment = 'Jeg vil gerne have at den bliver leveret på hovedet';
         const marketingChecked = true;
 
         fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}));
