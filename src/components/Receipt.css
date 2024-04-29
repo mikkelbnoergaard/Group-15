@@ -1,0 +1,5 @@
+.page-column-receipt {
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+}

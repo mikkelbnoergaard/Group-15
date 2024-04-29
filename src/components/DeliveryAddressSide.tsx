@@ -34,7 +34,7 @@ const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
     }
 
     return (
-        <div className={"page-column"}>
+        <div className={"page-column-DAS"}>
             <div className={"header-top"}>
                 <img src={"https://i.imgur.com/J5OAFS3.png"}
                      style={{width: '120px', height: 'auto', borderRadius: '20px',}}/>
@@ -47,7 +47,7 @@ const DeliveryAddressPage: React.FC<CustomerProps> = ({onAddressSelected}) => {
                 <li className="step-todo">Summary</li>
             </ol>
             <div className="flex-container">
-                <div className="right-side2">
+                <div className="right-side-DAS">
                     <DeliveryAddress onAddressSelected={onAddressSelected} onAddressPicked={handleAddressSelection}/>
                 </div>
             </div>

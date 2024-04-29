@@ -5,6 +5,7 @@ import {useOrderForm} from "./UseOrderForm";
 import {Address} from "./DeliveryAddress";
 import {PaymentInformation} from "./PaymentForm.tsx";
 import './App.css';
+import './Receipt.css';
 
 interface Item {
     name: string;
@@ -55,7 +56,7 @@ const ReceiptPage: React.FC<CustomerProps> = ({items, totalAmount, addressInfo, 
     };
 
     return (
-        <div className="page-column">
+        <div className="page-column-receipt">
             <div className="header-top">
                 <img src="https://i.imgur.com/J5OAFS3.png"
                      style={{width: '120px', height: 'auto', borderRadius: '20px'}}/>

@@ -1,7 +1,7 @@
 import AddressForm, {AddressFields} from "./AddressForm";
 import {useNavigate} from "react-router-dom";
 import './buttons.css';
-import './AddressFormSide.css';
+import './AddressForm.css';
 import './App.css';
 import React from "react";
 
