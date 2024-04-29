@@ -93,8 +93,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
     };
     const buttonStyle = (method: string) => ({
         background: 'transparent',
-        border: paymentMethod === method ? '2px solid black' : 'none',
-        padding: 0
+        border: paymentMethod === method ? '0.5px solid black' : 'none'
     });
     const closePopup = () => {
         setShowPopup(false);
@@ -124,6 +123,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({totalAmount, companyVAT, onSav
                     </button>
                 )}
             </div>
+            <span style={{display: 'block', height: '20px'}}></span>
 
             {paymentMethod === 'giftCard' && (
                 <div>
