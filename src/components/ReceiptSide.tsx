@@ -33,7 +33,7 @@ const ReceiptPage: React.FC<CustomerProps> = ({ items, totalAmount, addressInfo,
     const handleSubmit = async () => {
         const filteredItems = items.filter(item => item.quantity > 0);
         if (addressInfo !== null) {
-            const response = await fetch('http://localhost:5000/checkout_data/', {
+            const response = await fetch('http://127.0.0.2:5000/checkout_data/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
