@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"http://130.225.170.52:5000/",
+  "proxy":"http://dtu62597.eduhost.dk:10221",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
