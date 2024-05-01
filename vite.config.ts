@@ -10,7 +10,7 @@ export default defineConfig({
   },
   server: {
     //ip address and open port on our back-end server
-    host: '192.168.0.22',
-    port: 5000
+    //host: '192.168.0.22',
+    //port: 5000
   }
 });
