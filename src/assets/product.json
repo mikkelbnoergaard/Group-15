@@ -1,6 +1,6 @@
 [
   {
-    "id": "goat",
+    "id": 1,
     "name": "Goat",
     "price": 4.99,
     "currency": "DKK",
@@ -11,7 +11,7 @@
     "ImageURL": "https://media.istockphoto.com/id/1414247904/photo/brown-goat-isolated-on-white-background.jpg?b=1&s=170667a&w=0&k=20&c=8PTBx7dJqThIsT3suQQyW3sBwHjY_WRKWoFX1jEc-ig="
   },
   {
-    "id": "bicycle",
+    "id": 2,
     "name": "Bicycle",
     "price": 199.99,
     "currency": "DKK",
@@ -22,7 +22,7 @@
     "ImageURL": "https://img.freepik.com/premium-photo/new-mountain-bicycle-with-29-inches-wheels-blue-frame-isolated-white-background_141856-1279.jpg"
   },
   {
-    "id": "kids-songbook",
+    "id": 3,
     "name": "Kids Songbook",
     "price": 7.99,
     "currency": "DKK",
@@ -33,7 +33,7 @@
     "ImageURL": "https://media.istockphoto.com/id/506823134/photo/composition-with-stack-of-books-on-a-white.jpg?s=612x612&w=0&k=20&c=8F2NYbE4BlHqgEl-k1jsXl035DiXN-WiqayLIQ13-xw="
   },
   {
-    "id": "cow-irish-moiled",
+    "id": 4,
     "name": "Irish Moiled Cow",
     "price": 149.99,
     "currency": "DKK",
@@ -43,7 +43,7 @@
     "ImageURL": "https://t4.ftcdn.net/jpg/01/47/23/99/360_F_147239957_bCPaLzcumhtwFoEW1MNdBsvJGG1wdSl4.jpg"
   },
   {
-    "id": "chicken",
+    "id": 5,
     "name": "Chicken",
     "price": 19.99,
     "currency": "DKK",
@@ -53,7 +53,7 @@
     "ImageURL": "https://t3.ftcdn.net/jpg/00/40/34/24/360_F_40342442_T76A5SQ8stBPEXOxw5RvOG5FFA55zjCI.jpg"
   },
   {
-    "id": "kangaroo-western-grey",
+    "id": 6,
     "name": "Western Grey Kangaroo",
     "price": 175,
     "currency": "DKK",
@@ -63,7 +63,7 @@
     "ImageURL": "https://t3.ftcdn.net/jpg/03/40/77/24/360_F_340772451_G7m3ADXxt4sEYJHcvTuSFQ1LZH6KGh4N.jpg"
   },
   {
-    "id": "football",
+    "id": 7,
     "name": "Football",
     "price": 49.99,
     "currency": "DKK",
@@ -73,7 +73,7 @@
     "ImageURL": "https://as2.ftcdn.net/v2/jpg/02/37/12/83/1000_F_237128333_cMH5DHO8AqXPd6O9Hptmc8InI6qYBmed.jpg"
   },
   {
-    "id": "toothbrush-bamboo",
+    "id": 8,
     "name": "Bamboo Toothbrush",
     "price": 9.99,
     "currency": "DKK",
